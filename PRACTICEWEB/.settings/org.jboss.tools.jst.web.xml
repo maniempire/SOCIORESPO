@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-systems VERSION="3.1.1.v201006011046R-H111-GA"
+ application-name="PRACTICEWEB" model-entity="FileSystems" workspace-home="./WebContent/WEB-INF">
+ <file-system NAME="WEB-INF" location="%workspace.home%" model-entity="FileSystemFolder"/>
+ <file-system NAME="WEB-ROOT" info="Content-Type=Web"
+  location="%workspace.home%/.." model-entity="FileSystemFolder"/>
+ <file-system NAME="src" location="%workspace.home%/../../src" model-entity="FileSystemFolder"/>
+ <file-system NAME="classes"
+  location="%workspace.home%/../../build/classes" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib" location="%workspace.home%/lib" model-entity="FileSystemFolder"/>
+ <web SERVLET_VERSION="2.5" model-entity="JstWeb" model-path="/web.xml">
+  <module URI="/WEB-INF/struts-config.xml" model-entity="JstWebModule"
+   model-path="/struts-config.xml" src="src" web-root="WEB-ROOT"/>
+ </web>
+</file-systems>
