@@ -27,6 +27,7 @@ public class LoginAction extends Action {
 			try {
 				
 				System.out.println("In action class");
+				System.out.println("welcome");// modified by maha
 
 			} catch (Exception e) {
 
