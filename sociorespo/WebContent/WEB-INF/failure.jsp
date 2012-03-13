@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login - Home</title>
+<title>failure page</title>
 </head>
 <body>
-
+Invalid useid and password
 </body>
 </html>
