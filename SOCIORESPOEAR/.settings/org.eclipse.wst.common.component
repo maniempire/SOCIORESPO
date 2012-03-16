@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SOCIORESPOEAR">
+        <wb-resource deploy-path="/" source-path="/EarContent"/>
+        <dependent-module archiveName="db2jcc_license_cu.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/DB2/db2jcc_license_cu.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="db2jcc.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/DB2/db2jcc.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-beanutils-1.8.0.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/JASPER/commons-beanutils-1.8.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections-2.1.1.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/JASPER/commons-collections-2.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-digester-1.7.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/JASPER/commons-digester-1.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="iText-2.1.7.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/JASPER/iText-2.1.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jasper-compiler-jdt-5.5.15.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/JASPER/jasper-compiler-jdt-5.5.15.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jasperreports.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/JASPER/jasperreports.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mail.jar" deploy-path="/" handle="module:/classpath/lib/PIDREQUIREDJARS/MAIL/mail.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SOCIORESPOBL.jar" deploy-path="/" handle="module:/resource/SOCIORESPOBL/SOCIORESPOBL">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SOCIORESPOUTIL.jar" deploy-path="/" handle="module:/resource/SOCIORESPOUTIL/SOCIORESPOUTIL">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SOCIORESPODTO.jar" deploy-path="/" handle="module:/resource/SOCIORESPODTO/SOCIORESPODTO">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SOCIORESPODAO.jar" deploy-path="/" handle="module:/resource/SOCIORESPODAO/SOCIORESPODAO">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SOCIORESPO.war" deploy-path="/" handle="module:/resource/SOCIORESPO/SOCIORESPO">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-java-3.1.12.jar" deploy-path="/" handle="module:/classpath/lib/SOCIORESPOREQUIREDJARS/MYSQL/mysql-connector-java-3.1.12.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

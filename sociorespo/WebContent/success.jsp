@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>success page</title>
+<title>Success</title>
 </head>
 <body>
-<h2>User ID and Project are correct</h2>
-<a href="login.jsp">click here</a>
-<img src="Water lilies.jpg"/>
+Logged Successfully
 </body>
 </html>

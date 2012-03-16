@@ -1,0 +1,29 @@
+For User:
+---------
+
+Menus: My Profile	Leave Mgnt		Task Mgnt
+       ----------	----------		---------
+			Apply Leave		Task Report
+			Request Report			
+
+
+
+For Supervisor:
+---------------
+
+Menus: My Profile	Leave Mgnt		Task Mgnt
+       ----------	----------		---------
+			Apply Leave		Assign Task
+			Request Report		Task Report
+			Leave Approval		Task Approval
+
+		
+
+
+For HR:
+---------
+
+Menus: Profile		Leave Mgnt
+       -------		----------
+	My Profile	Apply Leave
+	Manage Users	Request Report
