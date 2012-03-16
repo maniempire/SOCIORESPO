@@ -23,7 +23,7 @@ div
 			}
 -->
 </style>
-<link href="pim-styles.css" rel="stylesheet" type="text/css" />
+<link href="styles/styles.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 function checkLogin(){
@@ -58,7 +58,7 @@ function checkLogin(){
 <form action="loginAction.do" method="post" name="frmLogin" id="frmLogin"  onsubmit="return checkLogin();" >
 <table width="1010" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="1010"><img src="images/header.jpg" width="1010" height="123" /></td>
+    <td width="1010"><img src="images/socio-respo-header.jpg" width="1010" height="123" /></td>
   </tr>
   <tr>
     <td height="2"></td>

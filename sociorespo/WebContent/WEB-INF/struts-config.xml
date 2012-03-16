@@ -36,8 +36,8 @@
 	</form-beans>
 	<global-forwards>
 			
-		<forward name="EXCEPTION" path="/PIMLOGIN.jsp" />
-		<forward name="LOGOUT" path="/PIMLOGIN.jsp" />
+		<forward name="EXCEPTION" path="/login.jsp" />
+		<forward name="LOGOUT" path="/login.jsp" />
 		<forward name="HOME" path="/Home.jsp" />
 		
 		
@@ -48,12 +48,12 @@
 		
 		<action path="/loginAction"
 		 	name="loginActionForm" 
-		 	input="/PIMLOGIN.jsp"
+		 	input="/login.jsp"
 		 	type="action.loginAction">
 			<forward name="SUCCESS" path="/homeAction.do" />
 			<forward name="HRSUCCESS" path="/HRHome.jsp"/>
 			<forward name="SUPERVISOR" path="/supv_home.jsp"></forward>
-			<forward name="Failure" path="/PIMLOGIN.jsp"></forward>
+			<forward name="Failure" path="/login.jsp"></forward>
 		
 		</action>
 		<action path="/CommonPageAction" 
@@ -89,7 +89,7 @@
 		</action>
 		
 			<action path="/logoutAction" type="action.LogoutAction">
-		<forward name="LOGOUT" path="/PIMLOGIN.jsp"></forward>
+		<forward name="LOGOUT" path="/login.jsp"></forward>
 		</action>
 		
 				<action path="/homeAction" type="action.HomeAction">

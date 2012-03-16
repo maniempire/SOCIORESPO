@@ -5,8 +5,8 @@
   <PROCESS-ITEM-OUTPUT ID="SUCCESS" NAME="forward0"
    PATH="/homeAction.do" TARGET="action10" TITLE="SUCCESS"
    TYPE="forward" model-entity="StrutsProcessItemOutput"/>
-  <PROCESS-ITEM-OUTPUT ID="Failure" NAME="forward1" PATH="/PIMLOGIN.jsp"
-   TARGET="page2" TITLE="Failure" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="Failure" NAME="forward1" PATH="/login.jsp"
+   TARGET="page4" TITLE="Failure" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
   <PROCESS-ITEM-OUTPUT ID="HRSUCCESS" NAME="forward2" PATH="/HRHome.jsp"
    TARGET="page5" TITLE="HRSUCCESS" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
   <PROCESS-ITEM-OUTPUT ID="SUPERVISOR" NAME="forward3"
@@ -82,18 +82,18 @@
  <PROCESS-ITEM NAME="page18" PATH="/SUP-my-profile.jsp"
   SHAPE="656,161,0,0" SUBTYPE="jsp" TITLE="SUP-my-profile.jsp"
   TYPE="page" model-entity="StrutsProcessItem"/>
- <PROCESS-ITEM ID="EXCEPTION" NAME="forward0" PATH="/PIMLOGIN.jsp"
-  SHAPE="32,1569,0,0" TARGET="page2" TITLE="EXCEPTION" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="EXCEPTION" NAME="forward0" PATH="/login.jsp"
+  SHAPE="32,1569,0,0" TARGET="page4" TITLE="EXCEPTION" TYPE="forward" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM NAME="page19" PATH="/PIMLogin.jsp" SHAPE="240,1586,0,0"
   SUBTYPE="jsp" TITLE="PIMLogin.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
- <PROCESS-ITEM ID="LOGOUT" NAME="forward1" PATH="/PIMLOGIN.jsp"
-  SHAPE="32,2081,0,0" TARGET="page2" TITLE="LOGOUT" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="LOGOUT" NAME="forward1" PATH="/login.jsp"
+  SHAPE="32,2081,0,0" TARGET="page4" TITLE="LOGOUT" TYPE="forward" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM ID="HOME" NAME="forward2" PATH="/Home.jsp"
   SHAPE="32,433,0,0" TARGET="page0" TITLE="HOME" TYPE="forward" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM ID="#logoutAction" NAME="action8" PATH="/logoutAction"
   SHAPE="32,2529,0,0" TYPE="action" model-entity="StrutsProcessItem">
-  <PROCESS-ITEM-OUTPUT ID="LOGOUT" NAME="forward0" PATH="/PIMLOGIN.jsp"
-   TARGET="page2" TITLE="LOGOUT" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="LOGOUT" NAME="forward0" PATH="/login.jsp"
+   TARGET="page4" TITLE="LOGOUT" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
  </PROCESS-ITEM>
  <PROCESS-ITEM ID="#homeAction" NAME="action10" PATH="/homeAction"
   SHAPE="32,2641,0,0" TYPE="action" model-entity="StrutsProcessItem">
@@ -114,4 +114,6 @@
   TYPE="page" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM ID="#holidayAction" NAME="action11" PATH="/holidayAction"
   SHAPE="240,2641,0,0" SUBTYPE="unknown" TYPE="action" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page4" PATH="/login.jsp" SHAPE="240,1681,0,0"
+  SUBTYPE="jsp" TITLE="login.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
 </PROCESS>
