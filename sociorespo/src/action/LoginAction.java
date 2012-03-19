@@ -25,7 +25,7 @@ import bl.LoginBL;
 import actionform.LoginActionForm;
 import java.util.ArrayList;
 
-public class loginAction extends Action {
+public class LoginAction extends Action {
 	
 	
 

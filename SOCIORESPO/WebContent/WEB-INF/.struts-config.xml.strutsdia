@@ -19,8 +19,6 @@
    SUBTYPE="confirmed" TARGET="action11" TITLE="/holidayAction.do"
    TYPE="link" model-entity="StrutsProcessItemOutput"/>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="page2" PATH="/PIMLOGIN.jsp" SHAPE="448,17,0,0"
-  SUBTYPE="jsp" TITLE="PIMLOGIN.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM ID="#CommonPageAction" NAME="action1"
   PATH="/CommonPageAction" SHAPE="32,161,0,0"
   TITLE="commonPageActionForm" TYPE="action" model-entity="StrutsProcessItem">
@@ -39,16 +37,6 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="page3" PATH="/my-profile.jsp" SHAPE="240,290,0,0"
   SUBTYPE="jsp" TITLE="my-profile.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
- <PROCESS-ITEM ID="#ProfileAction" NAME="action3" PATH="/ProfileAction"
-  SHAPE="240,401,0,0" TITLE="profileActionForm" TYPE="action" model-entity="StrutsProcessItem">
-  <PROCESS-ITEM-OUTPUT ID="SUPERPROFILELIST" NAME="forward0"
-   PATH="/Home.jsp" TARGET="page0" TITLE="SUPERPROFILELIST"
-   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
-  <PROCESS-ITEM-OUTPUT ID="PROFILELIST" NAME="forward1" PATH="/Home.jsp"
-   TARGET="page0" TITLE="PROFILELIST" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
-  <PROCESS-ITEM-OUTPUT ID="HRPROFILELIST" NAME="forward2"
-   PATH="/Home.jsp" TARGET="page0" TITLE="HRPROFILELIST" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
- </PROCESS-ITEM>
  <PROCESS-ITEM NAME="page5" PATH="/HRHome.jsp" SHAPE="448,129,0,0"
   SUBTYPE="jsp" TITLE="HRHome.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM NAME="page1" PATH="/HRProfile.jsp" SHAPE="448,273,0,0"
@@ -84,8 +72,6 @@
   TYPE="page" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM ID="EXCEPTION" NAME="forward0" PATH="/login.jsp"
   SHAPE="32,1569,0,0" TARGET="page4" TITLE="EXCEPTION" TYPE="forward" model-entity="StrutsProcessItem"/>
- <PROCESS-ITEM NAME="page19" PATH="/PIMLogin.jsp" SHAPE="240,1586,0,0"
-  SUBTYPE="jsp" TITLE="PIMLogin.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM ID="LOGOUT" NAME="forward1" PATH="/login.jsp"
   SHAPE="32,2081,0,0" TARGET="page4" TITLE="LOGOUT" TYPE="forward" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM ID="HOME" NAME="forward2" PATH="/Home.jsp"
@@ -116,4 +102,22 @@
   SHAPE="240,2641,0,0" SUBTYPE="unknown" TYPE="action" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM NAME="page4" PATH="/login.jsp" SHAPE="240,1681,0,0"
   SUBTYPE="jsp" TITLE="login.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#faceBookAction" NAME="action2"
+  PATH="/faceBookAction" SHAPE="32,2049,0,0" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="FAILURE" NAME="forward0" PATH="/login.jsp"
+   TARGET="page4" TITLE="FAILURE" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="SUCCESS" NAME="forward1"
+   PATH="/facebook_success.jsp" TARGET="page2" TITLE="SUCCESS"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page2" PATH="/facebook_success.jsp"
+  SHAPE="240,2049,0,0" SUBTYPE="jsp" TITLE="facebook_success.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#profileAction" NAME="action3" PATH="/profileAction"
+  SHAPE="32,433,0,0" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="SUCCESS" NAME="forward0" PATH="/profile.jsp"
+   TARGET="page7" TITLE="SUCCESS" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page7" PATH="/profile.jsp" SHAPE="240,545,0,0"
+  SUBTYPE="jsp" TITLE="profile.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
 </PROCESS>

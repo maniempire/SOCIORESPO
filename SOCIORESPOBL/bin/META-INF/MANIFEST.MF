@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
 Class-Path: SOCIORESPODAO.jar 
- SOCIORESPODTO.jar
+ SOCIORESPODTO.jar 
+ commons-lang-2.2.jar 
+ facebook-java-api-3.0.2.jar 
+ json-20080701.jar
 

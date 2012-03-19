@@ -46,4 +46,14 @@
   <listener>
     <listener-class>util.Db2ContextListener</listener-class>
   </listener>
+  <servlet>
+    <description></description>
+    <display-name>FaceBookServlet</display-name>
+    <servlet-name>FaceBookServlet</servlet-name>
+    <servlet-class>com.sociorespo.web.util.FaceBookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FaceBookServlet</servlet-name>
+    <url-pattern>/FaceBookServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

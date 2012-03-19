@@ -49,12 +49,17 @@
 		<action path="/loginAction"
 		 	name="loginActionForm" 
 		 	input="/login.jsp"
-		 	type="action.loginAction">
+		 	type="action.LoginAction">
 			<forward name="SUCCESS" path="/homeAction.do" />
 			<forward name="HRSUCCESS" path="/HRHome.jsp"/>
 			<forward name="SUPERVISOR" path="/supv_home.jsp"></forward>
 			<forward name="Failure" path="/login.jsp"></forward>
 		
+		</action>
+		<action path="/faceBookAction"
+		 	type="com.sociorespo.web.action.FaceBookAction">			
+			<forward name="FAILURE" path="/login.jsp"></forward>
+			<forward name="SUCCESS" path="/facebook_success.jsp"></forward>		
 		</action>
 		<action path="/CommonPageAction" 
 			name="commonPageActionForm"
@@ -65,17 +70,12 @@
 			<forward name="HRMANAGEEMPLOYEE" path="/HRManageEmployee.jsp"></forward>
 		</action>
 			
-		<action path="/ProfileAction"
-				name="profileActionForm"
-				type="action.ProfileAction">
-			<forward name="SUPERPROFILELIST" path="/Home.jsp"/>
-			<forward name="PROFILELIST" path="/Home.jsp"/>
-			<forward name="HRPROFILELIST" path="/Home.jsp"></forward>
+		
+		
+		<action path="/profileAction"				
+				type="com.sociorespo.web.action.ProfileAction">
+			<forward name="SUCCESS" path="/profile.jsp"/>			
 		</action>	
-			
-		
-		
-		
 		
 		<action path="/employeeAction"
 				name="employeeForm"

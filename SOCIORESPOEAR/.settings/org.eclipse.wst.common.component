@@ -47,5 +47,14 @@
         <dependent-module archiveName="mysql-connector-java-3.1.12.jar" deploy-path="/" handle="module:/classpath/lib/SOCIORESPOREQUIREDJARS/MYSQL/mysql-connector-java-3.1.12.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="commons-lang-2.2.jar" deploy-path="/" handle="module:/classpath/lib/SOCIORESPOREQUIREDJARS/FACEBOOK/commons-lang-2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="facebook-java-api-3.0.2.jar" deploy-path="/" handle="module:/classpath/lib/SOCIORESPOREQUIREDJARS/FACEBOOK/facebook-java-api-3.0.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-20080701.jar" deploy-path="/" handle="module:/classpath/lib/SOCIORESPOREQUIREDJARS/FACEBOOK/json-20080701.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
