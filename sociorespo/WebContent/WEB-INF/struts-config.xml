@@ -5,32 +5,13 @@
 	<form-beans>
 	
 		<form-bean name="loginActionForm"
-			type="actionform.LoginActionForm">
+			type="com.sociorespo.web.actionform.LoginActionForm">
 		</form-bean>
-		<form-bean name="commonPageActionForm" 
-			type="actionform.CommonPageActionForm">
+		<form-bean name="signupActionForm"
+			type="com.sociorespo.web.actionform.SignupActionForm">
 		</form-bean>
-		<form-bean name="applyLeaveActionForm" 
-			type="actionform.ApplyLeaveActionForm"></form-bean>
-		
 		<form-bean name="profileActionForm"
-			type="actionform.ProfileActionForm">
-		</form-bean>
-		<form-bean name="requestReportForm" 
-			type="actionform.RequestReportForm"></form-bean>
-		
-		<form-bean name="assignedTaskForm"
-			type="actionform.AssignedTaskForm">
-		</form-bean>
-		
-		<form-bean name="taskMgntActionForm"
-			type="actionform.TaskMgntActionForm">
-		</form-bean>
-		<form-bean name="employeeForm" 
-			type="actionform.EmployeeForm"></form-bean>
-			
-			<form-bean name="holidayActionForm"
-			type="actionform.HolidayActionForm">
+			type="com.sociorespo.web.actionform.ProfileActionForm">
 		</form-bean>
 		
 	</form-beans>
@@ -49,8 +30,8 @@
 		<action path="/loginAction"
 		 	name="loginActionForm" 
 		 	input="/login.jsp"
-		 	type="action.LoginAction">
-			<forward name="SUCCESS" path="/homeAction.do" />
+		 	type="com.sociorespo.web.action.LoginAction">
+			<forward name="SUCCESS" path="/home.jsp" />
 			<forward name="HRSUCCESS" path="/HRHome.jsp"/>
 			<forward name="SUPERVISOR" path="/supv_home.jsp"></forward>
 			<forward name="Failure" path="/login.jsp"></forward>
@@ -61,32 +42,21 @@
 			<forward name="FAILURE" path="/login.jsp"></forward>
 			<forward name="SUCCESS" path="/facebook_success.jsp"></forward>		
 		</action>
-		<action path="/CommonPageAction" 
-			name="commonPageActionForm"
-			type="action.CommonPageAction">	
-			<forward name="SUPERPROFILELIST" path="/SUP-my-profile.jsp"/>
-			<forward name="PROFILELIST" path="/my-profile.jsp"/>
-			<forward name="HRPROFILELIST" path="/HRProfile.jsp"></forward>
-			<forward name="HRMANAGEEMPLOYEE" path="/HRManageEmployee.jsp"></forward>
+		
+		<action path="/signupAction"
+				name="signupActionForm"
+		 	type="com.sociorespo.web.action.SignupAction">			
+			<forward name="FAILURE" path="/login.jsp"></forward>
+			<forward name="SUCCESS" path="/home.jsp"></forward>		
 		</action>
-			
 		
-		
-		<action path="/profileAction"				
-				type="com.sociorespo.web.action.ProfileAction">
-			<forward name="SUCCESS" path="/profile.jsp"/>			
-		</action>	
-		
-		<action path="/employeeAction"
-				name="employeeForm"
-				type="action.EmployeeAction">
-				
-				<forward name="ADD" path="/HRAddEmployee.jsp"></forward>
-				<forward name="MODIFY" path="/modify-employee.jsp"></forward>
-				<forward name="SUCCESS" path="/HRManageEmployee.jsp"></forward>
-				<forward name="EMPREPORT" path="/employeeReport.jsp"></forward>
-				
+		<action path="/profileAction"
+				name="profileActionForm"
+		 	type="com.sociorespo.web.action.ProfileAction">			
+			<forward name="FAILURE" path="/login.jsp"></forward>
+			<forward name="SUCCESS" path="/profile.jsp"></forward>		
 		</action>
+		
 		
 			<action path="/logoutAction" type="action.LogoutAction">
 		<forward name="LOGOUT" path="/login.jsp"></forward>
@@ -104,5 +74,5 @@
 		
 	</action-mappings>
 	
-	<message-resources parameter="resources.ApplicationResources" />
+	<message-resources parameter="com.sociorespo.web.resources.ApplicationResources" />
 </struts-config>

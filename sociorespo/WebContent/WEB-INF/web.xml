@@ -44,7 +44,7 @@
     </taglib>
   </jsp-config>
   <listener>
-    <listener-class>util.Db2ContextListener</listener-class>
+    <listener-class>com.sociorespo.web.util.Db2ContextListener</listener-class>
   </listener>
   <servlet>
     <description></description>

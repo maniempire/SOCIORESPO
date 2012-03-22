@@ -21,12 +21,7 @@ import com.google.code.facebookapi.FacebookJsonRestClient;
 import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.dto.FaceBookDTO;
 
-import dto.EmployeeDTO;
-import dto.LoginDTO;
 
-import bl.EmployeeBL;
-import bl.LoginBL;
-import actionform.LoginActionForm;
 import java.util.ArrayList;
 
 public class FaceBookAction extends Action {

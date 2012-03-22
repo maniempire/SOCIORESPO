@@ -1,11 +1,10 @@
-@echo off
+@ echo off
 
-mysql -u root -proot -h localhost sociorespo < create.sql
+mysql -u root -proot  sociorespo < drop.sql
 
-mysql -u root -proot -h localhost sociorespo < alter.sql
+mysql -u root -proot  sociorespo < create.sql
 
-echo "Rebuild Completed"
+mysql -u root -proot  sociorespo < alter.sql
 
+Echo
 pause
-
-exit

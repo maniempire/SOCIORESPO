@@ -8,7 +8,7 @@
 <html:html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PIM</title>
+<title>Login</title>
 <style type="text/css">
 <!--
 body {
@@ -94,10 +94,10 @@ function checkLogin(){
                   <td width="61%" height="15"></td>
                 </tr>
                 <tr>
-                  <td class="login-cont">User Id</td>
+                  <td class="login-cont">Email Id</td>
                   <td><!--  <form id="form1" name="form1" method="post" action="">-->
                       <label>
-                      <input  type="text" name="userId" class="login-txt-bx" id="userId" />
+                      <input  type="text" name="emailId" class="login-txt-bx" id="emailId" />
                       <td></td>
                       </label>
                   <!--  </form>--></td>
@@ -124,7 +124,8 @@ function checkLogin(){
 				</tr>
                 <tr>
                   <td height="7"></td>                                   
-                  <td height="7"><input name="Submit" type="submit" class="login-but" value="Submit" /></td>
+                  <td height="7"><input name="Submit" type="submit" class="login-but" value="Submit" />
+                  &nbsp;&nbsp;<html:link href="signup.jsp">Sign Up </html:link></td>
                 </tr>
             </table></td>
             <td class="login-rt-br"> </td>
@@ -174,9 +175,9 @@ function checkLogin(){
   <tr>
     <td>&nbsp;</td>
   </tr>
-  <tr>
-    <td class="hd-br"><jsp:include page="footer.jsp" /></td>
-  </tr>
+  	<tr>
+    	<td class="hd-br"><jsp:include page="/common/footer.jsp" /></td>
+  	</tr>
 </table>
 </form>
 </body>

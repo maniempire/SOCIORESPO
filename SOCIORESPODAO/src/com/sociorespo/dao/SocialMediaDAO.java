@@ -7,12 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.pid.util.ShaUtil;
+import com.sociorespo.util.ShaUtil;
 
-import dao.DataAccessObject;
-import dao.EmployeeDAO;
-import dto.EmployeeDTO;
-import dto.LoginDTO;
+
+
 
 public class SocialMediaDAO extends DataAccessObject {
 

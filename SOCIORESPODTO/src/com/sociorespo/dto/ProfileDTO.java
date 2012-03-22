@@ -30,12 +30,20 @@ import java.util.List;
 
 public class ProfileDTO {
 	
+	private int userId;
 	/*Property to store the First name */
 	private String firstName;
 	/*Property to store the Last name */
 	private String lastName;
 	/*Property to store the Password */
 	private String password;
+	/*Property to store the gender */
+	private String gender;
+	private String phoneNum;
+	private String mailId;
+	private String dob;
+	private String voterId;
+	
 	/*Property to store the Email */
 	private String eMail;
 	/*Property to store the Email */
@@ -62,8 +70,7 @@ public class ProfileDTO {
 	private String occupation;
 	/*Property to store the Web site */
 	private String website;
-	/*Property to store the gender */
-	private String gender;	
+		
 	/*Property to store the profile Picture */
 	private String profilePicture;
 	/*Property to store the Profile Id */
@@ -83,7 +90,7 @@ public class ProfileDTO {
 	private String profImgFileName = null;
 	private String extProfileImgLocation = null;
 	
-	private String userId = null;
+	
 	
 	private boolean speakerCheck = false;
 
@@ -134,18 +141,46 @@ public class ProfileDTO {
 	private String joinedEventsName = null;
 	private String attendedSessionsName = null;
 	
+	
+	
+		
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+	public String getMailId() {
+		return mailId;
+	}
+	public void setMailId(String mailId) {
+		this.mailId = mailId;
+	}
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+	public String getVoterId() {
+		return voterId;
+	}
+	public void setVoterId(String voterId) {
+		this.voterId = voterId;
+	}
 	public String getAttendedSessionsName() {
 		return attendedSessionsName;
 	}
 	public void setAttendedSessionsName(String attendedSessionsName) {
 		this.attendedSessionsName = attendedSessionsName;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+	
 	public String getProfileEmail() {
 		return profileEmail;
 	}
