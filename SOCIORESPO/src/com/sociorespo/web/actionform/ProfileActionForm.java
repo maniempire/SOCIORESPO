@@ -16,6 +16,7 @@ public class ProfileActionForm extends ActionForm{
 	private String mailId=null;
 	private String dob=null;
 	private String voterId = null;
+	private String changePassword = null;
 	
 	
 	
@@ -89,6 +90,12 @@ public class ProfileActionForm extends ActionForm{
 	}
 	public void setProfileDTO(ProfileDTO profileDTO) {
 		this.profileDTO = profileDTO;
+	}
+	public String getChangePassword() {
+		return changePassword;
+	}
+	public void setChangePassword(String changePassword) {
+		this.changePassword = changePassword;
 	}
 	
 	

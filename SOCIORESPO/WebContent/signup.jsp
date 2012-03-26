@@ -26,7 +26,7 @@
     <td height="2"></td>
   </tr>
   <tr>
-    <td class="hd-br">&nbsp;</td>
+    <td class="hd-br">&nbsp;<html:link href="loginAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

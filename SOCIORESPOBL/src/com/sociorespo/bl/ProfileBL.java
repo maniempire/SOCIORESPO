@@ -27,7 +27,13 @@ public class ProfileBL {
 		return profileDTO;
 	}
 	
-	
+public ProfileDTO updateProfile(ProfileDTO profileDTO) {
+		
+		ProfileDAO profileDAO = new ProfileDAO();
+		profileDTO=profileDAO.updateProfile(profileDTO);
+		
+		return profileDTO;
+	}
 
 	
 }
