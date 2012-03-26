@@ -19,11 +19,8 @@ import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.ProfileBL;
 
 import com.sociorespo.dto.ProfileDTO;
+import com.sociorespo.web.actionform.LoginActionForm;
 import com.sociorespo.web.actionform.ProfileActionForm;
-
-
-
-
 
 
 public class ProfileAction extends Action{
@@ -34,6 +31,7 @@ public class ProfileAction extends Action{
 		
 		String nextPage =null;
 		String finalResult=null;
+		String linkUrl="";
 		HttpSession session = null;
 		
 		ActionErrors errors = new ActionErrors();
@@ -44,6 +42,7 @@ public class ProfileAction extends Action{
 		
 		session = request.getSession(true);
 		
+		//linkUrl = request.getParameter("link_url");
 		
 		ProfileActionForm profileActionForm = (ProfileActionForm)form;
 		
@@ -58,10 +57,39 @@ public class ProfileAction extends Action{
 		
 		profileDTO.setUserId(userId);
 		
+		
+		if (linkUrl != null) {
+			if (linkUrl.equals("update")) {
+				profileDTO.setFirstName(profileActionForm.getFirstName());
+				profileDTO.setLastName(profileActionForm.getLastName());
+				if(profileActionForm.getChangePassword()!=null){
+					profileDTO.setPassword(profileActionForm.getChangePassword());
+				}else{
+					profileDTO.setPassword(profileActionForm.getPassword());
+				}
+				profileDTO.setGender(profileActionForm.getGender());
+				profileDTO.setPhoneNum(profileActionForm.getPhoneNum());
+				profileDTO.setVoterId(profileActionForm.getVoterId());
+				profileDTO.setDob(profileActionForm.getDob());
+				
+				profileDTO = profileBL.updateProfile(profileDTO);
+				nextPage = "";
+				session.invalidate();
+			}
+			
+		else{
 		profileDTO=profileBL.getUserProfile(profileDTO);
 		
-		profileActionForm.setProfileDTO(profileDTO);
+		//profileActionForm.setProfileDTO(profileDTO);
 		
+		profileActionForm.setFirstName(profileDTO.getFirstName());
+		profileActionForm.setLastName(profileDTO.getLastName());
+		profileActionForm.setMailId(profileDTO.getMailId());
+		profileActionForm.setPassword(profileDTO.getPassword());
+		profileActionForm.setGender(profileDTO.getGender());
+		profileActionForm.setPhoneNum(profileDTO.getPhoneNum());
+		profileActionForm.setDob(profileDTO.getDob());
+		profileActionForm.setVoterId(profileDTO.getVoterId());
 		FaceBookBL faceBookBL = new FaceBookBL();
 		
 		 profileDTO = new ProfileDTO();
@@ -73,6 +101,8 @@ public class ProfileAction extends Action{
 		
 		errors.add("PIMERROR", new ActionError("errors.pim.profileupdated.success"));
 		
+		}
+		}
 		}catch(Exception e){
 			e.printStackTrace();
 			errors.add("PIMERROR", new ActionError(
