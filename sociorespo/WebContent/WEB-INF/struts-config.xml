@@ -13,13 +13,16 @@
 		<form-bean name="profileActionForm"
 			type="com.sociorespo.web.actionform.ProfileActionForm">
 		</form-bean>
+		<form-bean name="homeActionForm"
+			type="com.sociorespo.web.actionform.HomeActionForm">
+		</form-bean>
 		
 	</form-beans>
 	<global-forwards>
 			
 		<forward name="EXCEPTION" path="/login.jsp" />
 		<forward name="LOGOUT" path="/login.jsp" />
-		<forward name="HOME" path="/Home.jsp" />
+		<!-- <forward name="HOME" path="/Home.jsp" />-->
 		
 		
 	</global-forwards>
@@ -33,7 +36,7 @@
 		 	type="com.sociorespo.web.action.LoginAction">
 			<forward name="SUCCESS" path="/home.jsp" />
 			<forward name="HRSUCCESS" path="/HRHome.jsp"/>
-			<forward name="SUPERVISOR" path="/supv_home.jsp"></forward>
+			<forward name="LOGOUT" path="/login.jsp"></forward>
 			<forward name="Failure" path="/login.jsp"></forward>
 		
 		</action>
@@ -50,6 +53,13 @@
 			<forward name="SUCCESS" path="/home.jsp"></forward>		
 		</action>
 		
+		<action path="/homeAction"
+				name="homeActionForm"
+		 		type="com.sociorespo.web.action.HomeAction">			
+			
+			<forward name="HOMETAGS" path="/home.jsp"></forward>		
+		</action>
+		
 		<action path="/profileAction"
 				name="profileActionForm"
 		 	type="com.sociorespo.web.action.ProfileAction">			
@@ -62,16 +72,7 @@
 		<forward name="LOGOUT" path="/login.jsp"></forward>
 		</action>
 		
-				<action path="/homeAction" type="action.HomeAction">
-		<forward name="HOME" path="/Home.jsp"></forward>
-		<forward name="Holiday" path="/holidayAction.do"></forward>
-		
-		
-		</action>
-		
-		
-		
-		
+			
 	</action-mappings>
 	
 	<message-resources parameter="com.sociorespo.web.resources.ApplicationResources" />

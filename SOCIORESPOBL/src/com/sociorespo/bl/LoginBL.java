@@ -3,7 +3,7 @@ package com.sociorespo.bl;
 
 import com.sociorespo.dao.LoginDAO;
 import com.sociorespo.dto.LoginDTO;
-import com.sociorespo.dto.ProfileDTO;
+//import com.sociorespo.dto.ProfileDTO;
 
 
 public class LoginBL {
@@ -18,5 +18,13 @@ public class LoginBL {
 		
 		
 		return loginDTO;
+	}
+
+	public boolean logoutUser(String userId) {
+		
+		LoginDAO loginDAO = new LoginDAO();
+		boolean result = loginDAO.logoutUser(userId);
+		
+		return result;
 	}
 }

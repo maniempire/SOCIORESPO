@@ -1,5 +1,7 @@
 package com.sociorespo.web.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,12 +13,15 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.sociorespo.web.actionform.HomeActionForm;
 import com.sociorespo.web.actionform.ProfileActionForm;
 
 import com.sociorespo.web.actionform.LoginActionForm;
 
+import com.sociorespo.bl.HomeBL;
 import com.sociorespo.bl.LoginBL;
 import com.sociorespo.bl.ProfileBL;
+import com.sociorespo.dto.HomeDTO;
 import com.sociorespo.dto.ProfileDTO;
 import com.sociorespo.dto.LoginDTO;
 
@@ -36,6 +41,8 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 		ProfileActionForm profileActionForm = new ProfileActionForm();
 
 		HttpSession session = null;
+		HomeBL homeBL = null;
+		HomeDTO homeDTO = null;
 		
 		ActionErrors errors = new ActionErrors();
 		ActionForward forward = new ActionForward();
@@ -48,6 +55,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 		String validUser = null;
 		
 		String nextPage = null;
+		String linkUrl = "";
 			
 		try{
 			
@@ -56,6 +64,18 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			loginBL = new LoginBL();
 			
 			session = request.getSession(true);
+			
+			linkUrl = request.getParameter("link_url");
+			
+			if (linkUrl != null) {
+				if (linkUrl.equals("logout")) {
+					boolean result = loginBL.logoutUser(loginActionForm.getUserId());
+					nextPage = "LOGOUT";
+					session.invalidate();
+				}
+				
+			}else{
+				
 			
 			loginDTO.setEmailId(loginActionForm.getEmailId());
 			
@@ -66,8 +86,14 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			if(loginDTO != null){
 				
 				if(loginDTO.getValidUser().equals("valid")){
+					
+					ArrayList userTags;
+					
+					HomeActionForm homeActionForm = new HomeActionForm();
 					profileDTO = new ProfileDTO();
 					profileBL = new ProfileBL();
+					homeBL = new HomeBL();
+					homeDTO = new HomeDTO();
 					
 					profileDTO.setUserId(loginDTO.getUserId());
 					
@@ -77,6 +103,10 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 					session.setAttribute("USERID", profileDTO.getUserId());
 					session.setAttribute("FIRSTNAME", profileDTO.getFirstName());
 					
+					homeDTO.setUserId(loginDTO.getUserId());
+					
+					userTags = (ArrayList) homeBL.getTags(homeDTO);
+					homeActionForm.setUserTags(userTags);
 					nextPage="SUCCESS";
 					System.out.println("Login Success");
 				}else{
@@ -94,7 +124,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 				nextPage="Failure";
 			
 			}
-			
+			}
 		}catch(Exception e){
 		
 			e.printStackTrace();
