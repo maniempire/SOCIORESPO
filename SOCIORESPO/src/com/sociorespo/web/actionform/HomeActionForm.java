@@ -12,11 +12,21 @@ public class HomeActionForm extends ActionForm {
 	private String postTags = null;
 	private ArrayList userTags = null;
 	
+	private List tagList = null;
+	
 	
 	private HomeDTO homeDTO =null;
 	
 
 	
+
+	public List getTagList() {
+		return tagList;
+	}
+
+	public void setTagList(List tagList) {
+		this.tagList = tagList;
+	}
 
 	public String getPostTags() {
 		return postTags;

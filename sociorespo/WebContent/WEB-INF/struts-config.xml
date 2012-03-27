@@ -22,7 +22,7 @@
 			
 		<forward name="EXCEPTION" path="/login.jsp" />
 		<forward name="LOGOUT" path="/login.jsp" />
-		<!-- <forward name="HOME" path="/Home.jsp" />-->
+		<!-- <forward name="HOME" path="/user_home.jsp" />-->
 		
 		
 	</global-forwards>
@@ -34,8 +34,8 @@
 		 	name="loginActionForm" 
 		 	input="/login.jsp"
 		 	type="com.sociorespo.web.action.LoginAction">
-			<forward name="SUCCESS" path="/home.jsp" />
-			<forward name="HRSUCCESS" path="/HRHome.jsp"/>
+			<forward name="SUCCESS" path="/homeAction.do" />
+			<forward name="HRSUCCESS" path="/HRuser_home.jsp"/>
 			<forward name="LOGOUT" path="/login.jsp"></forward>
 			<forward name="Failure" path="/login.jsp"></forward>
 		
@@ -50,14 +50,14 @@
 				name="signupActionForm"
 		 	type="com.sociorespo.web.action.SignupAction">			
 			<forward name="FAILURE" path="/login.jsp"></forward>
-			<forward name="SUCCESS" path="/home.jsp"></forward>		
+			<forward name="SUCCESS" path="/user_home.jsp"></forward>		
 		</action>
 		
 		<action path="/homeAction"
 				name="homeActionForm"
 		 		type="com.sociorespo.web.action.HomeAction">			
 			
-			<forward name="HOMETAGS" path="/home.jsp"></forward>		
+			<forward name="HOMETAGS" path="/user_home.jsp"></forward>		
 		</action>
 		
 		<action path="/profileAction"

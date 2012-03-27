@@ -211,23 +211,25 @@ function update(){
 <logic:present  property="faceBookProfileDTO"  name="profileActionForm">
  <tr>
     <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
-    &nbsp;</td>
+    &nbsp;You are connected to FaceBook as <bean:write property="faceBookProfileDTO.firstName" name="profileActionForm" />
+    &nbsp;<bean:write property="faceBookProfileDTO.lastName" name="profileActionForm" />
+    </td>
   </tr>
 </logic:present>
 
 
-<logic:notPresent property="faceBookProfileDTO"  name="profileActionForm">
- <tr>
-    <td>  <html:link href="#" onclick="popupTwiter();">Connect Twitter</html:link>
-    &nbsp;</td>
-  </tr>
-</logic:notPresent>
-<logic:present  property="faceBookProfileDTO"  name="profileActionForm">
- <tr>
-    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
-    &nbsp;</td>
-  </tr>
-</logic:present>
+<!--<logic:notPresent property="faceBookProfileDTO"  name="profileActionForm">-->
+<!-- <tr>-->
+<!--    <td>  <html:link href="#" onclick="popupTwiter();">Connect Twitter</html:link>-->
+<!--    &nbsp;</td>-->
+<!--  </tr>-->
+<!--</logic:notPresent>-->
+<!--<logic:present  property="faceBookProfileDTO"  name="profileActionForm">-->
+<!-- <tr>-->
+<!--    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />-->
+<!--    &nbsp;</td>-->
+<!--  </tr>-->
+<!--</logic:present>-->
   
   
   <tr>

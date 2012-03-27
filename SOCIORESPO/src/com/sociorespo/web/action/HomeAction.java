@@ -18,6 +18,7 @@ import org.apache.struts.action.ActionMapping;
 
 import com.sociorespo.bl.HomeBL;
 import com.sociorespo.dto.HomeDTO;
+import com.sociorespo.dto.TagDTO;
 import com.sociorespo.web.actionform.HomeActionForm;
 
 public class HomeAction extends Action{
@@ -53,9 +54,27 @@ public class HomeAction extends Action{
 		
 		if(homeDTO != null){
 			if(homeDTO.isTagInsert()==true ){
-				ArrayList userTags;
-				userTags = (ArrayList) homeBL.getTags(homeDTO);
-				homeActionForm.setUserTags(userTags);
+				ArrayList tagList;
+				//tagList = (ArrayList) homeBL.getTags(homeDTO);
+				tagList = new ArrayList();
+				
+				TagDTO tagDTO = new TagDTO();
+				
+				tagDTO.setTagName("Dowry");
+				tagDTO.setTagDescription("Tag related to Dowry");
+				
+				tagList.add(tagDTO);
+				
+				tagDTO = new TagDTO();
+				
+				tagDTO.setTagName("Racking");
+				tagDTO.setTagDescription("Tag related to Racking");
+				
+				tagList.add(tagDTO);
+				
+				homeActionForm.setTagList(tagList);
+				
+				//homeActionForm.setUserTags(userTags);
 				nextPage= "HOMETAGS";
 			}
 		}

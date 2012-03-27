@@ -39,9 +39,9 @@
   <tr>
   <td align="left">
   <textarea rows="2" name="postTags"></textarea>
-<logic:iterate id="result" name="homeActionForm" property="homeDTO.userTags">
+<logic:iterate id="result" name="homeActionForm" property="tagList">
 <tr>
-<td><bean:write name="result" property="postTags" /></td>
+<td><bean:write name="result" property="tagName" /></td>
 
 </tr>
 </logic:iterate>

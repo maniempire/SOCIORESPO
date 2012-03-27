@@ -52,8 +52,12 @@ public class FaceBookAction extends Action {
 
 			authToken = (String)session.getAttribute("AUTH_TOKEN");    
 			System.out.println("Facbook authToken.......!"+authToken);
+
+			String userSessionId = session.getAttribute("USERID").toString();
+			int userId = Integer.parseInt(userSessionId);
+					
 			
-			faceBookDTO.setUserId(1);
+			faceBookDTO.setUserId(userId);
 			faceBookDTO.setAuthToken(authToken);
 			
 			saveResult = faceBookBL.saveAuthSession(faceBookDTO);

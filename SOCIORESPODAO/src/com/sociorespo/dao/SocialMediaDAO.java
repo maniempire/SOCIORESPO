@@ -28,7 +28,7 @@ public boolean insertFaceBookKey(int userId, String accessToken){
 			
 		sqlStmt =sqlCon.createStatement();
 		
-		preparedStatement=sqlCon.prepareStatement("insert into social_media_key(smk_id,smk_user_id,smk_key) values(1,"+userId+",'"+accessToken+"')");
+		preparedStatement=sqlCon.prepareStatement("insert into social_media_key(smk_id,smk_user_id,smk_key) values(default,"+userId+",'"+accessToken+"')");
 		
 		preparedStatement.executeUpdate();
 		
