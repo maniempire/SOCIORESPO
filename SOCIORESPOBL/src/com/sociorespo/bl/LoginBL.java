@@ -20,7 +20,7 @@ public class LoginBL {
 		return loginDTO;
 	}
 
-	public boolean logoutUser(String userId) {
+	public boolean logoutUser(int userId) {
 		
 		LoginDAO loginDAO = new LoginDAO();
 		boolean result = loginDAO.logoutUser(userId);

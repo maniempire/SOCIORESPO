@@ -190,7 +190,8 @@ public ProfileDTO updateProfile(ProfileDTO profileDTO) {
 	
 	preparedStatement.executeUpdate();
 	
-	
+	preparedStatement=sqlCon.prepareStatement("UPDATE user SET (user_password='"+profileDTO.getPassword()+"'email_id='"+profileDTO.geteMail()+"') WHERE user_id="+userId+"");
+	preparedStatement.executeUpdate();
 	}catch (SQLException e) {
 		
 		e.printStackTrace();
