@@ -67,8 +67,7 @@ public class HomeDAO extends DataAccessObject{
 				
 		sqlQuery = "select * from thoughts where thoughts_user_id='"+homeDTO.getUserId()+"'";
 	
-		homeDTO = new HomeDTO();
-			
+		
 			sqlCon = getSQLConnection(); 
 			
 			sqlStmt =sqlCon.createStatement();
@@ -81,25 +80,25 @@ public class HomeDAO extends DataAccessObject{
 					dataConstantCollection.add(codeMiscHB);
 				}
 			}*/
-			if(resultSet.next()){
+			//if(resultSet.next()){
 				while(resultSet.next()){
-				
+					homeDTO = new HomeDTO();
 				//loginStatus = "valid";
 			
-				homeDTO.setPostTags(resultSet.getString(3));
-				homeDTO.setTagDate(resultSet.getString(4));
-				homeDTO.setUserId(resultSet.getInt(5));
+				homeDTO.setPostTags(resultSet.getString(4));
+				homeDTO.setTagDate(resultSet.getString(5));
+				homeDTO.setUserId(resultSet.getInt(2));
 				userTags.add(homeDTO);	
 				
 			}
 				
-			}else{
+			//}else{
 				
 				//loginStatus = "error.pim.invaliduser";
 				
 				//homeDTO.setValidUser(loginStatus);
 				
-			}
+			//}
 				
 		}catch (Exception e){
 			System.out.println(e);

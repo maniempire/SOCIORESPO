@@ -1,7 +1,6 @@
 package com.sociorespo.web.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,7 +18,7 @@ import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.ProfileBL;
 
 import com.sociorespo.dto.ProfileDTO;
-import com.sociorespo.web.actionform.LoginActionForm;
+
 import com.sociorespo.web.actionform.ProfileActionForm;
 
 
@@ -30,7 +29,7 @@ public class ProfileAction extends Action{
 
 		
 		String nextPage =null;
-		String finalResult=null;
+		
 		String linkUrl="";
 		HttpSession session = null;
 		
@@ -50,7 +49,7 @@ public class ProfileAction extends Action{
 		
 		String userSessionId = session.getAttribute("USERID").toString();
 		int userId = Integer.parseInt(userSessionId);
-		
+		profileActionForm.getUpdate();
 		
 		profileDTO = new ProfileDTO();
 	
@@ -73,8 +72,8 @@ public class ProfileAction extends Action{
 				profileDTO.setDob(profileActionForm.getDob());
 				
 				profileDTO = profileBL.updateProfile(profileDTO);
-				nextPage = "";
-				session.invalidate();
+				nextPage = "SUCCESS";
+				//session.invalidate();
 			}
 			
 		else{

@@ -1,6 +1,6 @@
 package com.sociorespo.web.action;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -87,13 +87,13 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 				
 				if(loginDTO.getValidUser().equals("valid")){
 					
-//					ArrayList userTags;
-//					
-//					HomeActionForm homeActionForm = new HomeActionForm();
+					List userTags;
+					
+					HomeActionForm homeActionForm = new HomeActionForm();
 					profileDTO = new ProfileDTO();
 					profileBL = new ProfileBL();
-					//homeBL = new HomeBL();
-					//homeDTO = new HomeDTO();
+					homeBL = new HomeBL();
+					homeDTO = new HomeDTO();
 					
 					profileDTO.setUserId(loginDTO.getUserId());
 					
@@ -102,11 +102,12 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 					
 					session.setAttribute("USERID", profileDTO.getUserId());
 					session.setAttribute("FIRSTNAME", profileDTO.getFirstName());
-//					
-//					homeDTO.setUserId(loginDTO.getUserId());
-//					
-//					userTags = (ArrayList) homeBL.getTags(homeDTO);
-//					homeActionForm.setUserTags(userTags);
+					
+					homeDTO.setUserId(loginDTO.getUserId());
+					
+					userTags = homeBL.getTags(homeDTO);
+					homeActionForm.setUserTags(userTags);
+					//userTags.add("ddddd");
 					nextPage="SUCCESS";
 					System.out.println("Login Success");
 				}else{

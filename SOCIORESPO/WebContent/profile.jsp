@@ -61,7 +61,7 @@ function update(){
   </tr>
 	<tr>
 	
-    	<td class="hd-br">&nbsp;<html:link href="loginAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
+    	<td class="hd-br">&nbsp;<html:link href="logoutAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
     	
   	</tr>
   	<tr>
@@ -185,7 +185,9 @@ function update(){
   </tr> 
   <tr>
   <td width="20%">
-  	<input name="submit" type="submit" class="login-but" value="Update" onclick=update();/>
+  <input type="hidden" value="update" name="update"/>
+  
+  	<input name="submit" type="submit" class="login-but" value="Update" onclick=update(); style=" width : 59px;"/>
   	
   	
   </td>

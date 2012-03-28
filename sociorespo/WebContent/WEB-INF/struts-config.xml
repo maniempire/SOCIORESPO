@@ -34,42 +34,44 @@
 		 	name="loginActionForm" 
 		 	input="/login.jsp"
 		 	type="com.sociorespo.web.action.LoginAction">
+			
 			<forward name="SUCCESS" path="/homeAction.do" />
-			<forward name="HRSUCCESS" path="/HRuser_home.jsp"/>
-			<forward name="LOGOUT" path="/login.jsp"></forward>
 			<forward name="Failure" path="/login.jsp"></forward>
 		
 		</action>
 		<action path="/faceBookAction"
 		 	type="com.sociorespo.web.action.FaceBookAction">			
+			
 			<forward name="FAILURE" path="/login.jsp"></forward>
 			<forward name="SUCCESS" path="/facebook_success.jsp"></forward>		
 		</action>
 		
 		<action path="/signupAction"
 				name="signupActionForm"
-		 	type="com.sociorespo.web.action.SignupAction">			
+		 		type="com.sociorespo.web.action.SignupAction">			
+			
 			<forward name="FAILURE" path="/login.jsp"></forward>
-			<forward name="SUCCESS" path="/user_home.jsp"></forward>		
+			<forward name="SUCCESS" path="/login.jsp"></forward>		
 		</action>
 		
 		<action path="/homeAction"
 				name="homeActionForm"
-		 		type="com.sociorespo.web.action.HomeAction">			
-			
+		 		type="com.sociorespo.web.action.HomeAction">
+		 				
 			<forward name="HOMETAGS" path="/user_home.jsp"></forward>		
 		</action>
 		
 		<action path="/profileAction"
 				name="profileActionForm"
 		 	type="com.sociorespo.web.action.ProfileAction">			
+			
 			<forward name="FAILURE" path="/login.jsp"></forward>
 			<forward name="SUCCESS" path="/profile.jsp"></forward>		
 		</action>
 		
 		
-			<action path="/logoutAction" type="action.LogoutAction">
-		<forward name="LOGOUT" path="/login.jsp"></forward>
+		<action path="/logoutAction" type="com.sociorespo.web.action.LogoutAction">
+			<forward name="LOGOUT" path="/login.jsp"></forward>
 		</action>
 		
 			
