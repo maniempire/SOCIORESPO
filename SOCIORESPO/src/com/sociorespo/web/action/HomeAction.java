@@ -4,7 +4,7 @@ package com.sociorespo.web.action;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,8 +53,8 @@ public class HomeAction extends Action{
 		
 		if(homeDTO != null){
 			if(homeDTO.isTagInsert()==true ){
-				ArrayList userTags;
-				userTags = (ArrayList) homeBL.getTags(homeDTO);
+				List userTags;
+				userTags = homeBL.getTags(homeDTO);
 				homeActionForm.setUserTags(userTags);
 				nextPage= "HOMETAGS";
 			}

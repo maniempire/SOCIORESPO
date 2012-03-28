@@ -18,6 +18,8 @@ public class ProfileActionForm extends ActionForm{
 	private String voterId = null;
 	private String changePassword = null;
 	
+	private String update=null;
+	
 	
 	
 	private ProfileDTO profileDTO = null;
@@ -96,6 +98,12 @@ public class ProfileActionForm extends ActionForm{
 	}
 	public void setChangePassword(String changePassword) {
 		this.changePassword = changePassword;
+	}
+	public String getUpdate() {
+		return update;
+	}
+	public void setUpdate(String update) {
+		this.update = update;
 	}
 	
 	

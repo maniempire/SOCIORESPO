@@ -50,7 +50,7 @@ public class ProfileAction extends Action{
 		
 		String userSessionId = session.getAttribute("USERID").toString();
 		int userId = Integer.parseInt(userSessionId);
-		
+		profileActionForm.getUpdate();
 		
 		profileDTO = new ProfileDTO();
 	
@@ -73,8 +73,8 @@ public class ProfileAction extends Action{
 				profileDTO.setDob(profileActionForm.getDob());
 				
 				profileDTO = profileBL.updateProfile(profileDTO);
-				nextPage = "";
-				session.invalidate();
+				nextPage = "SUCCESS";
+				//session.invalidate();
 			}
 			
 		else{

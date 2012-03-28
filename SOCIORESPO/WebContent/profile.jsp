@@ -185,7 +185,9 @@ function update(){
   </tr> 
   <tr>
   <td width="20%">
-  	<input name="submit" type="submit" class="login-but" value="Update" onclick=update();/>
+  <input type="hidden" value="update" name="update"/>
+  
+  	<input name="submit" type="submit" class="login-but" value="Update" onclick=update(); style=" width : 59px;"/>
   	
   	
   </td>
