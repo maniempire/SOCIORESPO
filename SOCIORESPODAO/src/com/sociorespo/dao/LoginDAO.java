@@ -100,7 +100,7 @@ private void loginstatus(int userId) {
 
 
 
-public boolean logoutUser(String userId) {
+public boolean logoutUser(int userId) {
 	
 	Connection sqlCon = null;
 	Statement sqlStmt = null;

@@ -98,7 +98,7 @@ function checkLogin(){
                   <td><!--  <form id="form1" name="form1" method="post" action="">-->
                       <label>
                       <input  type="text" name="emailId" class="login-txt-bx" id="emailId" />
-                      <td></td>
+                     
                       </label>
                   <!--  </form>--></td>
                 </tr>
@@ -111,7 +111,7 @@ function checkLogin(){
                   <td><!--  <form id="form2" name="form2" method="post" action="">-->
                       <label>
                       <input  type="password" name="password" class="login-txt-bx" id="password" />
-                      <td></td>
+                     
                       </label>
                   <!--  </form>--></td>
                 </tr>
