@@ -18,10 +18,10 @@ import com.sociorespo.web.actionform.ProfileActionForm;
 
 import com.sociorespo.web.actionform.LoginActionForm;
 
-import com.sociorespo.bl.HomeBL;
+import com.sociorespo.bl.PostBL;
 import com.sociorespo.bl.LoginBL;
 import com.sociorespo.bl.ProfileBL;
-import com.sociorespo.dto.HomeDTO;
+import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.ProfileDTO;
 import com.sociorespo.dto.LoginDTO;
 
@@ -41,8 +41,8 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 		ProfileActionForm profileActionForm = new ProfileActionForm();
 
 		HttpSession session = null;
-		HomeBL homeBL = null;
-		HomeDTO homeDTO = null;
+		PostBL postBL = null;
+		PostDTO postDTO = null;
 		
 		ActionErrors errors = new ActionErrors();
 		ActionForward forward = new ActionForward();
@@ -67,14 +67,6 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			
 			linkUrl = request.getParameter("link_url");
 			
-			if (linkUrl != null) {
-				if (linkUrl.equals("logout")) {
-					boolean result = loginBL.logoutUser(loginActionForm.getUserId());
-					nextPage = "LOGOUT";
-					session.invalidate();
-				}
-				
-			}else{
 				
 			
 			loginDTO.setEmailId(loginActionForm.getEmailId());
@@ -92,8 +84,8 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 					HomeActionForm homeActionForm = new HomeActionForm();
 					profileDTO = new ProfileDTO();
 					profileBL = new ProfileBL();
-					homeBL = new HomeBL();
-					homeDTO = new HomeDTO();
+					postBL = new PostBL();
+					postDTO = new PostDTO();
 					
 					profileDTO.setUserId(loginDTO.getUserId());
 					
@@ -103,10 +95,12 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 					session.setAttribute("USERID", profileDTO.getUserId());
 					session.setAttribute("FIRSTNAME", profileDTO.getFirstName());
 					
-					homeDTO.setUserId(loginDTO.getUserId());
+					postDTO.setUserId(loginDTO.getUserId());
 					
-					userTags = homeBL.getTags(homeDTO);
-					homeActionForm.setUserTags(userTags);
+					userTags = postBL.getTagList(postDTO);
+					if(userTags.equals("")){
+						homeActionForm.setUserTags(userTags);
+					}
 					//userTags.add("ddddd");
 					nextPage="SUCCESS";
 					System.out.println("Login Success");
@@ -125,7 +119,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 				nextPage="Failure";
 			
 			}
-			}
+			//}
 		}catch(Exception e){
 		
 			e.printStackTrace();

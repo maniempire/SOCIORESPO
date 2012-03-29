@@ -1,16 +1,14 @@
 package com.sociorespo.dto;
 
-import java.util.Date;
-
-public class HomeDTO {
-
+public class PostDTO {
+	
 	
 	private String postTags = null;
+	private boolean shareFacebook ;
 	private boolean tagInsert;
 	private String tagDate;
 	private int userId = 0;
-	private HomeDTO userTags;
-	
+	private String content= null;
 	
 
 	public String getPostTags() {
@@ -21,7 +19,14 @@ public class HomeDTO {
 		this.postTags = postTags;
 	}
 
-	
+	public boolean isShareFacebook() {
+		return shareFacebook;
+	}
+
+	public void setShareFacebook(boolean shareFacebook) {
+		this.shareFacebook = shareFacebook;
+	}
+
 	public boolean isTagInsert() {
 		return tagInsert;
 	}
@@ -46,16 +51,15 @@ public class HomeDTO {
 		this.userId = userId;
 	}
 
-	public HomeDTO getUserTags() {
-		return userTags;
+	public String getContent() {
+		return content;
 	}
 
-	public void setUserTags(HomeDTO userTags) {
-		this.userTags = userTags;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
+	
+	
 
-	
-	
-	
 }
