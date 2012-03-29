@@ -219,6 +219,23 @@ function update(){
   </tr>
 </logic:present>
 
+<logic:notPresent property="linkedInProfileDTO"  name="profileActionForm">
+ <tr>
+    <td>
+    <a href="<bean:write property="linkedInAuthURL" name="profileActionForm" />">Connect LinkedIn</a>
+     
+    &nbsp;</td>
+  </tr>
+</logic:notPresent>
+<logic:present  property="linkedInProfileDTO"  name="profileActionForm">
+ <tr>
+    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
+    &nbsp;You are connected to FaceBook as <bean:write property="faceBookProfileDTO.firstName" name="profileActionForm" />
+    &nbsp;<bean:write property="faceBookProfileDTO.lastName" name="profileActionForm" />
+    </td>
+  </tr>
+</logic:present>
+
 
 <!--<logic:notPresent property="faceBookProfileDTO"  name="profileActionForm">-->
 <!-- <tr>-->

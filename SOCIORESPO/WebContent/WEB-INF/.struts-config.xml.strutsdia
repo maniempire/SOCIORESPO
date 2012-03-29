@@ -61,4 +61,12 @@
    SUBTYPE="confirmed" TARGET="action10" TITLE="/homeAction.do"
    TYPE="link" model-entity="StrutsProcessItemOutput"/>
  </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#linkedInAction" NAME="action1"
+  PATH="/linkedInAction" SHAPE="48,2273,0,0" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="SUCCESS" NAME="forward0"
+   PATH="/facebook_success.jsp" TARGET="page2" TITLE="SUCCESS"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="FAILURE" NAME="forward1" PATH="/login.jsp"
+   TARGET="page4" TITLE="FAILURE" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
 </PROCESS>

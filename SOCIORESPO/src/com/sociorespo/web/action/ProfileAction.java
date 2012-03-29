@@ -15,6 +15,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.sociorespo.bl.FaceBookBL;
+import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.ProfileBL;
 
 import com.sociorespo.dto.ProfileDTO;
@@ -98,10 +99,24 @@ public class ProfileAction extends Action{
 		
 		profileActionForm.setFaceBookProfileDTO(profileDTO);
 		
+		LinkedInBL linkedInBl = new LinkedInBL();
+		
+		String authURL = null;
+		String baseURL = null;
+		
+		baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
+		
+		authURL = linkedInBl.getLinkedInAuthURL(baseURL);
+		
+		profileActionForm.setLinkedInAuthURL(authURL);
+		
 		errors.add("PIMERROR", new ActionError("errors.pim.profileupdated.success"));
 		
 		}
 		}
+		
+	
+		
 		}catch(Exception e){
 			e.printStackTrace();
 			errors.add("PIMERROR", new ActionError(

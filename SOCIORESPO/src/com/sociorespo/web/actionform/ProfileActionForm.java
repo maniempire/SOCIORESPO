@@ -20,13 +20,27 @@ public class ProfileActionForm extends ActionForm{
 	
 	private String update=null;
 	
-	
+	private String linkedInAuthURL = null;
 	
 	private ProfileDTO profileDTO = null;
 	
 	private ProfileDTO faceBookProfileDTO = null;
 	
+	private ProfileDTO linkedInProfileDTO = null;
 	
+	
+	public ProfileDTO getLinkedInProfileDTO() {
+		return linkedInProfileDTO;
+	}
+	public void setLinkedInProfileDTO(ProfileDTO linkedInProfileDTO) {
+		this.linkedInProfileDTO = linkedInProfileDTO;
+	}
+	public String getLinkedInAuthURL() {
+		return linkedInAuthURL;
+	}
+	public void setLinkedInAuthURL(String linkedInAuthURL) {
+		this.linkedInAuthURL = linkedInAuthURL;
+	}
 	public ProfileDTO getFaceBookProfileDTO() {
 		return faceBookProfileDTO;
 	}

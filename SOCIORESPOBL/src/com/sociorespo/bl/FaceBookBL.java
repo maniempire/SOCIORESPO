@@ -270,7 +270,7 @@ public ProfileDTO getPublicProfile(String authKey){
 		
 		profileDTO = getUserProfile(userClient);
 		
-		shareMsg(userClient,"Checking for sociorespo - Connection",null, null);
+		//shareMsg(userClient,"Checking for sociorespo - Connection",null, null);
 		
 		//profileURL = profileDTO.getFaceBookId();
 

@@ -67,14 +67,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			
 			linkUrl = request.getParameter("link_url");
 			
-			if (linkUrl != null) {
-				if (linkUrl.equals("logout")) {
-					boolean result = loginBL.logoutUser(loginActionForm.getUserId());
-					nextPage = "LOGOUT";
-					session.invalidate();
-				}
-				
-			}else{
+		
 				
 			
 			loginDTO.setEmailId(loginActionForm.getEmailId());
@@ -125,7 +118,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 				nextPage="Failure";
 			
 			}
-			}
+			
 		}catch(Exception e){
 		
 			e.printStackTrace();
