@@ -89,12 +89,11 @@ public class ProfileAction extends Action{
 		profileActionForm.setPhoneNum(profileDTO.getPhoneNum());
 		profileActionForm.setDob(profileDTO.getDob());
 		profileActionForm.setVoterId(profileDTO.getVoterId());
+		
 		FaceBookBL faceBookBL = new FaceBookBL();
+	
 		
-		 profileDTO = new ProfileDTO();
-		
-		
-		profileDTO = faceBookBL.getFaceBookProfile(userId);
+		profileDTO = faceBookBL.getFaceBookProfile(profileDTO);
 		
 		profileActionForm.setFaceBookProfileDTO(profileDTO);
 		
@@ -112,8 +111,7 @@ public class ProfileAction extends Action{
 		
 		if (!errors.isEmpty()) {
 			saveErrors(request, errors);			
-		} else {
-		}
+		} 
 		
 		
 		nextPage="SUCCESS";

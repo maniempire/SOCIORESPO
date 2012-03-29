@@ -23,7 +23,7 @@
   </tr>
 	<tr>
 	
-    	<td class="hd-br">&nbsp;<html:link href="loginAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
+    	<td class="hd-br">&nbsp;<html:link href="logoutAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
     	
   	</tr>
   	<tr>
@@ -35,23 +35,28 @@
   </tr>
   
   
-  
-  <tr>
-  <td align="left">
-  <textarea rows="2" name="postTags"></textarea>
-<logic:iterate id="result" name="homeActionForm" property="tagList">
 <tr>
-<td><bean:write name="result" property="tagName" /></td>
+  <td>
+  	<textarea rows="2" name="content"></textarea>
+  	<input name="submit" type="submit" class="login-but" value="Post" />
+  	<td class="login-cont" style=" width : 94px;">Facebook
+  		<input type="checkbox" name="shareFacebook"></input> 
+   </td>
+	<logic:iterate id="result" name="homeActionForm" property="tagList">
+	
+		<bean:write name="result" property="content" />
 
+	</logic:iterate>
+	</td>
 </tr>
-</logic:iterate>
   
-  		
-  	  <html:link href="https://www.google.com" styleClass="link">Hot News</html:link></td>
+<tr>
+	
+  	  <html:link href="https://www.google.com" styleClass="link">Hot News</html:link>
   </tr>
   <tr>
   <td>
-  	<input name="submit" type="submit" class="login-but" value="Post" />
+  	
   	<html:link href="https://www.google.com" styleClass="link">Online Debate</html:link>
   </td>
   	  

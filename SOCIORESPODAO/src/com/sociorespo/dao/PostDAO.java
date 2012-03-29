@@ -13,10 +13,10 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sociorespo.dto.HomeDTO;
+import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.LoginDTO;
 
-public class HomeDAO extends DataAccessObject{
+public class PostDAO extends DataAccessObject{
 
 	Connection sqlCon = null;
 	Statement sqlStmt = null;
@@ -24,7 +24,7 @@ public class HomeDAO extends DataAccessObject{
 	PreparedStatement preparedStatement = null;
 	boolean result = false;
 
-	public HomeDTO insertPostTage(HomeDTO homeDTO) {
+	public PostDTO insertPostTage(PostDTO postDTO) {
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
@@ -36,7 +36,7 @@ public class HomeDAO extends DataAccessObject{
 			
 		sqlStmt =sqlCon.createStatement();
 			
-		String sqlQuery =("insert into thoughts (thoughts_id,thoughts_description,thoughts_start_date,thoughts_user_id) values (default,'"+homeDTO.getPostTags()+"','"+dateFormat.format(date)+"',"+homeDTO.getUserId()+")");
+		String sqlQuery =("insert into post (post_id,post_user_id,post_content,post_start_date) values (default,'"+postDTO.getUserId()+"','"+postDTO.getContent()+"','"+dateFormat.format(date)+"')");
 
 		preparedStatement=sqlCon.prepareStatement(sqlQuery);
 		//preparedStatement=sqlCon.prepareStatement("insert into social_media_key(smk_id,smk_user_id,smk_key) values(1,"+userId+",'"+accessToken+"')");
@@ -44,7 +44,7 @@ public class HomeDAO extends DataAccessObject{
 		preparedStatement.executeUpdate();
 		
 		result=true;
-		homeDTO.setTagInsert(result);
+		postDTO.setTagInsert(result);
 		
 		}catch (SQLException e) {
 			
@@ -52,10 +52,10 @@ public class HomeDAO extends DataAccessObject{
 		} 
 		closeSQLConnection(sqlCon, sqlStmt, preparedStatement,null);
 		
-		return homeDTO;
+		return postDTO;
 	}
 
-	public List getPostTage(HomeDTO homeDTO) {
+	public List getTagList(PostDTO postDTO) {
 		
 		String sqlQuery = null;
 
@@ -65,7 +65,7 @@ public class HomeDAO extends DataAccessObject{
 		
 		try	{
 				
-		sqlQuery = "select * from thoughts where thoughts_user_id='"+homeDTO.getUserId()+"'";
+		sqlQuery = "select * from post where post_user_id='"+postDTO.getUserId()+"'";
 	
 		
 			sqlCon = getSQLConnection(); 
@@ -82,13 +82,12 @@ public class HomeDAO extends DataAccessObject{
 			}*/
 			//if(resultSet.next()){
 				while(resultSet.next()){
-					homeDTO = new HomeDTO();
-				//loginStatus = "valid";
-			
-				homeDTO.setPostTags(resultSet.getString(4));
-				homeDTO.setTagDate(resultSet.getString(5));
-				homeDTO.setUserId(resultSet.getInt(2));
-				userTags.add(homeDTO);	
+					postDTO = new PostDTO();
+							
+					postDTO.setContent(resultSet.getString(3));
+					postDTO.setTagDate(resultSet.getString(4));
+					postDTO.setUserId(resultSet.getInt(2));
+				userTags.add(postDTO);	
 				
 			}
 				

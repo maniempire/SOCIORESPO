@@ -236,18 +236,17 @@ public String getUserSession(String authToken){
 	return authSession;
 }
 
-public ProfileDTO getFaceBookProfile(int userId) {
+public ProfileDTO getFaceBookProfile(ProfileDTO profileDTO) {
 
 	SocialMediaDAO socialMediaDAO = new SocialMediaDAO();
-	 ProfileDTO profileDTO = null;
+	// ProfileDTO profileDTO = null;
 	
 	String authKey = null;
+	int userid = profileDTO.getUserId();
 	
-	authKey = socialMediaDAO.getFaceBookAccessToken(userId);
+	authKey = socialMediaDAO.getFaceBookAccessToken(userid);
 	
 	profileDTO = getPublicProfile(authKey);
-	
-	
 	
 	
 	return profileDTO;

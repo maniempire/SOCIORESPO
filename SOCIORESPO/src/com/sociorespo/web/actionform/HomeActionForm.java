@@ -4,14 +4,17 @@ import java.util.List;
 
 import org.apache.struts.action.ActionForm;
 
-import com.sociorespo.dto.HomeDTO;
+//import com.sociorespo.dto.HomeDTO;
 
 public class HomeActionForm extends ActionForm {
 	
 	private String postTags = null;
+	private String content = null;
+	private boolean shareFacebook;
 	private List userTags = null;
+	private List tagList = null;
 	
-	private HomeDTO homeDTO =null;
+	//private HomeDTO homeDTO =null;
 	
 
 	public String getPostTags() {
@@ -20,6 +23,15 @@ public class HomeActionForm extends ActionForm {
 
 	public void setPostTags(String postTags) {
 		this.postTags = postTags;
+	}
+	
+	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public List getUserTags() {
@@ -30,13 +42,38 @@ public class HomeActionForm extends ActionForm {
 		this.userTags = userTags;
 	}
 
-	public HomeDTO getHomeDTO() {
-		return homeDTO;
+	/*public String getShareFacebook() {
+		return shareFacebook;
 	}
 
-	public void setHomeDTO(HomeDTO homeDTO) {
-		this.homeDTO = homeDTO;
+	public void setShareFacebook(String shareFacebook) {
+		this.shareFacebook = shareFacebook;
+	}*/
+
+	
+	/*public HomeDTO getHomeDTO() {
+		return homeDTO;
+	}*/
+
+	public boolean isShareFacebook() {
+		return shareFacebook;
 	}
+
+	public void setShareFacebook(boolean shareFacebook) {
+		this.shareFacebook = shareFacebook;
+	}
+
+	public List getTagList() {
+		return tagList;
+	}
+
+	public void setTagList(List tagList) {
+		this.tagList = tagList;
+	}
+
+	/*public void setHomeDTO(HomeDTO homeDTO) {
+		this.homeDTO = homeDTO;
+	}*/
 	
 	
 	
