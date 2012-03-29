@@ -65,7 +65,8 @@
 				name="homeActionForm"
 		 		type="com.sociorespo.web.action.HomeAction">
 		 				
-			<forward name="HOMETAGS" path="/user_home.jsp"></forward>		
+			<forward name="HOMETAGS" path="/user_home.jsp"></forward>
+				
 		</action>
 		
 		<action path="/profileAction"
