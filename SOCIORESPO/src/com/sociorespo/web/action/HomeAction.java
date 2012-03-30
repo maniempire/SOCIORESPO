@@ -50,11 +50,13 @@ public class HomeAction extends Action{
 				
 		postDTO.setUserId(userId);
 		postDTO.setContent(homeActionForm.getContent());
-		homeActionForm.isShareFacebook();
+		postDTO.setShareFacebook(homeActionForm.isShareFacebook());
+		postDTO.setShareTwitter(homeActionForm.isShareTwitter());
+		postDTO.setShareLinkedIn(homeActionForm.isShareLinkedIn());
 		postDTO.setTagDate(dateFormat.format(date));
 		
 		if(homeActionForm.getContent()!=null){
-			//postDTO = homeBL.getinsertTag(postDTO);
+			postDTO = homeBL.getinsertTag(postDTO);
 		}else{
 			nextPage= "HOMETAGS";
 		}

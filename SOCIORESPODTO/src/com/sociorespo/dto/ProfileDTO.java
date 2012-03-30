@@ -144,6 +144,7 @@ public class ProfileDTO {
 	private String authKey=null;
 	private String content=null;
 	private String userClientDetails = null;
+	private String baseURL = null;
 	
 	
 		
@@ -613,6 +614,12 @@ public class ProfileDTO {
 	}
 	public void setUserClientDetails(String userClientDetails) {
 		this.userClientDetails = userClientDetails;
+	}
+	public String getBaseURL() {
+		return baseURL;
+	}
+	public void setBaseURL(String baseURL) {
+		this.baseURL = baseURL;
 	}
 
 	
