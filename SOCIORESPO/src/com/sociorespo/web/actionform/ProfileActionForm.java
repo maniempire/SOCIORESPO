@@ -21,6 +21,7 @@ public class ProfileActionForm extends ActionForm{
 	private String update=null;
 	
 	private String linkedInAuthURL = null;
+	private String twitterAuthURL = null;
 	
 	private ProfileDTO profileDTO = null;
 	
@@ -28,7 +29,21 @@ public class ProfileActionForm extends ActionForm{
 	
 	private ProfileDTO linkedInProfileDTO = null;
 	
+	private ProfileDTO twitterProfileDTO = null;
 	
+	
+	public ProfileDTO getTwitterProfileDTO() {
+		return twitterProfileDTO;
+	}
+	public void setTwitterProfileDTO(ProfileDTO twitterProfileDTO) {
+		this.twitterProfileDTO = twitterProfileDTO;
+	}
+	public String getTwitterAuthURL() {
+		return twitterAuthURL;
+	}
+	public void setTwitterAuthURL(String twitterAuthURL) {
+		this.twitterAuthURL = twitterAuthURL;
+	}
 	public ProfileDTO getLinkedInProfileDTO() {
 		return linkedInProfileDTO;
 	}
