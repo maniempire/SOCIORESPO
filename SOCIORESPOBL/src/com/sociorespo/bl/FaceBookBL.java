@@ -15,6 +15,7 @@ import com.google.code.facebookapi.FacebookJsonRestClient;
 import com.google.code.facebookapi.ProfileField;
 import com.sociorespo.dao.SocialMediaDAO;
 import com.sociorespo.dto.FaceBookDTO;
+import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.ProfileDTO;
 
 
@@ -236,10 +237,26 @@ public String getUserSession(String authToken){
 	return authSession;
 }
 
+public ProfileDTO getFaceBookProfile(PostDTO postDTO) {
+
+	SocialMediaDAO socialMediaDAO = new SocialMediaDAO();
+	ProfileDTO profileDTO = null;
+	
+	String authKey = null;
+	int userid = postDTO.getUserId();
+	
+	authKey = socialMediaDAO.getFaceBookAccessToken(userid);
+	
+	profileDTO = getPublicProfile(authKey);
+	profileDTO.setContent(postDTO.getContent());
+	
+	return profileDTO;
+}
+
 public ProfileDTO getFaceBookProfile(ProfileDTO profileDTO) {
 
 	SocialMediaDAO socialMediaDAO = new SocialMediaDAO();
-	// ProfileDTO profileDTO = null;
+	//ProfileDTO profileDTO = null;
 	
 	String authKey = null;
 	int userid = profileDTO.getUserId();
@@ -247,11 +264,10 @@ public ProfileDTO getFaceBookProfile(ProfileDTO profileDTO) {
 	authKey = socialMediaDAO.getFaceBookAccessToken(userid);
 	
 	profileDTO = getPublicProfile(authKey);
-	
+	//profileDTO.setContent(postDTO.getContent());
 	
 	return profileDTO;
 }
-
 
 
 
@@ -264,13 +280,14 @@ public ProfileDTO getPublicProfile(String authKey){
 	 
 	 ProfileDTO profileDTO = null;
 	try {
-		 
+		//String content=profileDTO.getContent();
 		userClient = getUserClient(authKey);
 		
 		profileDTO = getUserProfile(userClient);
 		
-		//shareMsg(userClient,"Checking for sociorespo - Connection",null, null);
-		
+		/*if(content!=null){
+			shareMsg(userClient,content,null, null);
+		}*/
 		//profileURL = profileDTO.getFaceBookId();
 
 		if(profileURL == null){

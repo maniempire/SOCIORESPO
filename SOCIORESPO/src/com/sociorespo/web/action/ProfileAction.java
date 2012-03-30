@@ -19,6 +19,7 @@ import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.ProfileBL;
 import com.sociorespo.bl.TwitterBL;
 
+import com.sociorespo.dto.LinkedInDTO;
 import com.sociorespo.dto.ProfileDTO;
 
 import com.sociorespo.web.actionform.ProfileActionForm;
@@ -60,7 +61,8 @@ public class ProfileAction extends Action{
 		
 		
 		if (linkUrl != null) {
-			if (linkUrl.equals("update")) {
+			//if (linkUrl.equals("update")) {
+			if(profileActionForm.getUpdate()=="update"){
 				profileDTO.setFirstName(profileActionForm.getFirstName());
 				profileDTO.setLastName(profileActionForm.getLastName());
 				if(profileActionForm.getChangePassword()!=null){
@@ -94,7 +96,7 @@ public class ProfileAction extends Action{
 		
 		FaceBookBL faceBookBL = new FaceBookBL();
 		
-		profileDTO = faceBookBL.getFaceBookProfile(profileDTO);
+		//profileDTO = faceBookBL.getFaceBookProfile(profileDTO);
 		
 		profileActionForm.setFaceBookProfileDTO(profileDTO);
 		
@@ -104,10 +106,19 @@ public class ProfileAction extends Action{
 		String baseURL = null;
 		
 		baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
+		profileDTO.setBaseURL(baseURL);
+		profileDTO.setUserId(userId);
+		LinkedInDTO linkedInDTO = linkedInBl.getLinkedInAuthURL(profileDTO);
 		
-		authURL = linkedInBl.getLinkedInAuthURL(baseURL);
+
+		session.setAttribute("REQUESTTOKEN", linkedInDTO.getRequestToken());
+		
+		profileActionForm.setLinkedInAuthURL(linkedInDTO.getAuthUrl());
+
+		//authURL = linkedInBl.getLinkedInAuthURL(baseURL);
 	
-		profileActionForm.setLinkedInAuthURL(authURL);
+		profileActionForm.setLinkedInAuthURL(linkedInDTO.getAuthUrl());
+
 		
 		TwitterBL twitterBL = new TwitterBL();
 		

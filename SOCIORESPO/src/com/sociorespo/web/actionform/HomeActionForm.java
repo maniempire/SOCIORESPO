@@ -11,6 +11,8 @@ public class HomeActionForm extends ActionForm {
 	private String postTags = null;
 	private String content = null;
 	private boolean shareFacebook;
+	private boolean shareTwitter;
+	private boolean shareLinkedIn;
 	private List userTags = null;
 	private List tagList = null;
 	
@@ -61,6 +63,22 @@ public class HomeActionForm extends ActionForm {
 
 	public void setShareFacebook(boolean shareFacebook) {
 		this.shareFacebook = shareFacebook;
+	}
+	
+	public boolean isShareTwitter() {
+		return shareTwitter;
+	}
+
+	public void setShareTwitter(boolean shareTwitter) {
+		this.shareTwitter = shareTwitter;
+	}
+
+	public boolean isShareLinkedIn() {
+		return shareLinkedIn;
+	}
+
+	public void setShareLinkedIn(boolean shareLinkedIn) {
+		this.shareLinkedIn = shareLinkedIn;
 	}
 
 	public List getTagList() {

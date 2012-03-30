@@ -39,17 +39,23 @@
   <td>
   	<textarea rows="2" name="content"></textarea>
   	<input name="submit" type="submit" class="login-but" value="Post" />
-  	<td class="login-cont" style=" width : 94px;">Facebook
+  	Facebook
   		<input type="checkbox" name="shareFacebook"></input> 
-   </td>
-	<logic:iterate id="result" name="homeActionForm" property="tagList">
+    Twitter
+		<input type="checkbox" name="shareTwitter"></input>
+		LinkedIn
+		<input type="checkbox" name="shareLinkedIn"></input>
+	</td>
+</tr>
+<tr>
+<td>
+  <logic:iterate id="result" name="homeActionForm" property="tagList">
 	
-		<bean:write name="result" property="content" />
+		<bean:write name="result" property="content" /></br>
 
 	</logic:iterate>
 	</td>
-</tr>
-  
+	</tr>
 <tr>
 	
   	  <html:link href="https://www.google.com" styleClass="link">Hot News</html:link>
