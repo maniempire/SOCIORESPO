@@ -17,6 +17,7 @@ import org.apache.struts.action.ActionMapping;
 import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.ProfileBL;
+import com.sociorespo.bl.TwitterBL;
 
 import com.sociorespo.dto.ProfileDTO;
 
@@ -92,7 +93,6 @@ public class ProfileAction extends Action{
 		profileActionForm.setVoterId(profileDTO.getVoterId());
 		
 		FaceBookBL faceBookBL = new FaceBookBL();
-	
 		
 		profileDTO = faceBookBL.getFaceBookProfile(profileDTO);
 		
@@ -106,8 +106,16 @@ public class ProfileAction extends Action{
 		baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
 		
 		authURL = linkedInBl.getLinkedInAuthURL(baseURL);
-		
+	
 		profileActionForm.setLinkedInAuthURL(authURL);
+		
+		TwitterBL twitterBL = new TwitterBL();
+		
+		String twiterAuthURL = null;
+		
+		twiterAuthURL = twitterBL.initAuthUrl();
+		
+		profileActionForm.setTwitterAuthURL(twiterAuthURL);
 		
 		errors.add("PIMERROR", new ActionError("errors.pim.profileupdated.success"));
 		

@@ -237,18 +237,21 @@ function update(){
 </logic:present>
 
 
-<!--<logic:notPresent property="faceBookProfileDTO"  name="profileActionForm">-->
-<!-- <tr>-->
-<!--    <td>  <html:link href="#" onclick="popupTwiter();">Connect Twitter</html:link>-->
-<!--    &nbsp;</td>-->
-<!--  </tr>-->
-<!--</logic:notPresent>-->
-<!--<logic:present  property="faceBookProfileDTO"  name="profileActionForm">-->
-<!-- <tr>-->
-<!--    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />-->
-<!--    &nbsp;</td>-->
-<!--  </tr>-->
-<!--</logic:present>-->
+<logic:notPresent property="twitterProfileDTO"  name="profileActionForm">
+ <tr>
+    <td>  
+    
+     <a href="<bean:write property="twitterAuthURL" name="profileActionForm" />">Connect Twitter</a>
+    
+    &nbsp;</td>
+  </tr>
+</logic:notPresent>
+<logic:present  property="twitterProfileDTO"  name="profileActionForm">
+ <tr>
+    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
+    &nbsp;</td>
+  </tr>
+</logic:present>
   
   
   <tr>

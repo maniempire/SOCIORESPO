@@ -53,6 +53,13 @@
 			<forward name="SUCCESS" path="/facebook_success.jsp"></forward>		
 		</action>
 		
+		<action path="/twitterAction"
+		 	type="com.sociorespo.web.action.TwitterAction">			
+			
+			<forward name="FAILURE" path="/login.jsp"></forward>
+			<forward name="SUCCESS" path="/facebook_success.jsp"></forward>		
+		</action>
+		
 		<action path="/signupAction"
 				name="signupActionForm"
 		 		type="com.sociorespo.web.action.SignupAction">			
