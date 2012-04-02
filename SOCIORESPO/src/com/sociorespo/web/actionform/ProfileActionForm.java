@@ -16,14 +16,46 @@ public class ProfileActionForm extends ActionForm{
 	private String mailId=null;
 	private String dob=null;
 	private String voterId = null;
+	private String changePassword = null;
 	
+	private String update=null;
 	
+	private String linkedInAuthURL = null;
+	private String twitterAuthURL = null;
 	
 	private ProfileDTO profileDTO = null;
 	
 	private ProfileDTO faceBookProfileDTO = null;
 	
+	private ProfileDTO linkedInProfileDTO = null;
 	
+	private ProfileDTO twitterProfileDTO = null;
+	
+	
+	public ProfileDTO getTwitterProfileDTO() {
+		return twitterProfileDTO;
+	}
+	public void setTwitterProfileDTO(ProfileDTO twitterProfileDTO) {
+		this.twitterProfileDTO = twitterProfileDTO;
+	}
+	public String getTwitterAuthURL() {
+		return twitterAuthURL;
+	}
+	public void setTwitterAuthURL(String twitterAuthURL) {
+		this.twitterAuthURL = twitterAuthURL;
+	}
+	public ProfileDTO getLinkedInProfileDTO() {
+		return linkedInProfileDTO;
+	}
+	public void setLinkedInProfileDTO(ProfileDTO linkedInProfileDTO) {
+		this.linkedInProfileDTO = linkedInProfileDTO;
+	}
+	public String getLinkedInAuthURL() {
+		return linkedInAuthURL;
+	}
+	public void setLinkedInAuthURL(String linkedInAuthURL) {
+		this.linkedInAuthURL = linkedInAuthURL;
+	}
 	public ProfileDTO getFaceBookProfileDTO() {
 		return faceBookProfileDTO;
 	}
@@ -89,6 +121,18 @@ public class ProfileActionForm extends ActionForm{
 	}
 	public void setProfileDTO(ProfileDTO profileDTO) {
 		this.profileDTO = profileDTO;
+	}
+	public String getChangePassword() {
+		return changePassword;
+	}
+	public void setChangePassword(String changePassword) {
+		this.changePassword = changePassword;
+	}
+	public String getUpdate() {
+		return update;
+	}
+	public void setUpdate(String update) {
+		this.update = update;
 	}
 	
 	

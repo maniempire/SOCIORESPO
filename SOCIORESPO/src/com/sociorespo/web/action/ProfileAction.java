@@ -1,7 +1,6 @@
 package com.sociorespo.web.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,14 +15,13 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.sociorespo.bl.FaceBookBL;
+import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.ProfileBL;
+import com.sociorespo.bl.TwitterBL;
 
 import com.sociorespo.dto.ProfileDTO;
+
 import com.sociorespo.web.actionform.ProfileActionForm;
-
-
-
-
 
 
 public class ProfileAction extends Action{
@@ -33,7 +31,8 @@ public class ProfileAction extends Action{
 
 		
 		String nextPage =null;
-		String finalResult=null;
+		
+		String linkUrl="";
 		HttpSession session = null;
 		
 		ActionErrors errors = new ActionErrors();
@@ -44,6 +43,7 @@ public class ProfileAction extends Action{
 		
 		session = request.getSession(true);
 		
+		//linkUrl = request.getParameter("link_url");
 		
 		ProfileActionForm profileActionForm = (ProfileActionForm)form;
 		
@@ -51,27 +51,78 @@ public class ProfileAction extends Action{
 		
 		String userSessionId = session.getAttribute("USERID").toString();
 		int userId = Integer.parseInt(userSessionId);
-		
+		profileActionForm.getUpdate();
 		
 		profileDTO = new ProfileDTO();
 	
 		
 		profileDTO.setUserId(userId);
 		
+		
+		if (linkUrl != null) {
+			if (linkUrl.equals("update")) {
+				profileDTO.setFirstName(profileActionForm.getFirstName());
+				profileDTO.setLastName(profileActionForm.getLastName());
+				if(profileActionForm.getChangePassword()!=null){
+					profileDTO.setPassword(profileActionForm.getChangePassword());
+				}else{
+					profileDTO.setPassword(profileActionForm.getPassword());
+				}
+				profileDTO.setGender(profileActionForm.getGender());
+				profileDTO.setPhoneNum(profileActionForm.getPhoneNum());
+				profileDTO.setVoterId(profileActionForm.getVoterId());
+				profileDTO.setDob(profileActionForm.getDob());
+				
+				profileDTO = profileBL.updateProfile(profileDTO);
+				nextPage = "SUCCESS";
+				//session.invalidate();
+			}
+			
+		else{
 		profileDTO=profileBL.getUserProfile(profileDTO);
 		
-		profileActionForm.setProfileDTO(profileDTO);
+		//profileActionForm.setProfileDTO(profileDTO);
+		
+		profileActionForm.setFirstName(profileDTO.getFirstName());
+		profileActionForm.setLastName(profileDTO.getLastName());
+		profileActionForm.setMailId(profileDTO.getMailId());
+		profileActionForm.setPassword(profileDTO.getPassword());
+		profileActionForm.setGender(profileDTO.getGender());
+		profileActionForm.setPhoneNum(profileDTO.getPhoneNum());
+		profileActionForm.setDob(profileDTO.getDob());
+		profileActionForm.setVoterId(profileDTO.getVoterId());
 		
 		FaceBookBL faceBookBL = new FaceBookBL();
 		
-		 profileDTO = new ProfileDTO();
-		
-		
-		profileDTO = faceBookBL.getFaceBookProfile(userId);
+		profileDTO = faceBookBL.getFaceBookProfile(profileDTO);
 		
 		profileActionForm.setFaceBookProfileDTO(profileDTO);
 		
+		LinkedInBL linkedInBl = new LinkedInBL();
+		
+		String authURL = null;
+		String baseURL = null;
+		
+		baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
+		
+		authURL = linkedInBl.getLinkedInAuthURL(baseURL);
+	
+		profileActionForm.setLinkedInAuthURL(authURL);
+		
+		TwitterBL twitterBL = new TwitterBL();
+		
+		String twiterAuthURL = null;
+		
+		twiterAuthURL = twitterBL.initAuthUrl();
+		
+		profileActionForm.setTwitterAuthURL(twiterAuthURL);
+		
 		errors.add("PIMERROR", new ActionError("errors.pim.profileupdated.success"));
+		
+		}
+		}
+		
+	
 		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -83,8 +134,7 @@ public class ProfileAction extends Action{
 		
 		if (!errors.isEmpty()) {
 			saveErrors(request, errors);			
-		} else {
-		}
+		} 
 		
 		
 		nextPage="SUCCESS";

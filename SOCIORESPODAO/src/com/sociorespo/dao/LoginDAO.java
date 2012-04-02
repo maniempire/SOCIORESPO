@@ -29,9 +29,6 @@ public class LoginDAO extends DataAccessObject{
 
 public LoginDTO isValidUser(LoginDTO loginDTO){
 		
-		
-		
-		
 		String sqlQuery = null;
 
 		String loginStatus = null;
@@ -50,7 +47,7 @@ public LoginDTO isValidUser(LoginDTO loginDTO){
 			
 			if(resultSet.next()){
 							
-				
+				loginstatus(resultSet.getInt(1));
 				loginStatus = "valid";
 				
 				loginDTO.setUserId(resultSet.getInt(1));
@@ -64,7 +61,7 @@ public LoginDTO isValidUser(LoginDTO loginDTO){
 				loginDTO.setValidUser(loginStatus);
 				
 			}
-				
+			
 		}catch (Exception e){
 			System.out.println(e);
 		}finally{
@@ -74,5 +71,62 @@ public LoginDTO isValidUser(LoginDTO loginDTO){
 		
 		return loginDTO;
 	}
+
+
+
+private void loginstatus(int userId) {
 	
+	Connection sqlCon = null;
+	Statement sqlStmt = null;
+	PreparedStatement preparedStatement = null;
+
+	sqlCon = getSQLConnection();
+	try {
+		
+	sqlStmt =sqlCon.createStatement();
+		
+	preparedStatement=sqlCon.prepareStatement("UPDATE user SET user_status='active' WHERE user_id="+userId+"");
+
+	preparedStatement.executeUpdate();
+
+	}catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	closeSQLConnection(sqlCon, sqlStmt, preparedStatement,null);
+	
+	
+}
+
+
+
+public boolean logoutUser(int userId) {
+	
+	Connection sqlCon = null;
+	Statement sqlStmt = null;
+	PreparedStatement preparedStatement = null;
+	String sqlQuery = null;
+	boolean result = false;
+
+	sqlCon = getSQLConnection();
+	try {
+		
+	sqlStmt =sqlCon.createStatement();
+		
+	preparedStatement=sqlCon.prepareStatement("UPDATE user SET user_status='inactive' WHERE user_id="+userId+"");
+
+
+	preparedStatement.executeUpdate();
+
+	result=true;
+	
+
+	}catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	closeSQLConnection(sqlCon, sqlStmt, preparedStatement,null);
+	
+	return result;
+}
 }

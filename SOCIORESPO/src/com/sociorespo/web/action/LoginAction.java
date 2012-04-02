@@ -1,5 +1,7 @@
 package com.sociorespo.web.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,12 +13,15 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.sociorespo.web.actionform.HomeActionForm;
 import com.sociorespo.web.actionform.ProfileActionForm;
 
 import com.sociorespo.web.actionform.LoginActionForm;
 
+import com.sociorespo.bl.PostBL;
 import com.sociorespo.bl.LoginBL;
 import com.sociorespo.bl.ProfileBL;
+import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.ProfileDTO;
 import com.sociorespo.dto.LoginDTO;
 
@@ -36,6 +41,8 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 		ProfileActionForm profileActionForm = new ProfileActionForm();
 
 		HttpSession session = null;
+		PostBL postBL = null;
+		PostDTO postDTO = null;
 		
 		ActionErrors errors = new ActionErrors();
 		ActionForward forward = new ActionForward();
@@ -48,6 +55,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 		String validUser = null;
 		
 		String nextPage = null;
+		String linkUrl = "";
 			
 		try{
 			
@@ -56,6 +64,10 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			loginBL = new LoginBL();
 			
 			session = request.getSession(true);
+			
+			linkUrl = request.getParameter("link_url");
+			
+				
 			
 			loginDTO.setEmailId(loginActionForm.getEmailId());
 		          	
@@ -66,8 +78,14 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			if(loginDTO != null){
 				
 				if(loginDTO.getValidUser().equals("valid")){
+					
+					List userTags;
+					
+					HomeActionForm homeActionForm = new HomeActionForm();
 					profileDTO = new ProfileDTO();
 					profileBL = new ProfileBL();
+					postBL = new PostBL();
+					postDTO = new PostDTO();
 					
 					profileDTO.setUserId(loginDTO.getUserId());
 					
@@ -77,6 +95,13 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 					session.setAttribute("USERID", profileDTO.getUserId());
 					session.setAttribute("FIRSTNAME", profileDTO.getFirstName());
 					
+					postDTO.setUserId(loginDTO.getUserId());
+					
+					userTags = postBL.getTagList(postDTO);
+					if(userTags.equals("")){
+						homeActionForm.setUserTags(userTags);
+					}
+					//userTags.add("ddddd");
 					nextPage="SUCCESS";
 					System.out.println("Login Success");
 				}else{
@@ -94,7 +119,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 				nextPage="Failure";
 			
 			}
-			
+			//}
 		}catch(Exception e){
 		
 			e.printStackTrace();

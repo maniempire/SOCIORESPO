@@ -141,6 +141,9 @@ public class ProfileDTO {
 	private String joinedEventsName = null;
 	private String attendedSessionsName = null;
 	
+	private String authKey=null;
+	private String content=null;
+	private String userClientDetails = null;
 	
 	
 		
@@ -593,6 +596,25 @@ public class ProfileDTO {
 	public void setJoinedEventsName(String joinedEventsName) {
 		this.joinedEventsName = joinedEventsName;
 	}
+	public String getAuthKey() {
+		return authKey;
+	}
+	public void setAuthKey(String authKey) {
+		this.authKey = authKey;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getUserClientDetails() {
+		return userClientDetails;
+	}
+	public void setUserClientDetails(String userClientDetails) {
+		this.userClientDetails = userClientDetails;
+	}
+
 	
 	
 	

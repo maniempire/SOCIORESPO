@@ -1,6 +1,7 @@
 package com.sociorespo.bl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.code.facebookapi.Attachment;
 import com.google.code.facebookapi.FacebookException;
 import com.google.code.facebookapi.FacebookJsonRestClient;
 import com.google.code.facebookapi.ProfileField;
@@ -234,14 +236,15 @@ public String getUserSession(String authToken){
 	return authSession;
 }
 
-public ProfileDTO getFaceBookProfile(int userId) {
+public ProfileDTO getFaceBookProfile(ProfileDTO profileDTO) {
 
 	SocialMediaDAO socialMediaDAO = new SocialMediaDAO();
-	 ProfileDTO profileDTO = null;
+	// ProfileDTO profileDTO = null;
 	
 	String authKey = null;
+	int userid = profileDTO.getUserId();
 	
-	authKey = socialMediaDAO.getFaceBookAccessToken(userId);
+	authKey = socialMediaDAO.getFaceBookAccessToken(userid);
 	
 	profileDTO = getPublicProfile(authKey);
 	
@@ -265,6 +268,8 @@ public ProfileDTO getPublicProfile(String authKey){
 		userClient = getUserClient(authKey);
 		
 		profileDTO = getUserProfile(userClient);
+		
+		//shareMsg(userClient,"Checking for sociorespo - Connection",null, null);
 		
 		//profileURL = profileDTO.getFaceBookId();
 
@@ -296,6 +301,25 @@ public FacebookJsonRestClient getUserClient(String authSession){
 	return userClient;
 }
 
+
+public boolean shareMsg(FacebookJsonRestClient userClient, String message, Attachment attachment, Collection actionLinks){
+	boolean resultSts = false;
+	long userId = 0;
+
+	 long targetId = 0;
+	try {
+		userId = userClient.users_getLoggedInUser();
+		targetId = userId;
+		userClient.stream_publish(message, attachment, actionLinks, targetId, userId);
+		resultSts = true;
+	
+	} catch (FacebookException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return resultSts;
+}
 
 	
 }

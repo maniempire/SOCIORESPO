@@ -37,9 +37,15 @@ function popup()
  return false;
 }
 
-function reload(){
+/*function reload(){
 	  location.href="/profileAction.do";
-	}
+	}*/
+
+function update(){
+	alert("hai");
+	location.href="/profileAction.do?link_url='update'";
+	
+}
 
 
 </script>
@@ -55,7 +61,7 @@ function reload(){
   </tr>
 	<tr>
 	
-    	<td class="hd-br">&nbsp;</td>
+    	<td class="hd-br">&nbsp;<html:link href="logoutAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
     	
   	</tr>
   	<tr>
@@ -76,7 +82,7 @@ function reload(){
 
 	<td class="login-cont" >First Name
   		
-        	<html:text property="profileDTO.firstName" name="profileActionForm" styleClass="login-txt-bx"></html:text>
+        	<html:text property="firstName" name="profileActionForm" styleClass="login-txt-bx"></html:text>
         </td>
         
 </tr> 
@@ -85,7 +91,7 @@ function reload(){
   		<td class="login-cont">Last Name
   		&nbsp;&nbsp;&nbsp;
             
-               <html:text property="profileDTO.lastName" name="profileActionForm" styleClass="login-txt-bx"></html:text>
+               <html:text property="lastName" name="profileActionForm" styleClass="login-txt-bx"></html:text>
          
         </td>
   
@@ -96,7 +102,7 @@ function reload(){
   		<td class="login-cont">Email
   		&nbsp;&nbsp;&nbsp;
             
-               <html:text property="profileDTO.mailId" name="profileActionForm" styleClass="login-txt-bx" disabled="true"></html:text>
+               <html:text property="mailId" name="profileActionForm" styleClass="login-txt-bx" disabled="true"></html:text>
          
         </td>
   
@@ -107,7 +113,25 @@ function reload(){
   <tr>
   		<td class="login-cont">Password
   		           &nbsp;&nbsp;&nbsp; 
-  		           <html:password property="profileDTO.password" name="profileActionForm" styleClass="login-txt-bx" ></html:password>
+  		           <html:password property="password" name="profileActionForm" styleClass="login-txt-bx" disabled="true"></html:password>
+                         
+        </td>
+  
+  
+  </tr>
+   <tr>
+  		<td class="login-cont">New Password
+  		           &nbsp;&nbsp;&nbsp; 
+  		           <html:password property="changePassword" name="profileActionForm" styleClass="login-txt-bx" ></html:password>
+                         
+        </td>
+  
+  
+  </tr>
+   <tr>
+  		<td class="login-cont">Confirm Password
+  		           &nbsp;&nbsp;&nbsp; 
+  		           <html:password property="changePassword" name="profileActionForm" styleClass="login-txt-bx" ></html:password>
                          
         </td>
   
@@ -116,7 +140,7 @@ function reload(){
    <tr>
   		<td class="login-cont">Gender
   		&nbsp;&nbsp;&nbsp; 
-  		<html:select property="profileDTO.gender" name="profileActionForm">
+  		<html:select property="gender" name="profileActionForm">
   			<html:option value="selectGender">Select Gender</html:option>
   			<html:option value="male">Male</html:option>
             <html:option value="female">Female</html:option>	
@@ -132,7 +156,7 @@ function reload(){
   		<td class="login-cont">Phone No.
   		&nbsp;&nbsp;&nbsp; 
             
-               <html:text property="profileDTO.phoneNum" name="profileActionForm" styleClass="login-txt-bx"></html:text>
+               <html:text property="phoneNum" name="profileActionForm" styleClass="login-txt-bx"></html:text>
          
         </td>
   
@@ -143,7 +167,7 @@ function reload(){
   		<td class="login-cont">Date Of Birth
   		&nbsp;&nbsp;&nbsp; 
             
-                <html:text property="profileDTO.dob" name="profileActionForm" styleClass="login-txt-bx"></html:text>
+                <html:text property="dob" name="profileActionForm" styleClass="login-txt-bx"></html:text>
          
         </td>
   
@@ -153,12 +177,22 @@ function reload(){
   		<td class="login-cont">Voter Id
   		&nbsp;&nbsp;&nbsp; 
             
-               <html:text property="profileDTO.voterId" name="profileActionForm" styleClass="login-txt-bx"></html:text>
+               <html:text property="voterId" name="profileActionForm" styleClass="login-txt-bx"></html:text>
          
         </td>
   
   
-  </tr> 	
+  </tr> 
+  <tr>
+  <td width="20%">
+  <input type="hidden" value="update" name="update"/>
+  
+  	<input name="submit" type="submit" class="login-but" value="Update" onclick=update(); style=" width : 59px;"/>
+  	
+  	
+  </td>
+  	  
+  </tr>	
   	
   	
 <tr>
@@ -177,6 +211,42 @@ function reload(){
   </tr>
 </logic:notPresent>
 <logic:present  property="faceBookProfileDTO"  name="profileActionForm">
+ <tr>
+    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
+    &nbsp;You are connected to FaceBook as <bean:write property="faceBookProfileDTO.firstName" name="profileActionForm" />
+    &nbsp;<bean:write property="faceBookProfileDTO.lastName" name="profileActionForm" />
+    </td>
+  </tr>
+</logic:present>
+
+<logic:notPresent property="linkedInProfileDTO"  name="profileActionForm">
+ <tr>
+    <td>
+    <a href="<bean:write property="linkedInAuthURL" name="profileActionForm" />">Connect LinkedIn</a>
+     
+    &nbsp;</td>
+  </tr>
+</logic:notPresent>
+<logic:present  property="linkedInProfileDTO"  name="profileActionForm">
+ <tr>
+    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
+    &nbsp;You are connected to FaceBook as <bean:write property="faceBookProfileDTO.firstName" name="profileActionForm" />
+    &nbsp;<bean:write property="faceBookProfileDTO.lastName" name="profileActionForm" />
+    </td>
+  </tr>
+</logic:present>
+
+
+<logic:notPresent property="twitterProfileDTO"  name="profileActionForm">
+ <tr>
+    <td>  
+    
+     <a href="<bean:write property="twitterAuthURL" name="profileActionForm" />">Connect Twitter</a>
+    
+    &nbsp;</td>
+  </tr>
+</logic:notPresent>
+<logic:present  property="twitterProfileDTO"  name="profileActionForm">
  <tr>
     <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
     &nbsp;</td>

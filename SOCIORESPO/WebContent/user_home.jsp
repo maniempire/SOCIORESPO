@@ -13,6 +13,7 @@
 <link href="styles/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<html:form action="/homeAction" method="post" >
 <table width="1010" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="1010"><img src="images/socio-respo-header.jpg" width="1010" height="123" /></td>
@@ -22,7 +23,7 @@
   </tr>
 	<tr>
 	
-    	<td class="hd-br">&nbsp;</td>
+    	<td class="hd-br">&nbsp;<html:link href="logoutAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
     	
   	</tr>
   	<tr>
@@ -33,8 +34,44 @@
     <td>&nbsp;</td>
   </tr>
   
+  
+<tr>
+  <td>
+  	<textarea rows="2" name="content"></textarea>
+  	<input name="submit" type="submit" class="login-but" value="Post" />
+  	<td class="login-cont" style=" width : 94px;">Facebook
+  		<input type="checkbox" name="shareFacebook"></input> 
+   </td>
+	<logic:iterate id="result" name="homeActionForm" property="tagList">
+	
+		<bean:write name="result" property="content" />
+
+	</logic:iterate>
+	</td>
+</tr>
+  
+<tr>
+	
+  	  <html:link href="https://www.google.com" styleClass="link">Hot News</html:link>
+  </tr>
+  <tr>
+  <td>
+  	
+  	<html:link href="https://www.google.com" styleClass="link">Online Debate</html:link>
+  </td>
+  	  
+  </tr>
+
+  
+  <tr>
+  	  <td align="right"><html:link href="https://www.google.com">Complaints</html:link></td>
+  </tr>
+  
   <tr>
     <td>&nbsp;</td>
+  </tr>
+  <tr>
+  	  <td align="right"><html:link href="https://www.google.com">TAGS</html:link></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -50,5 +87,6 @@
     	<td class="hd-br"><jsp:include page="/common/footer.jsp" /></td>
   	</tr>
 </table>
+</html:form>
 </body>
 </html:html>

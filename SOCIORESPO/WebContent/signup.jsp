@@ -14,7 +14,21 @@
 
 <script type="text/javascript">
 
+
+function save() {
+
+	document.forms[0].action = "signupAction.do?link_url=save";
+	document.forms[0].submit();
+}
+
+function cancel() {
+
+	document.forms[0].action = "signupAction.do?link_url=cancel"
+	document.forms[0].submit();
+}
 </script>
+
+
 </head>
 <body>
 <html:form action="/signupAction" method="post">
@@ -26,6 +40,7 @@
     <td height="2"></td>
   </tr>
   <tr>
+    <!-- <td class="hd-br">&nbsp;<html:link href="loginAction.do?link_url=logout" styleClass="link">Logout</html:link></td>-->
     <td class="hd-br">&nbsp;</td>
   </tr>
   <tr>
@@ -127,10 +142,13 @@
          
         </td>
   
-  
   </tr>
   <tr>
-  <td height="7" align="center"><input name="Submit" type="submit" class="login-but" value="Submit" /></td>
+  	<td></td>
+  </tr>
+  <tr>
+  <td height="7" align="center"><input name="Submit" type="submit" class="login-but" value="Submit" onclick="save()"/></td>
+  <td height="7" align="left"><input name="Cancel" type="submit" class="login-but" value="Cancel" onclick="cancel()"/></td>
   </tr>
   
   
