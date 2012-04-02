@@ -58,7 +58,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			session = request.getSession(true);
 			
 			loginDTO.setEmailId(loginActionForm.getEmailId());
-			
+		          	
 			loginDTO.setPassword(loginActionForm.getPassword());
 			
 			loginDTO = loginBL.isValidUser(loginDTO);
