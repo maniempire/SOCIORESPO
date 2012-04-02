@@ -230,6 +230,7 @@ public Person  getUserProfile(LinkedInApiClient client){
    // printResult(userprofile);
 	 
 	 return userprofile;
+	 
  
   }
 
