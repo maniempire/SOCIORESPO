@@ -17,6 +17,10 @@
 			type="com.sociorespo.web.actionform.HomeActionForm">
 		</form-bean>
 		
+		<form-bean name="postComplaintsActionForm"
+			type="com.sociorespo.web.actionform.PostComplaintsActionForm">
+		</form-bean>
+		
 	</form-beans>
 	<global-forwards>
 			
@@ -81,6 +85,13 @@
 		 	type="com.sociorespo.web.action.ProfileAction">			
 			
 			<forward name="FAILURE" path="/login.jsp"></forward>
+			<forward name="SUCCESS" path="/profile.jsp"></forward>		
+		</action>
+		
+		<action path="/postComplaintsAction"
+				name="postComplaintsActionForm"
+		 	type="com.sociorespo.web.action.PostComplaintsAction">			
+			
 			<forward name="SUCCESS" path="/profile.jsp"></forward>		
 		</action>
 		

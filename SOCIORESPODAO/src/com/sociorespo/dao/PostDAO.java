@@ -65,8 +65,8 @@ public class PostDAO extends DataAccessObject{
 		
 		try	{
 				
-		sqlQuery = "select * from post where post_user_id='"+postDTO.getUserId()+"'";
-	
+		//sqlQuery = "select * from post where post_user_id='"+postDTO.getUserId()+"'";
+		sqlQuery = "select * from post";
 		
 			sqlCon = getSQLConnection(); 
 			
@@ -109,6 +109,83 @@ public class PostDAO extends DataAccessObject{
 		
 		return userTags;
 	}
+
+	public PostDTO insertComplaint(PostDTO postDTO) {
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date));
+		
+		sqlCon = getSQLConnection();
+		try {
+			
+			
+		sqlStmt =sqlCon.createStatement();
+			
+		String sqlQuery =("insert into post (post_id,post_user_id,post_content,post_start_date) values (default,'"+postDTO.getUserId()+"','"+postDTO.getContent()+"','"+dateFormat.format(date)+"')");
+
+		preparedStatement=sqlCon.prepareStatement(sqlQuery);
+		//preparedStatement=sqlCon.prepareStatement("insert into social_media_key(smk_id,smk_user_id,smk_key) values(1,"+userId+",'"+accessToken+"')");
+		
+		preparedStatement.executeUpdate();
+		
+		result=true;
+		postDTO.setTagInsert(result);
+		
+		}catch (SQLException e) {
+			
+			e.printStackTrace();
+		} 
+		closeSQLConnection(sqlCon, sqlStmt, preparedStatement,null);
+		
+		
+		return postDTO;
+	}
+
+	public List getComplaintList(PostDTO postDTO) {
+		
+		String sqlQuery = null;
+
+		String loginStatus = null;
+		
+		List userComplaints = new ArrayList();
+		
+		try	{
+				
+		sqlQuery = "select * from post where post_user_id='"+postDTO.getUserId()+"'";
+		//sqlQuery = "select * from post";
+		
+			sqlCon = getSQLConnection(); 
+			
+			sqlStmt =sqlCon.createStatement();
+			
+			resultSet = sqlStmt.executeQuery(sqlQuery);
+			
+			
+				while(resultSet.next()){
+					postDTO = new PostDTO();
+							
+					postDTO.setContent(resultSet.getString(3));
+					postDTO.setTagDate(resultSet.getString(4));
+					postDTO.setUserId(resultSet.getInt(2));
+				userComplaints.add(postDTO);	
+				
+			}
+				
+			
+				
+		}catch (Exception e){
+			System.out.println(e);
+		}finally{
+			
+			closeSQLConnection(sqlCon, sqlStmt, preparedStatement, resultSet);
+		}
+		
+		
+		return userComplaints;
+	}
+
+	
 
 	
 

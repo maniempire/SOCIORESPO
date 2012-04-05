@@ -70,7 +70,7 @@
 
   
   <tr>
-  	  <td align="right"><html:link href="https://www.google.com">Complaints</html:link></td>
+  	  <td align="right"><html:link href="postComplaintsAction.do?link_url=complaint">Complaints</html:link></td>
   </tr>
   
   <tr>

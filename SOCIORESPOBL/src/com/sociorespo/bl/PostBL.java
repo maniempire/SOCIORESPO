@@ -236,4 +236,27 @@ public boolean shareMsg(FacebookJsonRestClient userClient, String message, Attac
 	return resultSts;
 }
 
+public PostDTO getinsertComplaint(PostDTO postDTO) {
+	PostDAO postDAO = new PostDAO();
+	FaceBookBL faceBookBL = new FaceBookBL();
+	ProfileDTO profileDTO=null;
+	
+	postDTO = postDAO.insertComplaint(postDTO);
+	
+	return postDTO;
+}
+
+public List getComplaintList(PostDTO postDTO) {
+	PostDAO postDAO = new PostDAO();
+	
+	List complaintList;
+	ProfileDTO profileDTO=null;
+	
+	complaintList = postDAO.getComplaintList(postDTO);
+	
+	return complaintList;
+}
+
+
+
 }
