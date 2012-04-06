@@ -8,6 +8,9 @@
 
 <html:html>
 <head>
+<% String currentURL="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();  %>
+<script type="text/javascript" src="<%=currentURL%>/scripts/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="<%=currentURL%>/scripts/jquery.datepick.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sign Up</title>
 <link href="styles/styles.css" rel="stylesheet" type="text/css" />
@@ -26,9 +29,21 @@ function cancel() {
 	document.forms[0].action = "signupAction.do?link_url=cancel"
 	document.forms[0].submit();
 }
+
+jQuery(document).ready(function () {	
+    $('#dob').datepick();
+    
+});
+
+/*var dob = new Date();
+var curr_date = dob.getDate();
+var curr_month = dob.getMonth() + 1; //months are zero based
+var curr_year = dob.getFullYear();
+document.write(curr_year + "-" + curr_month + "-" + curr_date);*/
+
 </script>
 
-
+<link href="<%=currentURL%>/styles/jquery.datepick.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <html:form action="/signupAction" method="post">
