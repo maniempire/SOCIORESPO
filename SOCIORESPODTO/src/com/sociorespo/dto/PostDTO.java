@@ -5,10 +5,14 @@ public class PostDTO {
 	
 	private String postTags = null;
 	private boolean shareFacebook ;
+	private boolean shareTwitter;
+	private boolean shareLinkedIn;
 	private boolean tagInsert;
 	private String tagDate;
 	private int userId = 0;
 	private String content= null;
+	private String complaintTitle = null;
+	private String postComplaint = null;
 	
 
 	public String getPostTags() {
@@ -25,6 +29,22 @@ public class PostDTO {
 
 	public void setShareFacebook(boolean shareFacebook) {
 		this.shareFacebook = shareFacebook;
+	}
+	
+	public boolean isShareTwitter() {
+		return shareTwitter;
+	}
+
+	public void setShareTwitter(boolean shareTwitter) {
+		this.shareTwitter = shareTwitter;
+	}
+
+	public boolean isShareLinkedIn() {
+		return shareLinkedIn;
+	}
+
+	public void setShareLinkedIn(boolean shareLinkedIn) {
+		this.shareLinkedIn = shareLinkedIn;
 	}
 
 	public boolean isTagInsert() {
@@ -57,6 +77,22 @@ public class PostDTO {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getComplaintTitle() {
+		return complaintTitle;
+	}
+
+	public void setComplaintTitle(String complaintTitle) {
+		this.complaintTitle = complaintTitle;
+	}
+
+	public String getPostComplaint() {
+		return postComplaint;
+	}
+
+	public void setPostComplaint(String postComplaint) {
+		this.postComplaint = postComplaint;
 	}
 
 	

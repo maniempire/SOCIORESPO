@@ -1,6 +1,5 @@
 package com.sociorespo.web.action;
 
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,19 +18,23 @@ import org.apache.struts.action.ActionMapping;
 
 import com.sociorespo.bl.PostBL;
 import com.sociorespo.dto.PostDTO;
-import com.sociorespo.dto.ProfileDTO;
 import com.sociorespo.web.actionform.HomeActionForm;
+import com.sociorespo.web.actionform.PostComplaintsActionForm;
 
-public class HomeAction extends Action{
+public class PostComplaintsAction extends  Action{
+
 	
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response){
 		
+		
 		String nextPage = null;
+		String linkUrl = null;
 		HttpSession session = null;
 		ActionErrors errors = new ActionErrors();
 		
-		HomeActionForm homeActionForm = (HomeActionForm) form;
+		PostComplaintsActionForm postComplaintsActionForm = (PostComplaintsActionForm) form;
 		PostBL postBL = null;
+		
 		PostDTO postDTO = null;
 		//ProfileDTO profileDTO = null;
 		
@@ -49,31 +52,43 @@ public class HomeAction extends Action{
 		System.out.println(dateFormat.format(date));
 				
 		postDTO.setUserId(userId);
-		postDTO.setContent(homeActionForm.getContent());
-		postDTO.setShareFacebook(homeActionForm.isShareFacebook());
-		postDTO.setShareTwitter(homeActionForm.isShareTwitter());
-		postDTO.setShareLinkedIn(homeActionForm.isShareLinkedIn());
+		postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitle());
+		postDTO.setPostComplaint(postComplaintsActionForm.getPostComplaints());
+		
+		linkUrl = request.getParameter("link_url");
+		
+		if (linkUrl != null) {
+			if (linkUrl.equals("complaint")) {
+				
+				nextPage = "SUCESS";
+				
+			}
+			
+		}else{
+		
 		postDTO.setTagDate(dateFormat.format(date));
 		
-		if(homeActionForm.getContent()!=null){
-			postDTO = postBL.getinsertTag(postDTO);
+		if(postComplaintsActionForm.getComplaintTitle()!=null){
+			postDTO = postBL.getinsertComplaint(postDTO);
 		}else{
-			nextPage= "HOMETAGS";
+			nextPage= "SUCCESS";
 		}
 		
 		
 		if(postDTO != null){
 			//if(postDTO.isTagInsert()==true ){
-				List tagList=new ArrayList();
-				tagList = postBL.getTagList(postDTO);
+				List complaintList=new ArrayList();
+				complaintList = postBL.getComplaintList(postDTO);
 				
-				homeActionForm.setTagList(tagList);
+				postComplaintsActionForm.setComplaintsList(complaintList);
 				
-				nextPage= "HOMETAGS";
-			//}
+				nextPage= "SUCCESS";
+			}
 		}
-		//nextPage= "HOMETAGS";
+		
 		return mapping.findForward(nextPage);
 	}
-
+		
+		
+	
 }

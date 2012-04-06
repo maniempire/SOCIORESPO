@@ -12,7 +12,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.sociorespo.bl.FaceBookBL;
+import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.dto.FaceBookDTO;
+import com.sociorespo.dto.LinkedInDTO;
 
 public class LinkedInAction  extends Action {
 
@@ -22,9 +24,14 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 		
 		ActionErrors errors = new ActionErrors();
 		ActionForward forward = new ActionForward();
-		FaceBookBL faceBookBL = new FaceBookBL();
+		LinkedInBL linkedInBL = new LinkedInBL();
+		
+		//FaceBookBL faceBookBL = new FaceBookBL();
 		FaceBookDTO faceBookDTO = new FaceBookDTO();
 		String nextPage = null;
+		LinkedInDTO linkedInDTO = null;
+		
+		
 			
 		try{
 			
@@ -34,18 +41,27 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			session = request.getSession(true);
 			
 			String oauth_verifier = null;
-			String oauth_token = null;
+			Object oauth_token = null;
+			
+			String userSessionId = session.getAttribute("USERID").toString();
+			int userId = Integer.parseInt(userSessionId);
 
 			oauth_verifier = request.getParameter("oauth_verifier");
-			oauth_token = request.getParameter("oauth_token");
+			oauth_token = session.getAttribute("REQUESTTOKEN");
 
 			//session.setAttribute("oauth_verifier",oauth_verifier);
 			//session.setAttribute("oauth_token",oauth_token);
 
 			System.out.println("LinkedIn oauth_token.......!"+oauth_token);
 			System.out.println("LinkedIn oauth_verifier.......!"+oauth_verifier);
-
-			
+			linkedInDTO = new LinkedInDTO();
+			linkedInDTO.setUserId(userId);
+	        
+	        linkedInDTO.setRequestToken(oauth_token);
+	        linkedInDTO.setOauthVerifier(oauth_verifier);
+	        
+	        linkedInDTO = linkedInBL.addToken(linkedInDTO);
+			//saveResult = linkedInBL.saveAuthSession
 			//saveResult = faceBookBL.saveAuthSession(faceBookDTO);
 			
 			if(saveResult){

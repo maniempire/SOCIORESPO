@@ -28,11 +28,19 @@ public class PostBL {
 	public PostDTO getinsertTag(PostDTO postDTO) {
 		
 		PostDAO postDAO = new PostDAO();
+		FaceBookBL faceBookBL = new FaceBookBL();
 		ProfileDTO profileDTO=null;
 		
 		postDTO = postDAO.insertPostTage(postDTO);
 		if(postDTO.isTagInsert()==true){
-			profileDTO=getFaceBookProfile(postDTO);
+			if(postDTO.isShareFacebook()==true){
+				//profileDTO=getFaceBookProfile(postDTO);
+				profileDTO=faceBookBL.getFaceBookProfile(postDTO);
+			}else if(postDTO.isShareTwitter()==true){
+				//profileDTO.getTwitterProfileUrl(postDTO);
+			}else if(postDTO.isShareLinkedIn()==true){
+				//profileDTO.getLinkedInProfileUrl(postDTO);
+			}
 		}
 		
 		return postDTO;
@@ -44,7 +52,7 @@ public class PostBL {
 			
 		List tagList;
 		ProfileDTO profileDTO=null;
-		profileDTO=getFaceBookProfile(postDTO);
+		//profileDTO=getFaceBookProfile(postDTO);
 		
 		tagList = postDAO.getTagList(postDTO);
 		
@@ -52,6 +60,17 @@ public class PostBL {
 	}
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 public ProfileDTO getFaceBookProfile(PostDTO postDTO) {
 
@@ -216,5 +235,28 @@ public boolean shareMsg(FacebookJsonRestClient userClient, String message, Attac
 	
 	return resultSts;
 }
+
+public PostDTO getinsertComplaint(PostDTO postDTO) {
+	PostDAO postDAO = new PostDAO();
+	FaceBookBL faceBookBL = new FaceBookBL();
+	ProfileDTO profileDTO=null;
+	
+	postDTO = postDAO.insertComplaint(postDTO);
+	
+	return postDTO;
+}
+
+public List getComplaintList(PostDTO postDTO) {
+	PostDAO postDAO = new PostDAO();
+	
+	List complaintList;
+	ProfileDTO profileDTO=null;
+	
+	complaintList = postDAO.getComplaintList(postDTO);
+	
+	return complaintList;
+}
+
+
 
 }
