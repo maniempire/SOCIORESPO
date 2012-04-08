@@ -50,41 +50,44 @@ public class PostComplaintsAction extends  Action{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		System.out.println(dateFormat.format(date));
-				
-		postDTO.setUserId(userId);
-		postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitle());
-		postDTO.setPostComplaint(postComplaintsActionForm.getPostComplaints());
-		
 		linkUrl = request.getParameter("link_url");
 		
 		if (linkUrl != null) {
 			if (linkUrl.equals("complaint")) {
+				postDTO.setUserId(userId);
+				postDTO.setPostComplaint(postComplaintsActionForm.getPostComplaint());
+				postDTO.setTagDate(dateFormat.format(date));
 				
-				nextPage = "SUCESS";
+				List complaintList=new ArrayList();
+				complaintList = postBL.getComplaintList(postDTO);
+				postComplaintsActionForm.setComplaintsList(complaintList);
+			
+				
+				nextPage = "COMPLAINTS";
 				
 			}
 			
 		}else{
-		
-		postDTO.setTagDate(dateFormat.format(date));
-		
-		if(postComplaintsActionForm.getComplaintTitle()!=null){
+			postDTO.setUserId(userId);
+			postDTO.setPostComplaint(postComplaintsActionForm.getPostComplaint());
+			
+			postDTO.setTagDate(dateFormat.format(date));
+			
+		if(postComplaintsActionForm.getComplaintTitleSelect()!=null){
+			postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleSelect());
 			postDTO = postBL.getinsertComplaint(postDTO);
-		}else{
-			nextPage= "SUCCESS";
-		}
+		}else if(postComplaintsActionForm.getComplaintTitleText()!=null){
+			postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleText());
+			postDTO = postBL.getinsertComplaint(postDTO);
+		}	
 		
+		List complaintList=new ArrayList();
+		complaintList = postBL.getComplaintList(postDTO);
+		postComplaintsActionForm.setComplaintsList(complaintList);
+		nextPage = "COMPLAINTS";
 		
-		if(postDTO != null){
-			//if(postDTO.isTagInsert()==true ){
-				List complaintList=new ArrayList();
-				complaintList = postBL.getComplaintList(postDTO);
-				
-				postComplaintsActionForm.setComplaintsList(complaintList);
-				
-				nextPage= "SUCCESS";
-			}
-		}
+
+	}
 		
 		return mapping.findForward(nextPage);
 	}

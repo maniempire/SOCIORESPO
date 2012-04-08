@@ -63,7 +63,7 @@
   <tr>
   <td>
   	
-  	<html:link href="https://www.google.com" styleClass="link">Online Debate</html:link>
+  	<html:link href="debateAction.do?link_url=debate" styleClass="link">Online Debate</html:link>
   </td>
   	  
   </tr>

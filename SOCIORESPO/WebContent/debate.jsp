@@ -1,29 +1,54 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles"%>
+<%@ taglib uri="/WEB-INF/struts-nested.tld" prefix="nested"%>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="/WEB-INF/struts-template.tld" prefix="template"%>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
+<html:html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Debate</title>
+<link href="styles/styles.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-<!--<img src="images/socio-respo-header.jpg" width="1010" height="123"/>-->
+<html:form action="/debateAction" method="post">
+<img src="images/socio-respo-header.jpg" width="1010" height="123" />
+<table>
+  	<tr>
+	<td class="hd-br">&nbsp;<html:link href="logoutAction.do?link_url=logout" styleClass="link">Logout</html:link></td>  	
+  	</tr>
+  	<tr>
+  	  <td align="right">Logged in as <html:link href="profileAction.do"><%=session.getAttribute("FIRSTNAME")%> </html:link></td>
+  	</tr>
+  	<logic:notEmpty name="debateActionForm">
+	  <logic:iterate id="result" name="debateActionForm" property="debateListView">
+	
+		<bean:write name="result" property="debateContent" /></br>
 
-<div style="width:1003px;height:900px">
-		<div id="halfpart1" style="height:800px;width:500px;background-color:#FFabcd;">
-		
-		<div id="second part with 2 half" style="height:800px;width:400px;background-color:#FABFFF;">
-			<div id="halfpart1" style="height:400px;width:400px;background-color:#FF56FF;">
-			</div>
-			<div id="halfpart2" style="height:400px;width:400px;background-color:#FFce56;">
-			</div>
-			
-		</div>
-		</div>	
+	</logic:iterate>
+	</logic:notEmpty>
+  	
+  </table>
+<table width="20%" align="right">
+<logic:notEmpty name="debateActionForm">
+	  <logic:iterate id="result" name="debateActionForm" property="userListView">
+	
+		<bean:write name="result" property="firstName" />
+		<bean:write name="result" property="lastName" />
 
-</div>
+	</logic:iterate>
+	</logic:notEmpty>
+
+</table>
+<table>
+   <tr>
+    	<td class="hd-br"><jsp:include page="/common/footer.jsp" /></td>
+    </tr>
+</table>
 
 
-<jsp:include page="/common/footer.jsp" />
+</html:form>
 </body>
-</html>
+</html:html>

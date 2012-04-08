@@ -8,7 +8,7 @@
 <html:html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Login</title>
+<title>Complaints</title>
 <style type="text/css">
 <!--
 body {
@@ -34,17 +34,20 @@ div
 
 <body>
 
-<form action="postComplaintsAction" method="post" >
+<html:form action="/postComplaintsAction" method="post" >
 
 <img src="images/socio-respo-header.jpg" width="1010" height="123" />
   <table>
   	<tr>
-	<td class="hd-br">&nbsp;</td>  	
+	<td class="hd-br">&nbsp;<html:link href="logoutAction.do?link_url=logout" styleClass="link">Logout</html:link></td>  	
+  	</tr>
+  	<tr>
+  	  <td align="right">Logged in as <html:link href="profileAction.do"><%=session.getAttribute("FIRSTNAME")%> </html:link></td>
   	</tr>
   </table>
-<!--    -->
+
   
-<!--  <td align="right">Logged in as <html:link href="profileAction.do"><%=session.getAttribute("FIRSTNAME")%> </html:link></td>-->
+
 <div style="width:1003px;">
 	 <div style="height:500px; width : 1000px;">
 		<html:select property="complaintTitleSelect" name="postComplaintsActionForm">
@@ -52,16 +55,17 @@ div
 		 /
 		  <input  type="text" name="complaintTitleText" class="login-txt-bx" id="complaintId" />
 		 
-		 <html:link style="login-but" > </html:link>
+
 		 
 		<textarea name="postComplaint" rows="4" cols="10" style=" width : 176px;"></textarea>
 		<input type="submit" value="Post Complaints" class="login-but"/>
-	 
-	  <logic:iterate id="result" name="postComplaintsActionForm" property="ComplaintList">
+	 <logic:notEmpty name="postComplaintsActionForm">
+	  <logic:iterate id="result" name="postComplaintsActionForm" property="complaintsList">
 	
-		<bean:write name="result" property="content" /></br>
+		<bean:write name="result" property="postComplaint" /></br>
 
 	</logic:iterate>
+	</logic:notEmpty>
   <div style="height : 299px; width : 118px; float: right;"> 
   
   <table align="left" cellpadding="0" cellspacing="0" style="height: 299px; width:118px;">
@@ -99,6 +103,6 @@ div
     </tr>
   	</table>
 
-</form>
+</html:form>
 </body>
 </html:html>
