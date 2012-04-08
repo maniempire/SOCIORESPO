@@ -6,6 +6,8 @@ drop table debate_details;
 
 drop table debate;
 
+drop table complaints;
+
 drop table tags;
 
 drop table  post;

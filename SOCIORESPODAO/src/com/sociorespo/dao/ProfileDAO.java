@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
-import com.sociorespo.dto.LoginDTO;
+
 import com.sociorespo.dto.ProfileDTO;
 
 import com.sociorespo.dao.DataAccessObject;
@@ -44,7 +44,11 @@ private ProfileDTO insertProfile(ProfileDTO profileDTO) {
 	try {
 		
 	sqlStmt =sqlCon.createStatement();
+
+	
+
 	String dateofbirth = Convertstrdate(profileDTO.getDob());
+
 
 		
 	preparedStatement=sqlCon.prepareStatement("insert into profile (profile_id,profile_user_id,first_name,last_name,gender,phone_no,email_id,date_of_birth,voter_id) values (default,'"+profileDTO.getUserId()+"','"+profileDTO.getFirstName()+"','"+profileDTO.getLastName()+"','"+profileDTO.getGender()+"','"+profileDTO.getPhoneNum()+"','"+profileDTO.getMailId()+"','"+dateofbirth+"','"+profileDTO.getVoterId()+"')");
@@ -135,7 +139,9 @@ public ProfileDTO getuserProfile(ProfileDTO profileDTO){
 	sqlStmt =sqlCon.createStatement();
 	
 	
+	
 	sqlQuery = "select * from profile where profile_user_id = '"+profileDTO.getUserId()+"'";
+
 	
 	
 		sqlCon = getSQLConnection(); 

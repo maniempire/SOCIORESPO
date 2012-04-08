@@ -9,3 +9,5 @@ alter table debate_details add foreign key (dd_user_id) references user (user_id
 alter table debate_details add foreign key (dd_debate_id) references debate (debate_id);
 
 alter table post add foreign key (post_user_id) references user (user_id);
+
+alter table complaints add foreign key (complaints_user_id) references user (user_id);
