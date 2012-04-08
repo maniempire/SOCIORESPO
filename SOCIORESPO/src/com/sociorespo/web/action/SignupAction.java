@@ -108,7 +108,10 @@ public class SignupAction extends Action{
 			}
 			}
 	
-		
+		if (!errors.isEmpty()) {
+			saveErrors(request, errors);			
+		} else {
+		}
 			forward = mapping.findForward(nextPage);
 		
 		return forward;

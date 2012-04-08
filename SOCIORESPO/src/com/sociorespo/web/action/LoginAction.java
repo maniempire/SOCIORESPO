@@ -18,9 +18,12 @@ import com.sociorespo.web.actionform.ProfileActionForm;
 
 import com.sociorespo.web.actionform.LoginActionForm;
 
+import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.PostBL;
 import com.sociorespo.bl.LoginBL;
 import com.sociorespo.bl.ProfileBL;
+import com.sociorespo.bl.TwitterBL;
+import com.sociorespo.dto.LinkedInDTO;
 import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.ProfileDTO;
 import com.sociorespo.dto.LoginDTO;
@@ -102,6 +105,11 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 						homeActionForm.setUserTags(userTags);
 					}
 					//userTags.add("ddddd");
+					
+					initTwitter(String.valueOf(profileDTO.getUserId()), session);
+					
+					initFaceBook(String.valueOf(profileDTO.getUserId()), session);
+					
 					nextPage="SUCCESS";
 					System.out.println("Login Success");
 				}else{
@@ -139,8 +147,58 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 		return forward;
 	}
 	
+	public void initTwitter(String userId, HttpSession session){
 	
-
-
-
+	TwitterBL twitterBL = new TwitterBL();
+	
+	boolean twitterConnected = false;
+	
+	
+	twitterConnected = twitterBL.isTwitterConnected(userId);
+	
+	if(twitterConnected){
+		
+		session.setAttribute("TWITTERCONNECTED", "CONNECTED");
+		
+	}else{
+		
+		String twitterAuthURL = null;
+		
+		twitterAuthURL = twitterBL.initAuthUrl();
+		
+		session.setAttribute("TWITTERAUTHURL", twitterAuthURL);
+		
+		session.setAttribute("TWITTERCONNECTED", "NOTCONNECTED");
+		}
+		
+	}
+	
+	
+	public void initFaceBook(String userId, HttpSession session){
+		
+		FaceBookBL faceBookBL = new FaceBookBL();
+		
+		boolean faceBookConnected = false;
+		
+		
+		faceBookConnected = faceBookBL.isFaceBookConnected(userId);
+		
+		if(faceBookConnected){
+			
+			session.setAttribute("FACEBOOKCONNECTED", "CONNECTED");
+			
+		}else{
+			
+			String faceBookAuthURL = null;
+			
+			faceBookAuthURL = faceBookBL.initAuthUrl();
+			
+			session.setAttribute("FACEBOOKAUTHURL", faceBookAuthURL);
+			
+			session.setAttribute("FACEBOOKCONNECTED", "NOTCONNECTED");
+			}
+			
+		}
+	
+	
 }

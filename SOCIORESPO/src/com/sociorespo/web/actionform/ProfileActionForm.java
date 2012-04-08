@@ -22,6 +22,7 @@ public class ProfileActionForm extends ActionForm{
 	
 	private String linkedInAuthURL = null;
 	private String twitterAuthURL = null;
+	private String faceBookAuthURL = null;
 	
 	private ProfileDTO profileDTO = null;
 	
@@ -31,7 +32,12 @@ public class ProfileActionForm extends ActionForm{
 	
 	private ProfileDTO twitterProfileDTO = null;
 	
-	
+	public String getFaceBookAuthURL() {
+		return faceBookAuthURL;
+	}
+	public void setFaceBookAuthURL(String faceBookAuthURL) {
+		this.faceBookAuthURL = faceBookAuthURL;
+	}
 	public ProfileDTO getTwitterProfileDTO() {
 		return twitterProfileDTO;
 	}

@@ -27,6 +27,8 @@ public class TwitterAction extends Action {
 			FaceBookBL faceBookBL = new FaceBookBL();
 			FaceBookDTO faceBookDTO = new FaceBookDTO();
 			String nextPage = null;
+			String userId = null;
+			
 				
 			try{
 				
@@ -37,8 +39,8 @@ public class TwitterAction extends Action {
 				
 				String oAuthVerifier = null;
 				String oauthToken = null;
-
-				
+			
+				userId = session.getAttribute("USERID").toString();
 				oAuthVerifier = request.getParameter("oauth_verifier");
 				oauthToken= request.getParameter("oauth_token");
 				
@@ -55,10 +57,17 @@ public class TwitterAction extends Action {
 				twitterDTO.setTokenSecret(oAuthVerifier);
 				
 				
-				twitterDTO = twitterBL.addToken(twitterDTO);
+				//twitterDTO = twitterBL.addToken(twitterDTO);
 				
-				if(saveResult){
-					
+				
+				boolean addStatus = false;
+				
+				
+				addStatus = twitterBL.addTwitterToken(oauthToken, oAuthVerifier, userId);
+				
+				
+				if(addStatus){
+					session.setAttribute("TWITTERCONNECTED", "CONNECTED");
 					nextPage = "SUCCESS";
 					
 				}else{

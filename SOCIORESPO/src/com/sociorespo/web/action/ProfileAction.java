@@ -29,8 +29,6 @@ public class ProfileAction extends Action{
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)throws IOException{
 		
-
-		
 		String nextPage =null;
 		
 		String linkUrl="";
@@ -40,24 +38,34 @@ public class ProfileAction extends Action{
 		
 		ProfileDTO profileDTO = null;
 		ProfileBL profileBL = null;
+		String userId = null;
 		try{
 		
 		session = request.getSession(true);
 		
-		//linkUrl = request.getParameter("link_url");
+		userId = session.getAttribute("USERID").toString();
 		
 		ProfileActionForm profileActionForm = (ProfileActionForm)form;
+		
+		//initSocialMedia(userId,session, profileActionForm, request);
+		
+		faceBookProfile(userId,session, profileActionForm);
+		
+		twitterProfile(userId, session, profileActionForm);
 		
 		profileBL = new ProfileBL();
 		
 		String userSessionId = session.getAttribute("USERID").toString();
-		int userId = Integer.parseInt(userSessionId);
+		//int userId = ;
 		profileActionForm.getUpdate();
 		
 		profileDTO = new ProfileDTO();
 	
 		
-		profileDTO.setUserId(userId);
+		profileDTO.setUserId(Integer.parseInt(userSessionId));
+		
+		
+		
 		
 		
 		if (linkUrl != null) {
@@ -98,42 +106,32 @@ public class ProfileAction extends Action{
 		
 		//profileDTO = faceBookBL.getFaceBookProfile(profileDTO);
 		
-		profileActionForm.setFaceBookProfileDTO(profileDTO);
+		//profileActionForm.setFaceBookProfileDTO(profileDTO);
 		
-		LinkedInBL linkedInBl = new LinkedInBL();
+		//LinkedInBL linkedInBl = new LinkedInBL();
 		
-		String authURL = null;
-		String baseURL = null;
+		//String authURL = null;
+		//String baseURL = null;
 		
-		baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
-		profileDTO.setBaseURL(baseURL);
-		profileDTO.setUserId(userId);
-		LinkedInDTO linkedInDTO = linkedInBl.getLinkedInAuthURL(profileDTO);
+		//baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
+//		profileDTO.setBaseURL(baseURL);
+//		profileDTO.setUserId(Integer.parseInt(userId));
+//		LinkedInDTO linkedInDTO = linkedInBl.getLinkedInAuthURL(profileDTO);
+//		
+//
+//		session.setAttribute("LINKEDINREQUESTTOKEN", linkedInDTO.getRequestToken());
 		
-
-		session.setAttribute("REQUESTTOKEN", linkedInDTO.getRequestToken());
-		
-		profileActionForm.setLinkedInAuthURL(linkedInDTO.getAuthUrl());
+		//profileActionForm.setLinkedInAuthURL(linkedInDTO.getAuthUrl());
 
 		//authURL = linkedInBl.getLinkedInAuthURL(baseURL);
 	
-		profileActionForm.setLinkedInAuthURL(linkedInDTO.getAuthUrl());
+		//profileActionForm.setLinkedInAuthURL(linkedInDTO.getAuthUrl());
 
-		
-		TwitterBL twitterBL = new TwitterBL();
-		
-		String twiterAuthURL = null;
-		
-		twiterAuthURL = twitterBL.initAuthUrl();
-		
-		profileActionForm.setTwitterAuthURL(twiterAuthURL);
 		
 		errors.add("PIMERROR", new ActionError("errors.pim.profileupdated.success"));
 		
 		}
 		}
-		
-	
 		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -153,4 +151,107 @@ public class ProfileAction extends Action{
 		return mapping.findForward(nextPage);
 		
 	}
+	
+	
+	
+public void twitterProfile(String userId, HttpSession session, ProfileActionForm profileActionForm) {
+		
+	String twitterConnected = null;
+	TwitterBL twitterBL = new TwitterBL();
+	
+	twitterConnected = (String)session.getAttribute("TWITTERCONNECTED");
+	
+	if(twitterConnected.equals("CONNECTED")){
+		
+		ProfileDTO twitterProfileDTO = null;
+
+		twitterProfileDTO = twitterBL.getUserTwitterProfileDetails(userId);
+		profileActionForm.setTwitterProfileDTO(twitterProfileDTO);
+
+		
+	}else{
+		String twitterAuthURL = null;
+		
+		twitterAuthURL = (String)session.getAttribute("TWITTERAUTHURL");
+		
+		profileActionForm.setTwitterAuthURL(twitterAuthURL);
+		
+	}
+	
+	
+	
+	}
+
+
+
+public void faceBookProfile(String userId, HttpSession session, ProfileActionForm profileActionForm) {
+	
+	String faceBookConnected = null;
+	FaceBookBL faceBookBL = new FaceBookBL();
+	
+	faceBookConnected = (String)session.getAttribute("FACEBOOKCONNECTED");
+	
+	if(faceBookConnected.equals("CONNECTED")){
+		
+		ProfileDTO faceBookProfileDTO = null;
+	
+		faceBookProfileDTO = faceBookBL.getFaceBookProfile(userId);
+		profileActionForm.setFaceBookProfileDTO(faceBookProfileDTO);
+
+		
+	}else{
+		String faceBookAuthURL = null;
+		
+		faceBookAuthURL = (String)session.getAttribute("FACEBOOKAUTHURL");
+		
+		profileActionForm.setFaceBookAuthURL(faceBookAuthURL);
+		
+	}
+	
+	
+	}
+
+
+
+public void initLinkedIn(String userId, HttpSession session, ProfileActionForm profileActionForm,  HttpServletRequest request){
+		
+		LinkedInBL linkedInBL = new LinkedInBL();
+		
+		boolean linkedInConnected = false;
+		Object linkedInRequestToken = null;
+		ProfileDTO linkedInProfileDTO = null;
+		LinkedInDTO linkedInDTO = null;
+		
+		linkedInConnected = linkedInBL.isLinkedInConnected(userId);
+		
+		if(linkedInConnected){
+			
+			session.setAttribute("LINKEDINCONNECTED", "CONNECTED");
+			
+			linkedInRequestToken = session.getAttribute("LINKEDINREQUESTTOKEN");
+			
+			linkedInProfileDTO = linkedInBL.getUserLinkedInProfileDetails(linkedInRequestToken, userId);
+			
+			profileActionForm.setLinkedInProfileDTO(linkedInProfileDTO);
+			
+		}else{
+			
+			String baseURL = null;
+			
+			baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
+			
+			linkedInDTO = linkedInBL.initLinkedIn(baseURL);
+			
+			if(linkedInDTO != null){
+			session.setAttribute("LINKEDINREQUESTTOKEN", linkedInDTO.getRequestToken());
+	
+			profileActionForm.setLinkedInAuthURL(linkedInDTO.getAuthUrl());
+			
+			}
+			
+		}
+		
+		
+	}
+	
 }

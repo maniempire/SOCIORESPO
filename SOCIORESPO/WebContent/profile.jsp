@@ -206,7 +206,8 @@ function update(){
   	
 <logic:notPresent property="faceBookProfileDTO"  name="profileActionForm">
  <tr>
-    <td>  <html:link href="#" onclick="popup();">Connect FaceBook</html:link>
+    <td>  <a href="<bean:write property="faceBookAuthURL" name="profileActionForm" />">Connect FaceBook</a>
+     
     &nbsp;</td>
   </tr>
 </logic:notPresent>
@@ -229,9 +230,9 @@ function update(){
 </logic:notPresent>
 <logic:present  property="linkedInProfileDTO"  name="profileActionForm">
  <tr>
-    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
-    &nbsp;You are connected to FaceBook as <bean:write property="faceBookProfileDTO.firstName" name="profileActionForm" />
-    &nbsp;<bean:write property="faceBookProfileDTO.lastName" name="profileActionForm" />
+    <td> <img alt="" src='<bean:write property="linkedInProfileDTO.linkedInImgUrl" name="profileActionForm" />' />
+    &nbsp;You are connected to LinkedIn as <bean:write property="linkedInProfileDTO.firstName" name="profileActionForm" />
+    &nbsp;<bean:write property="linkedInProfileDTO.lastName" name="profileActionForm" />
     </td>
   </tr>
 </logic:present>
@@ -248,8 +249,8 @@ function update(){
 </logic:notPresent>
 <logic:present  property="twitterProfileDTO"  name="profileActionForm">
  <tr>
-    <td> <img alt="" src='<bean:write property="faceBookProfileDTO.faceBookImgUrl" name="profileActionForm" />' />
-    &nbsp;</td>
+    <td> <img alt="" src='<bean:write property="twitterProfileDTO.twitterImgUrl" name="profileActionForm" />' />
+    &nbsp; You are connected to Twitter as <bean:write property="twitterProfileDTO.firstName" name="profileActionForm" /></td>
   </tr>
 </logic:present>
   
