@@ -51,7 +51,7 @@
 		 	type="com.sociorespo.web.action.FaceBookAction">			
 			
 			<forward name="FAILURE" path="/login.jsp"></forward>
-			<forward name="SUCCESS" path="/facebook_success.jsp"></forward>		
+			<forward name="SUCCESS" path="/profileAction.do"></forward>		
 		</action>
 		
 		<action path="/linkedInAction"
@@ -65,7 +65,7 @@
 		 	type="com.sociorespo.web.action.TwitterAction">			
 			
 			<forward name="FAILURE" path="/login.jsp"></forward>
-			<forward name="SUCCESS" path="/facebook_success.jsp"></forward>		
+			<forward name="SUCCESS" path="/profileAction.do"></forward>		
 		</action>
 		
 		<action path="/signupAction"

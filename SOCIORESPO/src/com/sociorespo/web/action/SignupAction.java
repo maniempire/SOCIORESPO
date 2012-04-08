@@ -1,5 +1,8 @@
 package com.sociorespo.web.action;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +21,9 @@ import com.sociorespo.web.actionform.SignupActionForm;
 import com.sociorespo.bl.ProfileBL;
 import com.sociorespo.dto.ProfileDTO;
 
+import java.text.SimpleDateFormat;
+
+ 
 public class SignupAction extends Action{
 	
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response){
@@ -41,6 +47,7 @@ public class SignupAction extends Action{
 		ActionForward forward = new ActionForward();
 		
 		ProfileDTO profileDTO = null;
+		
 		
 		linkUrl = request.getParameter("link_url");
 		
@@ -108,10 +115,15 @@ public class SignupAction extends Action{
 			}
 			}
 	
-		
+		if (!errors.isEmpty()) {
+			saveErrors(request, errors);			
+		} else {
+		}
 			forward = mapping.findForward(nextPage);
 		
 		return forward;
 	}
+	
+
 
 }

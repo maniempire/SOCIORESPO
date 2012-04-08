@@ -1,5 +1,7 @@
 package com.sociorespo.bl;
 
+import com.sociorespo.dao.SocialMediaDAO;
+import com.sociorespo.dto.ProfileDTO;
 import com.sociorespo.dto.TwitterDTO;
 
 import twitter4j.Twitter;
@@ -31,13 +33,14 @@ public String initAuthUrl() {
 		try {			
 			
 			requestToken = twitter.getOAuthRequestToken();
+			authUrl = requestToken.getAuthorizationURL();
 			
 		} catch (TwitterException e) {
 			
 			//processTwitterException(e);	
 		}
 
-		authUrl = requestToken.getAuthorizationURL();
+		
 		
 		return authUrl;
 	}
@@ -58,8 +61,10 @@ public TwitterDTO addToken(TwitterDTO twitterDTO) {
 		tokenSecret = twitterDTO.getTokenSecret();
 		
 		accessToken = twitter.getOAuthAccessToken(token,tokenSecret);
+		
 		profileId = twitterDTO.getProfileId();
-		 testTwitter(accessToken);
+		
+		//testTwitter(accessToken);
 		
 //		Keys keys = new Keys();
 //		
@@ -116,5 +121,92 @@ try {
 return result;
 
 }
+
+public boolean isTwitterConnected(String userId) {
+	
+	SocialMediaDAO socialMediaDAO = new SocialMediaDAO(); 
+	boolean twitterConnected = false;
+	
+	twitterConnected = socialMediaDAO.isTwitterConnected(userId);
+	
+	return twitterConnected;
+}
+
+public ProfileDTO getUserTwitterProfileDetails(String userId) {
+	ProfileDTO profileDTO = null;
+	User profile = null;
+	AccessToken accessToken = null;
+
+	try {
+		
+		accessToken = getTwitterAccessToken(userId);
+		
+		twitter.setOAuthAccessToken(accessToken);
+		profile = twitter.verifyCredentials();
+		profile = twitter.showUser(profile.getId());
+	} catch (TwitterException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	profileDTO = getProfile(profile);
+	
+	return profileDTO;
+}
+
+
+public AccessToken getTwitterAccessToken(String userId){
+	AccessToken accessToken = null;
+	SocialMediaDAO socialMediaDAO = new SocialMediaDAO(); 
+	TwitterDTO twitterDTO = null;
+	String tokenSecret = null;
+	String token = null;
+	
+	twitterDTO = socialMediaDAO.getTwitterTokens(userId);
+	
+	
+	if(twitterDTO != null){
+		token = twitterDTO.getToken();
+		tokenSecret = twitterDTO.getTokenSecret();
+	
+		try {
+			
+			accessToken = twitter.getOAuthAccessToken(token,tokenSecret);
+			
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	return accessToken;
+	
+}
+
+	public ProfileDTO getProfile(User profile){
+	ProfileDTO profileDTO = null;
+	if(profile != null){
+		
+		profileDTO = new ProfileDTO();
+		
+		profileDTO.setProfileId(String.valueOf(profile.getId()));
+		profileDTO.setFirstName(profile.getName());
+		profileDTO.setTwitterImgUrl(profile.getProfileImageURL().toString());
+		
+				
+	}
+	
+	return profileDTO;
+	}
+
+	public boolean addTwitterToken(String oauthToken, String oAuthVerifier, String userId) {
+		
+		SocialMediaDAO socialMediaDAO = new SocialMediaDAO(); 
+		boolean twitterAddStatus = false;
+		
+		twitterAddStatus = socialMediaDAO.addTwitterToken(oauthToken, oAuthVerifier, userId);
+		
+		return twitterAddStatus;
+	}
 	
 }

@@ -120,9 +120,11 @@ public class LinkedInBL {
  	   keys.setProfileId(profileId);*/
  	   int userId = linkedInDTO.getUserId();
  	   
- 	   userAccessToken = linkedInDTO.getAccessToken().toString();
+ 	   //userAccessToken = linkedInDTO.getAccessToken().toString();
  	   
- 	   addStatus = socialMediaDAO.saveLinkedInAccessToken(userId,userAccessToken);
+ 	  // addStatus = socialMediaDAO.saveLinkedInAccessToken(userId,userAccessToken);
+ 	   
+ 	  addStatus = socialMediaDAO.saveLinkedInAccessToken(userId,oauthVerifier);
  	   
  	   if(addStatus){
  		   //accessToken = getAccessToken(profileId);
@@ -246,18 +248,78 @@ public ProfileDTO getProfileData(Person profile){
 		profileDTO.setProfileId(profile.getId());
 		profileDTO.setFirstName(profile.getFirstName());
 		profileDTO.setLastName(profile.getLastName());
-		//profileDTO.setProfileLargePhotoLoc(profile.getPictureUrl());
-		
-		Location location = profile.getLocation();
-		
-		if(location != null){
-			//profileDTO.setLocation(location.getName());
-		}
-		
+		profileDTO.setLinkedInImgUrl(profile.getPictureUrl());
 		
 	}
 	
 	return profileDTO;
 }
+
+public boolean isLinkedInConnected(String userId) {
+	
+	SocialMediaDAO socialMediaDAO = new SocialMediaDAO(); 
+	boolean linkedInConnected = false;
+	
+	linkedInConnected = socialMediaDAO.isLinkedInConnected(userId);
+	
+	return linkedInConnected;
+}
+
+public ProfileDTO getUserLinkedInProfileDetails(
+		Object linkedInRequestToken, String userId) {
+	
+	LinkedInAccessToken accessToken = null;
+	 LinkedInApiClient client = null;
+	 ProfileDTO profileDTO = null;
+	
+	accessToken =  getLinkedInAccessToken(linkedInRequestToken, userId);
+	
+	client = getLinkedInApiClient(accessToken);
+	 
+	 profileDTO = getUserLinkedInProfile(client);
+	
+	return profileDTO;
+}
+
+public LinkedInAccessToken getLinkedInAccessToken(Object linkedInRequestToken, String userId){
+	
+	LinkedInAccessToken accessToken = null;
+	LinkedInRequestToken requestToken = null;
+	String oauthVerifier = null;
+	SocialMediaDAO socialMediaDAO = new SocialMediaDAO(); 
+			
+			 oauthVerifier = socialMediaDAO.getOauthVerifier(userId);
+			 
+			 requestToken =  (LinkedInRequestToken) linkedInRequestToken;
+	
+	   
+	   accessToken = oauthService.getOAuthAccessToken(requestToken, oauthVerifier);
+	   
+	return accessToken;
+}
+
+public LinkedInDTO initLinkedIn(String baseURL) {
+	
+	
+	LinkedInDTO linkedInDTO = null;	
+	String authUrl = null; 
+
+	baseURL = baseURL+"/linkedInAction.do";
+	
+	LinkedInRequestToken requestToken = oauthService.getOAuthRequestToken(baseURL);
+	
+	linkedInDTO = new LinkedInDTO();
+   
+    authUrl = requestToken.getAuthorizationUrl(); 
+    
+
+    linkedInDTO.setAuthUrl(authUrl);
+    linkedInDTO.setRequestToken(requestToken);
+    
+     
+	return linkedInDTO;
+	
+}
+
     
 }

@@ -269,6 +269,20 @@ public ProfileDTO getFaceBookProfile(ProfileDTO profileDTO) {
 	return profileDTO;
 }
 
+public ProfileDTO getFaceBookProfile(String userId) {
+
+	SocialMediaDAO socialMediaDAO = new SocialMediaDAO();
+	ProfileDTO profileDTO = null;
+	
+	String authKey = null;
+
+	authKey = socialMediaDAO.getFaceBookAccessToken(Integer.parseInt(userId));
+	
+	profileDTO = getPublicProfile(authKey);
+	
+	
+	return profileDTO;
+}
 
 
 
@@ -336,6 +350,23 @@ public boolean shareMsg(FacebookJsonRestClient userClient, String message, Attac
 	}
 	
 	return resultSts;
+}
+
+public boolean isFaceBookConnected(String userId) {
+	SocialMediaDAO socialMediaDAO = new SocialMediaDAO(); 
+	boolean faceBookConnected = false;
+	
+	faceBookConnected = socialMediaDAO.isFaceBookConnected(userId);
+	
+	return faceBookConnected;
+	
+}
+
+public String initAuthUrl() {
+	//String authUrl = null;
+	//authUrl = "http://www.facebook.com/login.php?api_key=35da82b9e7418dc5c3a10267b1c0812f&v=1.0&req_perms=read_stream,publish_stream,offline_access,sms,email,user_location";
+	
+	return AUTH_URL;
 }
 
 	

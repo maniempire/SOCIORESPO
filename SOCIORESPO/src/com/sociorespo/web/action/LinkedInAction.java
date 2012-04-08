@@ -47,7 +47,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			int userId = Integer.parseInt(userSessionId);
 
 			oauth_verifier = request.getParameter("oauth_verifier");
-			oauth_token = session.getAttribute("REQUESTTOKEN");
+			oauth_token = session.getAttribute("LINKEDINREQUESTTOKEN");
 
 			//session.setAttribute("oauth_verifier",oauth_verifier);
 			//session.setAttribute("oauth_token",oauth_token);

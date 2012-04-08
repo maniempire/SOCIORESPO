@@ -1,10 +1,13 @@
 package com.sociorespo.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.StringTokenizer;
 
 
 import com.sociorespo.dto.ProfileDTO;
@@ -14,6 +17,7 @@ import com.sociorespo.dao.DataAccessObject;
 public class ProfileDAO extends DataAccessObject{
 	
 	
+
 
 public ProfileDTO insertUserProfile(ProfileDTO profileDTO) {
 	
@@ -40,11 +44,14 @@ private ProfileDTO insertProfile(ProfileDTO profileDTO) {
 	try {
 		
 	sqlStmt =sqlCon.createStatement();
-		
-	preparedStatement=sqlCon.prepareStatement("insert into profile (profile_id,profile_user_id,first_name,last_name,gender,phone_no,email_id,date_of_birth,voter_id) values (default,'"+profileDTO.getUserId()+"','"+profileDTO.getFirstName()+"','"+profileDTO.getLastName()+"','"+profileDTO.getGender()+"','"+profileDTO.getPhoneNum()+"','"+profileDTO.getMailId()+"','"+profileDTO.getDob()+"','"+profileDTO.getVoterId()+"')");
 
 	
-	//preparedStatement=sqlCon.prepareStatement("insert into social_media_key(smk_id,smk_user_id,smk_key) values(1,"+userId+",'"+accessToken+"')");
+
+	String dateofbirth = Convertstrdate(profileDTO.getDob());
+
+
+		
+	preparedStatement=sqlCon.prepareStatement("insert into profile (profile_id,profile_user_id,first_name,last_name,gender,phone_no,email_id,date_of_birth,voter_id) values (default,'"+profileDTO.getUserId()+"','"+profileDTO.getFirstName()+"','"+profileDTO.getLastName()+"','"+profileDTO.getGender()+"','"+profileDTO.getPhoneNum()+"','"+profileDTO.getMailId()+"','"+dateofbirth+"','"+profileDTO.getVoterId()+"')");
 	
 	preparedStatement.executeUpdate();
 	
@@ -132,7 +139,9 @@ public ProfileDTO getuserProfile(ProfileDTO profileDTO){
 	sqlStmt =sqlCon.createStatement();
 	
 	
-	sqlQuery = "select * from profile where profile_id = '"+profileDTO.getUserId()+"'";
+	
+	sqlQuery = "select * from profile where profile_user_id = '"+profileDTO.getUserId()+"'";
+
 	
 	
 		sqlCon = getSQLConnection(); 
@@ -152,8 +161,6 @@ public ProfileDTO getuserProfile(ProfileDTO profileDTO){
 			profileDTO.setMailId(resultSet.getString(7));
 			profileDTO.setDob(resultSet.getString(8));
 			profileDTO.setVoterId(resultSet.getString(9));
-			profileDTO.setPassword(resultSet.getString(10));
-						
 				
 		}
 			
@@ -186,11 +193,11 @@ public ProfileDTO updateProfile(ProfileDTO profileDTO) {
 		
 	sqlStmt =sqlCon.createStatement();
 	
-	preparedStatement=sqlCon.prepareStatement("UPDATE profile SET (first_name='"+profileDTO.getFirstName()+"',last_name='"+profileDTO.getLastName()+"',gender='"+profileDTO.getGender()+"',phone_no='"+profileDTO.getPhoneNum()+"',email_id='"+profileDTO.geteMail()+"',date_of_birth='"+profileDTO.getDob()+"',Voter_id='"+profileDTO.getVoterId()+"') WHERE pf_user_id="+userId+"");
+	preparedStatement=sqlCon.prepareStatement("UPDATE profile SET (first_name='"+profileDTO.getFirstName()+"',last_name='"+profileDTO.getLastName()+"',gender='"+profileDTO.getGender()+"',phone_no='"+profileDTO.getPhoneNum()+"',email_id='"+profileDTO.geteMail()+"',date_of_birth='"+profileDTO.getDob()+"',voter_id='"+profileDTO.getVoterId()+"') WHERE profile_user_id="+userId+"");
 	
 	preparedStatement.executeUpdate();
 	
-	preparedStatement=sqlCon.prepareStatement("UPDATE user SET (user_password='"+profileDTO.getPassword()+"'email_id='"+profileDTO.geteMail()+"') WHERE user_id="+userId+"");
+	preparedStatement=sqlCon.prepareStatement("UPDATE user SET (user_password='"+profileDTO.getPassword()+"'user_email_id='"+profileDTO.geteMail()+"') WHERE user_id="+userId+"");
 	preparedStatement.executeUpdate();
 	}catch (SQLException e) {
 		
@@ -200,7 +207,31 @@ public ProfileDTO updateProfile(ProfileDTO profileDTO) {
 	
 	return profileDTO;
 }
+public String Convertstrdate(String dob)
+{
 
+	String[] tokenArry =  new String[3];
+	
+
+	
+	StringTokenizer tokenizer = new StringTokenizer(dob,"/");
+	
+int i=0;
+	while(tokenizer.hasMoreTokens()) {
+		
+		String key = tokenizer.nextToken();
+		tokenArry[i] = key;
+		
+		System.out.println(key + "\t");
+		i++;
+		} 
+	
+
+	
+	dob = tokenArry[2]+"-"+tokenArry[0]+"-"+tokenArry[1];
+	System.out.println(dob);
+  return dob;
+}
 
 
 }
