@@ -21,6 +21,10 @@
 			type="com.sociorespo.web.actionform.PostComplaintsActionForm">
 		</form-bean>
 		
+		<form-bean name="debateActionForm" 
+		type="com.sociorespo.web.actionform.DebateActionForm">
+		</form-bean>
+		
 	</form-beans>
 	<global-forwards>
 			
@@ -92,7 +96,16 @@
 				name="postComplaintsActionForm"
 		 	type="com.sociorespo.web.action.PostComplaintsAction">			
 			
-			<forward name="SUCCESS" path="/profile.jsp"></forward>		
+			<forward name="SUCCESS" path="/profile.jsp"></forward>
+			<forward name="COMPLAINTS" path="/complaints.jsp"/> 		
+		</action>
+		
+		
+		<action path="/debateAction"
+				name="debateActionForm"
+		 	type="com.sociorespo.web.action.DebateAction">			
+		
+			<forward name="DEBATE" path="/debate.jsp"/> 		
 		</action>
 		
 		

@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.sociorespo.dto.LoginDTO;
+
 import com.sociorespo.dto.ProfileDTO;
 
 import com.sociorespo.dao.DataAccessObject;
@@ -41,7 +41,7 @@ private ProfileDTO insertProfile(ProfileDTO profileDTO) {
 		
 	sqlStmt =sqlCon.createStatement();
 		
-	preparedStatement=sqlCon.prepareStatement("insert into profile (pf_id,pf_user_id,first_name,last_name,gender,phone_no,email_id,date_of_birth,Voter_id,password) values (default,'"+profileDTO.getUserId()+"','"+profileDTO.getFirstName()+"','"+profileDTO.getLastName()+"','"+profileDTO.getGender()+"','"+profileDTO.getPhoneNum()+"','"+profileDTO.getMailId()+"','"+profileDTO.getDob()+"','"+profileDTO.getVoterId()+"','"+profileDTO.getPassword()+"')");
+	preparedStatement=sqlCon.prepareStatement("insert into profile (profile_id,profile_user_id,first_name,last_name,gender,phone_no,email_id,date_of_birth,voter_id) values (default,'"+profileDTO.getUserId()+"','"+profileDTO.getFirstName()+"','"+profileDTO.getLastName()+"','"+profileDTO.getGender()+"','"+profileDTO.getPhoneNum()+"','"+profileDTO.getMailId()+"','"+profileDTO.getDob()+"','"+profileDTO.getVoterId()+"')");
 
 	
 	//preparedStatement=sqlCon.prepareStatement("insert into social_media_key(smk_id,smk_user_id,smk_key) values(1,"+userId+",'"+accessToken+"')");
@@ -80,11 +80,11 @@ private ProfileDTO insertUser(ProfileDTO profileDTO) {
 	sqlStmt =sqlCon.createStatement();
 	
 	
-	preparedStatement=sqlCon.prepareStatement("insert into user (user_id,email_id,user_password,user_status) values (default,'"+profileDTO.getMailId()+"','"+profileDTO.getPassword()+"','active')");
+	preparedStatement=sqlCon.prepareStatement("insert into user (user_id,user_email_id,user_password,user_status) values (default,'"+profileDTO.getMailId()+"','"+profileDTO.getPassword()+"','active')");
 
 	preparedStatement.executeUpdate();
 	
-	sqlQuery = "select * from user where email_id = '"+profileDTO.getMailId()+"'";
+	sqlQuery = "select * from user where user_email_id = '"+profileDTO.getMailId()+"'";
 	
 	
 		
@@ -132,7 +132,7 @@ public ProfileDTO getuserProfile(ProfileDTO profileDTO){
 	sqlStmt =sqlCon.createStatement();
 	
 	
-	sqlQuery = "select * from profile where pf_user_id = '"+profileDTO.getUserId()+"'";
+	sqlQuery = "select * from profile where profile_id = '"+profileDTO.getUserId()+"'";
 	
 	
 		sqlCon = getSQLConnection(); 

@@ -6,17 +6,20 @@ import org.apache.struts.action.ActionForm;
 
 public class PostComplaintsActionForm extends ActionForm{
 	
-	private String postComplaints = null;
+	private String postComplaint = null;
 	private String complaintTitle = null;
+	private String complaintTitleText = null;
+	private String complaintTitleSelect = null;
 	
 	private List complaintsList;
 	
 	
-	public String getPostComplaints() {
-		return postComplaints;
+	
+	public String getPostComplaint() {
+		return postComplaint;
 	}
-	public void setPostComplaints(String postComplaints) {
-		this.postComplaints = postComplaints;
+	public void setPostComplaint(String postComplaint) {
+		this.postComplaint = postComplaint;
 	}
 	public String getComplaintTitle() {
 		return complaintTitle;
@@ -30,6 +33,20 @@ public class PostComplaintsActionForm extends ActionForm{
 	}
 	public void setComplaintsList(List complaintsList) {
 		this.complaintsList = complaintsList;
+	}
+	
+	
+	public String getComplaintTitleSelect() {
+		return complaintTitleSelect;
+	}
+	public void setComplaintTitleSelect(String complaintTitleSelect) {
+		this.complaintTitleSelect = complaintTitleSelect;
+	}
+	public String getComplaintTitleText() {
+		return complaintTitleText;
+	}
+	public void setComplaintTitleText(String complaintTitleText) {
+		this.complaintTitleText = complaintTitleText;
 	}
 	
 	

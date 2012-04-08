@@ -35,7 +35,7 @@ public LoginDTO isValidUser(LoginDTO loginDTO){
 		
 		try	{
 				
-		sqlQuery = "select * from user  where email_id='"+loginDTO.getEmailId()+"' and User_password = '" +loginDTO.getPassword() +"'";
+		sqlQuery = "select * from user  where user_email_id='"+loginDTO.getEmailId()+"' and User_password = '" +loginDTO.getPassword() +"'";
 	
 		loginDTO = new LoginDTO();
 			

@@ -1,5 +1,7 @@
 package com.sociorespo.dto;
 
+import java.util.List;
+
 public class PostDTO {
 	
 	
@@ -10,9 +12,16 @@ public class PostDTO {
 	private boolean tagInsert;
 	private String tagDate;
 	private int userId = 0;
+	private String firstName=null;
+	private String lastName = null;
+	
 	private String content= null;
 	private String complaintTitle = null;
 	private String postComplaint = null;
+	private String debateContent = null;
+	private String debateDate= null;
+	private String debateTitle = null;
+	
 	
 
 	public String getPostTags() {
@@ -71,6 +80,22 @@ public class PostDTO {
 		this.userId = userId;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -94,6 +119,32 @@ public class PostDTO {
 	public void setPostComplaint(String postComplaint) {
 		this.postComplaint = postComplaint;
 	}
+
+	public String getDebateContent() {
+		return debateContent;
+	}
+
+	public void setDebateContent(String debateContent) {
+		this.debateContent = debateContent;
+	}
+
+	public String getDebateDate() {
+		return debateDate;
+	}
+
+	public void setDebateDate(String debateDate) {
+		this.debateDate = debateDate;
+	}
+
+	public String getDebateTitle() {
+		return debateTitle;
+	}
+
+	public void setDebateTitle(String debateTitle) {
+		this.debateTitle = debateTitle;
+	}
+
+	
 
 	
 	
