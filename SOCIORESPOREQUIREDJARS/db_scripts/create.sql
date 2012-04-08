@@ -32,7 +32,8 @@ create table debate(
 debate_id int not null Primary key auto_increment,
 debate_user_id int,
 debate_content text,
-debate_date date
+debate_date datetime,
+debate_title text
 );
 
 
@@ -59,4 +60,12 @@ post_id int not null Primary key auto_increment,
 post_user_id int,
 post_content text,
 post_start_date datetime
+);
+
+create table complaints(
+complaints_id int not null Primary key auto_increment,
+complaints_user_id int,
+complaints_content text,
+complaints_start_date datetime,
+complaints_title text
 );
