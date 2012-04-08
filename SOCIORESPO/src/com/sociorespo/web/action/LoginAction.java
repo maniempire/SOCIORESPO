@@ -73,7 +73,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 				
 			
 			loginDTO.setEmailId(loginActionForm.getEmailId());
-			
+		          	
 			loginDTO.setPassword(loginActionForm.getPassword());
 			
 			loginDTO = loginBL.isValidUser(loginDTO);
