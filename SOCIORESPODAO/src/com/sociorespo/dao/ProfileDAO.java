@@ -1,10 +1,13 @@
 package com.sociorespo.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.StringTokenizer;
 
 import com.sociorespo.dto.LoginDTO;
 import com.sociorespo.dto.ProfileDTO;
@@ -14,6 +17,7 @@ import com.sociorespo.dao.DataAccessObject;
 public class ProfileDAO extends DataAccessObject{
 	
 	
+
 
 public ProfileDTO insertUserProfile(ProfileDTO profileDTO) {
 	
@@ -40,8 +44,9 @@ private ProfileDTO insertProfile(ProfileDTO profileDTO) {
 	try {
 		
 	sqlStmt =sqlCon.createStatement();
-		
-	preparedStatement=sqlCon.prepareStatement("insert into profile (pf_id,pf_user_id,first_name,last_name,gender,phone_no,email_id,date_of_birth,Voter_id,password) values (default,'"+profileDTO.getUserId()+"','"+profileDTO.getFirstName()+"','"+profileDTO.getLastName()+"','"+profileDTO.getGender()+"','"+profileDTO.getPhoneNum()+"','"+profileDTO.getMailId()+"','"+profileDTO.getDob()+"','"+profileDTO.getVoterId()+"','"+profileDTO.getPassword()+"')");
+	
+	String dateofbirth = Convertstrdate(profileDTO.getDob());
+	preparedStatement=sqlCon.prepareStatement("insert into profile (pf_id,pf_user_id,first_name,last_name,gender,phone_no,email_id,date_of_birth,Voter_id,password) values (default,'"+profileDTO.getUserId()+"','"+profileDTO.getFirstName()+"','"+profileDTO.getLastName()+"','"+profileDTO.getGender()+"','"+profileDTO.getPhoneNum()+"','"+profileDTO.getMailId()+"','"+dateofbirth+"','"+profileDTO.getVoterId()+"','"+profileDTO.getPassword()+"')");
 
 	
 	//preparedStatement=sqlCon.prepareStatement("insert into social_media_key(smk_id,smk_user_id,smk_key) values(1,"+userId+",'"+accessToken+"')");
@@ -200,7 +205,31 @@ public ProfileDTO updateProfile(ProfileDTO profileDTO) {
 	
 	return profileDTO;
 }
+public String Convertstrdate(String dob)
+{
 
+	String[] tokenArry =  new String[3];
+	
+
+	
+	StringTokenizer tokenizer = new StringTokenizer(dob,"/");
+	
+int i=0;
+	while(tokenizer.hasMoreTokens()) {
+		
+		String key = tokenizer.nextToken();
+		tokenArry[i] = key;
+		
+		System.out.println(key + "\t");
+		i++;
+		} 
+	
+
+	
+	dob = tokenArry[2]+"-"+tokenArry[0]+"-"+tokenArry[1];
+	System.out.println(dob);
+  return dob;
+}
 
 
 }
