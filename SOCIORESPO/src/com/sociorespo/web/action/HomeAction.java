@@ -19,7 +19,9 @@ import org.apache.struts.action.ActionMapping;
 
 import twitter4j.http.AccessToken;
 
+import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.sociorespo.bl.FaceBookBL;
+import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.PostBL;
 import com.sociorespo.bl.TwitterBL;
 import com.sociorespo.dto.PostDTO;
@@ -59,12 +61,13 @@ public class HomeAction extends Action{
 		postDTO.setShareLinkedIn(homeActionForm.isShareLinkedIn());
 		postDTO.setTagDate(dateFormat.format(date));
 		
-		if(homeActionForm.getContent()!=null){
+		if(homeActionForm.getContent()!=null && homeActionForm.getContent()!=""){
 			
 			postDTO = postBL.getinsertTag(postDTO);
 			
 			FaceBookBL faceBookBL = new FaceBookBL();
 			TwitterBL twitterBL = new TwitterBL();
+			LinkedInBL linkedInBL = new LinkedInBL();
 			
 			boolean shareSts = false;
 			
@@ -79,6 +82,15 @@ public class HomeAction extends Action{
 				accessToken = (AccessToken)session.getAttribute("TWITTERACCESSTOKEN");
 				
 				shareSts = twitterBL.shareMsgInTwitter(postDTO, accessToken);	
+			}
+			
+				if(homeActionForm.isShareLinkedIn()){
+				
+					LinkedInAccessToken accessToken = null;
+				
+				accessToken = (LinkedInAccessToken)session.getAttribute("LINKEDINREQUESTTOKEN");
+				
+				shareSts = linkedInBL.shareMsgInLinkedIn(postDTO, accessToken);	
 			}
 			
 			
@@ -99,7 +111,9 @@ public class HomeAction extends Action{
 			//}
 		}
 		//nextPage= "HOMETAGS";
-		
+		homeActionForm.setContent(null);
+		homeActionForm.setShareTwitter(false);
+		homeActionForm.setShareFacebook(false);
 		homeActionForm.setShareTwitter(false);
 		return mapping.findForward(nextPage);
 	}
