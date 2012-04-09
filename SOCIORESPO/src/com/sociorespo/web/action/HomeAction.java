@@ -17,6 +17,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.PostBL;
 import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.ProfileDTO;
@@ -56,7 +57,15 @@ public class HomeAction extends Action{
 		postDTO.setTagDate(dateFormat.format(date));
 		
 		if(homeActionForm.getContent()!=null){
+			
 			postDTO = postBL.getinsertTag(postDTO);
+			
+			FaceBookBL faceBookBL = new FaceBookBL();
+			
+			boolean shareSts = false;
+			
+			shareSts = faceBookBL.shareMsgInFaceBook(postDTO);
+			
 		}else{
 			nextPage= "HOMETAGS";
 		}

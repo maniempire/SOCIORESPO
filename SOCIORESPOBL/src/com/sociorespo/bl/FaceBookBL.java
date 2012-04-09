@@ -369,5 +369,31 @@ public String initAuthUrl() {
 	return AUTH_URL;
 }
 
+public boolean shareMsgInFaceBook(PostDTO postDTO) {
+	boolean shareSts = false;
+	FacebookJsonRestClient userClient = null;
+	 String msgContent = null;
+	SocialMediaDAO socialMediaDAO = new SocialMediaDAO();
+	ProfileDTO profileDTO = null;
+	
+	
+	String authKey = null;
+	int userid = postDTO.getUserId();
+	
+	authKey = socialMediaDAO.getFaceBookAccessToken(userid);
+	
+	profileDTO = getPublicProfile(authKey);
+	
+	userClient = getUserClient(authKey);
+	
+	msgContent = postDTO.getContent();
+	
+	if(msgContent!=null){
+		shareSts = shareMsg(userClient,msgContent,null, null);
+	}
+	
+	return shareSts;
+}
+
 	
 }
