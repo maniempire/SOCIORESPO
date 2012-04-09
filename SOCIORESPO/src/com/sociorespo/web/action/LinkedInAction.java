@@ -11,6 +11,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.dto.FaceBookDTO;
@@ -59,13 +60,15 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 	        
 	        linkedInDTO.setRequestToken(oauth_token);
 	        linkedInDTO.setOauthVerifier(oauth_verifier);
-	        
-	        linkedInDTO = linkedInBL.addToken(linkedInDTO);
+	        LinkedInAccessToken accsessToken = null;
+	        //linkedInDTO = linkedInBL.addToken(linkedInDTO);
+	        accsessToken=linkedInBL.getLinkedInAccessToken(linkedInDTO);
 			//saveResult = linkedInBL.saveAuthSession
 			//saveResult = faceBookBL.saveAuthSession(faceBookDTO);
 			
-			if(saveResult){
-				
+			if(accsessToken!=null){
+				session.setAttribute("LINKEDINACCESSTOKEN", accsessToken);
+				session.setAttribute("LINKEDINCONNECTED", "CONNECTED");
 				nextPage = "SUCCESS";
 				
 			}else{

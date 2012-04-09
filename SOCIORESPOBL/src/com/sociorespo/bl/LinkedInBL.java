@@ -4,6 +4,8 @@ import java.security.GeneralSecurityException;
 import java.util.EnumSet;
 import java.util.List;
 
+import twitter4j.http.AccessToken;
+
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
@@ -15,6 +17,7 @@ import com.google.code.linkedinapi.schema.Location;
 import com.google.code.linkedinapi.schema.Person;
 import com.sociorespo.dao.SocialMediaDAO;
 import com.sociorespo.dto.LinkedInDTO;
+import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.ProfileDTO;
 
 public class LinkedInBL {
@@ -93,7 +96,26 @@ public class LinkedInBL {
 //        
 		return linkedInDTO;
 	}
-	
+    public LinkedInDTO getLinkedInAuthURL(String baseURL){
+		
+       
+		LinkedInDTO linkedInDTO = null;
+		String token = null;
+		String tokenSecret = null;		
+		String authUrl = null; 
+
+		baseURL = baseURL+"/linkedInAction.do";
+		
+		LinkedInRequestToken requestToken = oauthService.getOAuthRequestToken(baseURL);
+		//LinkedInRequestToken requestToken = oauthService.getOAuthRequestToken("http://ec2-50-16-39-131.compute-1.amazonaws.com:8080/EVENTPORTAL/views/linkedIn_connect.jsf");
+		linkedInDTO = new LinkedInDTO();
+        token = requestToken.getToken();
+        tokenSecret = requestToken.getTokenSecret();
+        authUrl = requestToken.getAuthorizationUrl(); 
+         linkedInDTO.setAuthUrl(authUrl);
+        linkedInDTO.setRequestToken(requestToken);
+		return linkedInDTO;
+	}
     
     public LinkedInDTO addToken(LinkedInDTO linkedInDTO) {
     	
@@ -145,7 +167,26 @@ public class LinkedInBL {
  	   
  	return linkedInDTO;
  }
-	
+    public LinkedInAccessToken getLinkedInAccessToken(LinkedInDTO linkedInDTO) {
+    	
+  
+  	   String oauthVerifier = null;
+  	  
+  	   LinkedInRequestToken requestToken = null;
+  	   LinkedInAccessToken accessToken = null;
+  	
+  		
+  		if(linkedInDTO != null){
+  		
+  			 oauthVerifier = linkedInDTO.getOauthVerifier();
+  			 requestToken =  (LinkedInRequestToken) linkedInDTO.getRequestToken();
+  		}
+  	   
+  	   accessToken = oauthService.getOAuthAccessToken(requestToken, oauthVerifier);
+  	  
+  	   
+  	return accessToken;
+  }
     
     public Person getProfile(LinkedInAccessToken accessToken){
 		 
@@ -266,15 +307,15 @@ public boolean isLinkedInConnected(String userId) {
 }
 
 public ProfileDTO getUserLinkedInProfileDetails(
-		Object linkedInRequestToken, String userId) {
+		Object linkedInAccessToken, String userId) {
 	
-	LinkedInAccessToken accessToken = null;
+	//LinkedInAccessToken accessToken = null;
 	 LinkedInApiClient client = null;
 	 ProfileDTO profileDTO = null;
 	
-	accessToken =  getLinkedInAccessToken(linkedInRequestToken, userId);
+	//accessToken =  getLinkedInAccessToken(linkedInAccessToken, userId);
 	
-	client = getLinkedInApiClient(accessToken);
+	client = getLinkedInApiClient((LinkedInAccessToken)linkedInAccessToken);
 	 
 	 profileDTO = getUserLinkedInProfile(client);
 	
@@ -320,6 +361,22 @@ public LinkedInDTO initLinkedIn(String baseURL) {
 	return linkedInDTO;
 	
 }
+
+public boolean shareMsgInLinkedIn(PostDTO postDTO, LinkedInAccessToken accessToken) {
+	LinkedInApiClient client = null;
+	boolean result = false;
+	
+	if(accessToken != null){
+		 client = getLinkedInApiClient(accessToken);
+	 }
+	if(postDTO.getContent()!=null && client!=null){  
+	  client.updateCurrentStatus(postDTO.getContent());
+	  result = true;
+	  
+	  }
+	return result;
+}
+
 
     
 }

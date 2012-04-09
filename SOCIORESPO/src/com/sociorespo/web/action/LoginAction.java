@@ -19,6 +19,7 @@ import com.sociorespo.web.actionform.ProfileActionForm;
 import com.sociorespo.web.actionform.LoginActionForm;
 
 import com.sociorespo.bl.FaceBookBL;
+import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.PostBL;
 import com.sociorespo.bl.LoginBL;
 import com.sociorespo.bl.ProfileBL;
@@ -110,6 +111,8 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 					
 					initFaceBook(String.valueOf(profileDTO.getUserId()), session);
 					
+					initLinkedIn(userId, session, request);
+					
 					nextPage="SUCCESS";
 					System.out.println("Login Success");
 				}else{
@@ -200,5 +203,23 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 			
 		}
 	
+	public void initLinkedIn(String userId, HttpSession session,HttpServletRequest request){
+		
+		LinkedInBL linkedInBL = new LinkedInBL();
+		LinkedInDTO linkedInDTO = null;
+			
+
+		String baseURL = null;
+		
+		baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
 	
+			
+			linkedInDTO = linkedInBL.getLinkedInAuthURL(baseURL);
+			
+			session.setAttribute("LINKEDINAUTHURL", linkedInDTO.getAuthUrl());
+			
+			session.setAttribute("LINKEDINCONNECTED", "NOTCONNECTED");
+			
+			session.setAttribute("LINKEDINREQUESTTOKEN", linkedInDTO.getRequestToken());		
+		}
 }

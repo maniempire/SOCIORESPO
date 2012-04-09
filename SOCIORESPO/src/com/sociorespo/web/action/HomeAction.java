@@ -19,7 +19,9 @@ import org.apache.struts.action.ActionMapping;
 
 import twitter4j.http.AccessToken;
 
+import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.sociorespo.bl.FaceBookBL;
+import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.PostBL;
 import com.sociorespo.bl.TwitterBL;
 import com.sociorespo.dto.PostDTO;
@@ -65,6 +67,7 @@ public class HomeAction extends Action{
 			
 			FaceBookBL faceBookBL = new FaceBookBL();
 			TwitterBL twitterBL = new TwitterBL();
+			LinkedInBL linkedInBL = new LinkedInBL();
 			
 			boolean shareSts = false;
 			
@@ -79,6 +82,15 @@ public class HomeAction extends Action{
 				accessToken = (AccessToken)session.getAttribute("TWITTERACCESSTOKEN");
 				
 				shareSts = twitterBL.shareMsgInTwitter(postDTO, accessToken);	
+			}
+			
+				if(homeActionForm.isShareLinkedIn()){
+				
+					LinkedInAccessToken accessToken = null;
+				
+				accessToken = (LinkedInAccessToken)session.getAttribute("LINKEDINREQUESTTOKEN");
+				
+				shareSts = linkedInBL.shareMsgInLinkedIn(postDTO, accessToken);	
 			}
 			
 			
