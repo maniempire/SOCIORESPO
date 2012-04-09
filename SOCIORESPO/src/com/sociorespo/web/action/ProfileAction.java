@@ -14,6 +14,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import twitter4j.http.AccessToken;
+
 import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.ProfileBL;
@@ -163,9 +165,17 @@ public void twitterProfile(String userId, HttpSession session, ProfileActionForm
 	
 	if(twitterConnected.equals("CONNECTED")){
 		
+		AccessToken accessToken = null;
+		
 		ProfileDTO twitterProfileDTO = null;
 
-		twitterProfileDTO = twitterBL.getUserTwitterProfileDetails(userId);
+		
+		accessToken = (AccessToken)session.getAttribute("TWITTERACCESSTOKEN");
+		
+		twitterProfileDTO = twitterBL.getUserTwitterProfileDetails(accessToken);
+		
+		
+		//twitterProfileDTO = twitterBL.getUserTwitterProfileDetails(userId);
 		profileActionForm.setTwitterProfileDTO(twitterProfileDTO);
 
 		

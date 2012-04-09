@@ -17,8 +17,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import twitter4j.http.AccessToken;
+
 import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.PostBL;
+import com.sociorespo.bl.TwitterBL;
 import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.ProfileDTO;
 import com.sociorespo.web.actionform.HomeActionForm;
@@ -61,10 +64,24 @@ public class HomeAction extends Action{
 			postDTO = postBL.getinsertTag(postDTO);
 			
 			FaceBookBL faceBookBL = new FaceBookBL();
+			TwitterBL twitterBL = new TwitterBL();
 			
 			boolean shareSts = false;
 			
-			shareSts = faceBookBL.shareMsgInFaceBook(postDTO);
+			if(homeActionForm.isShareFacebook()){
+				shareSts = faceBookBL.shareMsgInFaceBook(postDTO);	
+			}
+			
+			if(homeActionForm.isShareTwitter()){
+				
+				AccessToken accessToken = null;
+				
+				accessToken = (AccessToken)session.getAttribute("TWITTERACCESSTOKEN");
+				
+				shareSts = twitterBL.shareMsgInTwitter(postDTO, accessToken);	
+			}
+			
+			
 			
 		}else{
 			nextPage= "HOMETAGS";
@@ -82,6 +99,8 @@ public class HomeAction extends Action{
 			//}
 		}
 		//nextPage= "HOMETAGS";
+		
+		homeActionForm.setShareTwitter(false);
 		return mapping.findForward(nextPage);
 	}
 

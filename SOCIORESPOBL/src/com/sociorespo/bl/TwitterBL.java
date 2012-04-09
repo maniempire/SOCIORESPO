@@ -1,9 +1,11 @@
 package com.sociorespo.bl;
 
 import com.sociorespo.dao.SocialMediaDAO;
+import com.sociorespo.dto.PostDTO;
 import com.sociorespo.dto.ProfileDTO;
 import com.sociorespo.dto.TwitterDTO;
 
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
@@ -204,9 +206,96 @@ public AccessToken getTwitterAccessToken(String userId){
 		SocialMediaDAO socialMediaDAO = new SocialMediaDAO(); 
 		boolean twitterAddStatus = false;
 		
-		twitterAddStatus = socialMediaDAO.addTwitterToken(oauthToken, oAuthVerifier, userId);
+		//twitterAddStatus = socialMediaDAO.addTwitterToken(oauthToken, oAuthVerifier, userId);
 		
 		return twitterAddStatus;
 	}
+	
+	
+public AccessToken addTwitterToken(String oauthToken, String oAuthVerifier) {
+		AccessToken accessToken = null;
+		SocialMediaDAO socialMediaDAO = new SocialMediaDAO(); 
+		boolean twitterAddStatus = false;
+		
+		//twitterAddStatus = socialMediaDAO.addTwitterToken(oauthToken, oAuthVerifier, userId);
+		
+		try {
+			accessToken = twitter.getOAuthAccessToken(oauthToken,oAuthVerifier);
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return accessToken;
+	}
+	
+	
+	public boolean shareMsgInTwitter(PostDTO postDTO, AccessToken accessToken){
+		
+		boolean twitterShareStatus = false;
+		ProfileDTO profileDTO = null;
+		User profile = null;
+		//AccessToken accessToken = null;
+
+		try {
+			
+			//accessToken = getTwitterAccessToken(String.valueOf(postDTO.getUserId()));
+			
+			twitter.setOAuthAccessToken(accessToken);
+
+			profile = twitter.verifyCredentials();
+			
+			twitterShareStatus = shareMsgInTwitter( twitter,postDTO.getContent());
+			
+			//profile = twitter.showUser(profile.getId());
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//profileDTO = getProfile(profile);
+		
+		return twitterShareStatus;
+	}
+	
+	public boolean shareMsgInTwitter(Twitter twitter,String Msg){
+ 	
+    boolean result = false;
+    Status status = null;
+    try {
+     if(Msg!=null){
+     status = twitter.updateStatus(Msg);
+     result = true;
+     }
+    } catch (TwitterException e) {
+     result=false;
+     System.out.println("Exception while updating the status to [" + status.getText() + "].");
+     e.printStackTrace();
+    }  
+   return result;
+   }
+
+	public ProfileDTO getUserTwitterProfileDetails(AccessToken accessToken) {
+		ProfileDTO profileDTO = null;
+		User profile = null;
+		
+
+		try {
+			
+			
+			
+			twitter.setOAuthAccessToken(accessToken);
+			profile = twitter.verifyCredentials();
+			profile = twitter.showUser(profile.getId());
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		profileDTO = getProfile(profile);
+		
+		return profileDTO;
+	}
+
 	
 }

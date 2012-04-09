@@ -11,6 +11,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import twitter4j.http.AccessToken;
+
 import com.sociorespo.bl.FaceBookBL;
 import com.sociorespo.bl.TwitterBL;
 import com.sociorespo.dto.FaceBookDTO;
@@ -58,16 +60,18 @@ public class TwitterAction extends Action {
 				
 				
 				//twitterDTO = twitterBL.addToken(twitterDTO);
-				
+				AccessToken accessToken = null;
 				
 				boolean addStatus = false;
 				
 				
-				addStatus = twitterBL.addTwitterToken(oauthToken, oAuthVerifier, userId);
+				//addStatus = twitterBL.addTwitterToken(oauthToken, oAuthVerifier, userId);
 				
+				accessToken = twitterBL.addTwitterToken(oauthToken, oAuthVerifier);
 				
-				if(addStatus){
+				if(accessToken != null){
 					session.setAttribute("TWITTERCONNECTED", "CONNECTED");
+					session.setAttribute("TWITTERACCESSTOKEN", accessToken);
 					nextPage = "SUCCESS";
 					
 				}else{

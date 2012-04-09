@@ -456,7 +456,8 @@ public boolean addTwitterToken(String oauthToken, String oAuthVerifier,
 			
 		sqlStmt =sqlCon.createStatement();
 				
-		preparedStatement=sqlCon.prepareStatement("UPDATE social_media_key SET (smk_twitter_token='"+oauthToken+"', smk_twitter_verifier='"+oAuthVerifier+"') WHERE smk_user_id="+userId+"");
+		preparedStatement=sqlCon.prepareStatement("UPDATE social_media_key SET smk_twitter_token='"+oauthToken+"', smk_twitter_verifier='"+oAuthVerifier+"' WHERE smk_user_id="+userId+"");
+		//preparedStatement=sqlCon.prepareStatement("UPDATE social_media_key SET smk_twitter_token='12wqeqweqw12121', smk_twitter_verifier='sddsfsddf' WHERE smk_user_id=1");
 		
 		preparedStatement.executeUpdate();
 		

@@ -154,14 +154,14 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 	boolean twitterConnected = false;
 	
 	
-	twitterConnected = twitterBL.isTwitterConnected(userId);
-	
-	if(twitterConnected){
-		
-		session.setAttribute("TWITTERCONNECTED", "CONNECTED");
-		
-	}else{
-		
+//	twitterConnected = twitterBL.isTwitterConnected(userId);
+//	
+//	if(twitterConnected){
+//		
+//		session.setAttribute("TWITTERCONNECTED", "CONNECTED");
+//		
+//	}else{
+//		
 		String twitterAuthURL = null;
 		
 		twitterAuthURL = twitterBL.initAuthUrl();
@@ -169,7 +169,7 @@ public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServlet
 		session.setAttribute("TWITTERAUTHURL", twitterAuthURL);
 		
 		session.setAttribute("TWITTERCONNECTED", "NOTCONNECTED");
-		}
+	//	}
 		
 	}
 	
