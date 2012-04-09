@@ -151,8 +151,15 @@ public class PostDAO extends DataAccessObject{
 		List userComplaints = new ArrayList();
 		
 		try	{
-				
-		sqlQuery = "select * from complaints where complaints_user_id='"+postDTO.getUserId()+"'";
+			
+		if(postDTO.getComplaintUser().equalsIgnoreCase("ALL"))	{
+			
+			sqlQuery = "select * from complaints where complaints_user_id !='"+postDTO.getUserId()+"'";
+		}else{
+			
+			sqlQuery = "select * from complaints where complaints_user_id='"+postDTO.getUserId()+"'";
+		}
+		
 		//sqlQuery = "select * from post";
 		
 			sqlCon = getSQLConnection(); 
@@ -270,7 +277,7 @@ public class PostDAO extends DataAccessObject{
 		
 		try	{
 				
-		sqlQuery = "select * from profile,user where user.user_status='active'";
+		sqlQuery = "select * from profile p,user u where u.user_status='active' and p.profile_user_id = u.user_id";
 				
 			sqlCon = getSQLConnection(); 
 			

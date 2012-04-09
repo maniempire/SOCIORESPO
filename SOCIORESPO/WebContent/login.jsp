@@ -27,7 +27,7 @@ div
 
 <script type="text/javascript">
 function checkLogin(){
-	
+
  	var txtuser=document.getElementById("userId").value;
  	
  	if(txtuser=="") {
@@ -45,7 +45,7 @@ function checkLogin(){
 
 	if(txtuser!="" && txtpass!=""){
 		document.frmLogin.action="loginAction.do";
-			
+
 	}
  }
 
@@ -58,7 +58,7 @@ function checkLogin(){
 <form action="loginAction.do" method="post" name="frmLogin" id="frmLogin"  onsubmit="return checkLogin();" >
 <table width="1010" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="1010"><img src="images/socio-respo-header.jpg" width="1010" height="123" /></td>
+    <td valign="top" ><img src="images/socio-respo-header.jpg" width="1010" height="123" /></td>
   </tr>
   <tr>
     <td height="2"></td>
@@ -70,16 +70,21 @@ function checkLogin(){
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><table width="100%" border="0">
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      
       <tr>
-        <td height="50">&nbsp;</td>
-        <td height="50">&nbsp;</td>
-        <td height="50">&nbsp;</td>
-      </tr>
-      <tr>
-        <td width="350">&nbsp;</td>
+        <td width="350" valign="top"><img src="images/soc.png" alt="Virtual society" width="333" height="429"></img></td>
         <td align="right" valign="top">
         
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      
+      <tr>
+        
+        <td height="40" valign="top" class="marque-headline" ><H1><marquee> <b>"AN EXCLUSIVE SOCIAL MEDIA TO UPLIFT THE SOCIETY"</b></marquee></H1></td>
+     
+      </tr>
+       <tr>
+        <td valign="top">
         <table width="300" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>
             <td><img src="images/login_top_lt.png" width="9" height="29" /></td>
@@ -135,43 +140,120 @@ function checkLogin(){
             <td class="login-bot"></td>
             <td width="10" align="right" valign="top"><img src="images/login_bot_rt.png" width="9" height="9" /></td>
           </tr>
-        </table></td>
-        <td width="350">&nbsp;</td>
+        </table>
+        
+        </td>
+        
+        
       </tr>
       <tr>
-        <td height="50">&nbsp;</td>
-        <td height="50">&nbsp;</td>
-        <td height="50">&nbsp;</td>
+      <td height="10">
+     &nbsp;
+      </td>
       </tr>
+       <tr>
+        <td >
+        
+        	<table border="0" cellpadding="0" cellspacing="0">
+        	
+        	<tr>
+        	    <td valign="top">
+        	    
+        	    
+        	    <table border="0" cellpadding="0" cellspacing="0" width="250">
+        	
+        	<tr>
+        	    <td valign="top" class="text-headline">
+        	  <b>Features:</b>
+        	   </td>
+        	   </tr>
+        	   
+        	   <tr >
+        	    <td valign="top" class="landing-page-text">
+        	 <li> Share your thoughts about society</li>
+        	   </td>
+        	   </tr>
+        	   
+        	   <tr>
+        	    <td valign="top" class="landing-page-text">
+        	  <li> Post your thoughts as complaints</li>
+        	   </td>
+        	   </tr>
+        	   
+        	   <tr>
+        	    <td valign="top" class="landing-page-text">
+        	  <li> Debate on social issue</li>
+        	   </td>
+        	   </tr>
+        	   <tr>
+        	    <td valign="top" class="landing-page-text">
+        	  <li> Share with your friends & peers</li>
+        	   </td>
+        	   </tr>
+        	   </table>
+        	   
+        	    </td>
+        		<td align="left" >
+        		  <table border="0" cellpadding="0" cellspacing="0" width="250">
+        	<tr>
+        	<td class="text-headline">
+        		<b>View Demo:</b>
+        		</td>
+        	</tr>
+        	
+        	<tr>
+        	    <td valign="top">
+        		
+        		
+  
+        		<iframe width="360" height="215" src="http://www.youtube.com/embed/bveXo-BZrJQ" frameborder="0" allowfullscreen></iframe>
+        		</td>
+        		</tr>
+        		</table>
+        		</td>
+        		<td>
+        		
+        		</td>
+        	</tr> 
+        	
+        	<tr>
+        	    
+        		<td colspan="3" >
+        		<table width="330" align="left">
+        		<tr>
+        		
+        		<td class="text-headline">Connect with us: </td>
+      		<td><img src="images/facebook_logo.jpg" width="30" height="30" /></td>
+        		
+        		<td><img src="images/twitter_logo.jpg" width="30" height="30" /></td>
+        		
+        		<td><img src="images/linkedin_logo.png" width="30" height="30" /></td>
+        		<td width="100">
+        		&nbsp;
+        		</td>
+        		
+        	</tr></table>
+        		
+        	</td>
+        	
+        	</tr> 
+        	 	
+        	</table>
+        
+        
+        </td>
+      </tr>
+     
+    </table>
+        
+        
+        </td>
+        
+      </tr>
+     
     </table></td>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
+
   <tr>
     <td>&nbsp;</td>
   </tr>

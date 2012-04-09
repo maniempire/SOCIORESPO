@@ -22,7 +22,16 @@ public class PostDTO {
 	private String debateDate= null;
 	private String debateTitle = null;
 	
+	private String complaintUser = null;
 	
+
+	public String getComplaintUser() {
+		return complaintUser;
+	}
+
+	public void setComplaintUser(String complaintUser) {
+		this.complaintUser = complaintUser;
+	}
 
 	public String getPostTags() {
 		return postTags;

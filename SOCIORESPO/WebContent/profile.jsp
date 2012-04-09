@@ -49,20 +49,23 @@ function update(){
 </script>
 
 </head>
-<body>
+<body onload="initScript();">
 <html:form action="/profileAction" method="post">
 <table width="1010" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="1010"><img src="images/socio-respo-header.jpg" width="1010" height="123" /></td>
-  </tr>
-  <tr>
-    <td height="2"></td>
-  </tr>
-	<tr>
-	
-    	<td class="hd-br">&nbsp;<html:link href="logoutAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
-    	
-  	</tr>
+ <tr>
+<td>
+<jsp:include page="/common/header.jsp" />
+
+</td>
+</tr>
+<tr>
+<td>
+<jsp:include page="/common/header-title-home.jsp" />
+
+</td>
+
+
+</tr>
   	<tr>
   		<td align="right">
   			Logged in as <html:link href="profileAction.do"><%=session.getAttribute("FIRSTNAME")%> </html:link>	

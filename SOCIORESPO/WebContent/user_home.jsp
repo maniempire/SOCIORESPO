@@ -12,87 +12,206 @@
 <title>Home</title>
 <link href="styles/styles.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<html:form action="/homeAction" method="post" >
-<table width="1010" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="1010"><img src="images/socio-respo-header.jpg" width="1010" height="123" /></td>
-  </tr>
-  <tr>
-    <td height="2"></td>
-  </tr>
-	<tr>
-	
-    	<td class="hd-br">&nbsp;<html:link href="logoutAction.do?link_url=logout" styleClass="link">Logout</html:link></td>
-    	
-  	</tr>
-  	<tr>
-  	<td align="right">Logged in as <html:link href="profileAction.do"><%=session.getAttribute("FIRSTNAME")%> </html:link></td>
-  	</tr>
-  	
- <tr>
-    <td>&nbsp;</td>
-  </tr>
-  
-  
+<body onload="initScript();">
+<html:form action="/homeAction" method="post">
+<table width="1004" border="0" cellpadding="0" cellspacing="0">
 <tr>
-  <td>
-  	<textarea rows="2" name="content"></textarea>
-  	<input name="submit" type="submit" class="login-but" value="Post" />
-  	Facebook
-  		<input type="checkbox" name="shareFacebook"></input> 
-    Twitter
-		<input type="checkbox" name="shareTwitter"></input>
-		LinkedIn
-		<input type="checkbox" name="shareLinkedIn"></input>
-	</td>
+<td>
+<jsp:include page="/common/header.jsp" />
+
+</td>
 </tr>
 <tr>
 <td>
-  <logic:iterate id="result" name="homeActionForm" property="tagList">
-	
-		<bean:write name="result" property="content" /></br>
+<jsp:include page="/common/header-title.jsp" />
 
-	</logic:iterate>
-	</td>
-	</tr>
+</td>
+
+
+</tr>
+
 <tr>
-	
-  	  <html:link href="https://www.google.com" styleClass="link">Hot News</html:link>
-  </tr>
-  <tr>
-  <td>
-  	
-  	<html:link href="debateAction.do?link_url=debate" styleClass="link">Online Debate</html:link>
-  </td>
-  	  
-  </tr>
+<td>
+<table border="0">
+<tr>
+<td height="500" width="700" valign="top">
 
-  
-  <tr>
-  	  <td align="right"><html:link href="postComplaintsAction.do?link_url=complaint">Complaints</html:link></td>
-  </tr>
-  
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-  	  <td align="right"><html:link href="https://www.google.com">TAGS</html:link></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
 
-	<tr>
+<table border="0" cellpadding="0" height="400"  cellspacing="0" width="600" align="center" >
+<tr>
+<td valign="top">
+
+
+<table border="0" cellpadding="0" height="200"  cellspacing="0" width="300" align="center" >
+<tr>
+<td height="35" class="text-headline">
+Post your Thoughts here:
+</td>
+</tr>
+
+<tr>
+<td height="60">
+	&nbsp;&nbsp;&nbsp;&nbsp;<textarea rows="2" name="content"></textarea>
+</td>
+</tr>
+<tr>
+<td height="30" class="body-text">
+	&nbsp;&nbsp;&nbsp;&nbsp;
+  		<input type="checkbox" name="shareFacebook"></input>Facebook 
+    
+		<input type="checkbox" name="shareTwitter"></input>Twitter
+		
+		<input type="checkbox" name="shareLinkedIn"></input>LinkedIn
+</td>
+</tr>
+<tr>
+<td height="30">
+	&nbsp;&nbsp;&nbsp;&nbsp;<input name="submit" type="submit" class="login-but" value="Post" />
+</td>
+</tr>
+
+</table>
+
+</td>
+<td valign="top">
+
+<table border="0" cellpadding="0" height="200"  cellspacing="0" width="300" align="center" >
+<tr>
+<td class="text-headline" height="35" valign="top">
+Stream of Thoughts:
+</td>
+</tr>
+<logic:iterate id="result" name="homeActionForm" property="tagList">
+<tr>
+<td class="body-text" height="25">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<bean:write name="result" property="content" />
+</td>
+</tr>
+</logic:iterate>
+</table>
+ 
+
+</td>
+
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+
+</tr>
+
+
+</table>
+
+
+
+
+
+
+</td>
+<td width="304" valign="top">
+<table border="0" width="300" align="center">
+<tr>
+<td height="150" valign="top" >
+<table border="0" bgcolor="" width="200" align="center">
+
+<tr>
+<td colspan="3">
+
+&nbsp;
+</td>
+</tr>
+<tr>
+<td width="50">
+&nbsp;
+</td>
+<td>
+<img src="images/default-human.jpg" width="100" height="100" />
+</td>
+<td  width="50">
+&nbsp;
+</td>
+
+</tr>
+<tr>
+<td colspan="3" align="center" class="body-text">
+Logged in as <html:link href="profileAction.do"><%=session.getAttribute("FIRSTNAME")%> </html:link>
+
+</td>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td height="150" valign="top" >
+<table border="0" bgcolor="" width="200" align="center">
+
+<tr>
+<td>
+&nbsp;
+</td>
+<td align="center" height="60" class="marque-headline">
+Hot Links
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td  height="35">
+<html:link href="postComplaintsAction.do?link_url=complaint">Complaints</html:link>
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td height="35">
+<html:link href="debateAction.do?link_url=debate" >Online Debate</html:link>
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</td>
+
+
+</tr>
+
+<tr>
     	<td class="hd-br"><jsp:include page="/common/footer.jsp" /></td>
   	</tr>
 </table>
+
+
+
+
+
 </html:form>
 </body>
 </html:html>

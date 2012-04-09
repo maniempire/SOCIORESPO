@@ -58,10 +58,20 @@ public class PostComplaintsAction extends  Action{
 				postDTO.setPostComplaint(postComplaintsActionForm.getPostComplaint());
 				postDTO.setTagDate(dateFormat.format(date));
 				
+				
+				   
+			     postDTO.setComplaintUser("ALL");
+			     
 				List complaintList=new ArrayList();
 				complaintList = postBL.getComplaintList(postDTO);
 				postComplaintsActionForm.setComplaintsList(complaintList);
-			
+				
+				   
+			     postDTO.setComplaintUser("USER");
+			     
+				List userComplaintList=new ArrayList();
+				userComplaintList = postBL.getComplaintList(postDTO);
+				postComplaintsActionForm.setUserComplaintsList(userComplaintList);
 				
 				nextPage = "COMPLAINTS";
 				
@@ -73,17 +83,32 @@ public class PostComplaintsAction extends  Action{
 			
 			postDTO.setTagDate(dateFormat.format(date));
 			
-		if(postComplaintsActionForm.getComplaintTitleSelect()!=null){
-			postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleSelect());
-			postDTO = postBL.getinsertComplaint(postDTO);
-		}else if(postComplaintsActionForm.getComplaintTitleText()!=null){
-			postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleText());
-			postDTO = postBL.getinsertComplaint(postDTO);
-		}	
+//		if(postComplaintsActionForm.getComplaintTitleSelect()!=null){
+//			postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleSelect());
+//			postDTO = postBL.getinsertComplaint(postDTO);
+//		}else if(postComplaintsActionForm.getComplaintTitleText()!=null){
+//			postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleText());
+//			postDTO = postBL.getinsertComplaint(postDTO);
+//		}	
 		
+			
+	     postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleText());
+	     postDTO = postBL.getinsertComplaint(postDTO);
+	     
+	     
+	     postDTO.setComplaintUser("ALL");
+	     
 		List complaintList=new ArrayList();
 		complaintList = postBL.getComplaintList(postDTO);
 		postComplaintsActionForm.setComplaintsList(complaintList);
+		
+		   
+	     postDTO.setComplaintUser("USER");
+	     
+		List userComplaintList=new ArrayList();
+		userComplaintList = postBL.getComplaintList(postDTO);
+		postComplaintsActionForm.setUserComplaintsList(userComplaintList);
+		
 		nextPage = "COMPLAINTS";
 		
 

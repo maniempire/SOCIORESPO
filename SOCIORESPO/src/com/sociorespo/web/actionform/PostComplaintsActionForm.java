@@ -13,8 +13,15 @@ public class PostComplaintsActionForm extends ActionForm{
 	
 	private List complaintsList;
 	
+	private List userComplaintsList;
 	
 	
+	public List getUserComplaintsList() {
+		return userComplaintsList;
+	}
+	public void setUserComplaintsList(List userComplaintsList) {
+		this.userComplaintsList = userComplaintsList;
+	}
 	public String getPostComplaint() {
 		return postComplaint;
 	}

@@ -64,6 +64,8 @@ public class FaceBookAction extends Action {
 			
 			if(saveResult){
 				
+				session.setAttribute("FACEBOOKCONNECTED", "CONNECTED");
+				
 				nextPage = "SUCCESS";
 				
 			}else{
