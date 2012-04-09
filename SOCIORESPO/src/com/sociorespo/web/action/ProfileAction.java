@@ -55,6 +55,8 @@ public class ProfileAction extends Action{
 		
 		twitterProfile(userId, session, profileActionForm);
 		
+		linkedInProfile(userId, session, profileActionForm, request);
+		
 		profileBL = new ProfileBL();
 		
 		String userSessionId = session.getAttribute("USERID").toString();
@@ -223,41 +225,41 @@ public void faceBookProfile(String userId, HttpSession session, ProfileActionFor
 
 
 
-public void initLinkedIn(String userId, HttpSession session, ProfileActionForm profileActionForm,  HttpServletRequest request){
+public void linkedInProfile(String userId, HttpSession session, ProfileActionForm profileActionForm,  HttpServletRequest request){
 		
 		LinkedInBL linkedInBL = new LinkedInBL();
 		
-		boolean linkedInConnected = false;
-		Object linkedInRequestToken = null;
+		String linkedInConnected = null;
+		Object linkedInAccessToken = null;
 		ProfileDTO linkedInProfileDTO = null;
 		LinkedInDTO linkedInDTO = null;
+		linkedInConnected=(String)session.getAttribute("LINKEDINCONNECTED");
+		//linkedInConnected = linkedInBL.isLinkedInConnected(userId);
 		
-		linkedInConnected = linkedInBL.isLinkedInConnected(userId);
-		
-		if(linkedInConnected){
+		if(linkedInConnected.equals("CONNECTED")){
 			
-			session.setAttribute("LINKEDINCONNECTED", "CONNECTED");
+			//session.setAttribute("LINKEDINCONNECTED", "CONNECTED");
 			
-			linkedInRequestToken = session.getAttribute("LINKEDINREQUESTTOKEN");
+			linkedInAccessToken = session.getAttribute("LINKEDINACCESSTOKEN");
 			
-			linkedInProfileDTO = linkedInBL.getUserLinkedInProfileDetails(linkedInRequestToken, userId);
+			linkedInProfileDTO = linkedInBL.getUserLinkedInProfileDetails(linkedInAccessToken, userId);
 			
 			profileActionForm.setLinkedInProfileDTO(linkedInProfileDTO);
 			
 		}else{
 			
-			String baseURL = null;
+			String authURL = null;
 			
-			baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
+			//baseURL ="http://" + request.getServerName() + ":" + request.getServerPort() +  request.getContextPath();
 			
-			linkedInDTO = linkedInBL.initLinkedIn(baseURL);
+			//linkedInDTO = linkedInBL.initLinkedIn(baseURL);
 			
-			if(linkedInDTO != null){
-			session.setAttribute("LINKEDINREQUESTTOKEN", linkedInDTO.getRequestToken());
+			
+				authURL=(String) session.getAttribute("LINKEDINAUTHURL");
 	
-			profileActionForm.setLinkedInAuthURL(linkedInDTO.getAuthUrl());
+			profileActionForm.setLinkedInAuthURL(authURL);
 			
-			}
+			
 			
 		}
 		
