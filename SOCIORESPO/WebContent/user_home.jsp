@@ -75,7 +75,7 @@ Post your Thoughts here:
 </td>
 <td valign="top">
 
-<table border="0" cellpadding="0" height="200"  cellspacing="0" width="300" align="center" >
+<table border="0" cellpadding="3" height="200"  cellspacing="3" width="300" align="center" >
 <tr>
 <td class="text-headline" height="35" valign="top">
 Stream of Thoughts:
@@ -114,7 +114,7 @@ Stream of Thoughts:
 
 </td>
 <td width="304" valign="top">
-<table border="0" width="300" align="center">
+<table border="1" width="300" align="center" cellpadding="2" bordercolor="#5eb8ff" cellspacing="2" height="400">
 <tr>
 <td height="150" valign="top" >
 <table border="0" bgcolor="" width="200" align="center">
