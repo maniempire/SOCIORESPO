@@ -59,7 +59,7 @@ public class HomeAction extends Action{
 		postDTO.setShareLinkedIn(homeActionForm.isShareLinkedIn());
 		postDTO.setTagDate(dateFormat.format(date));
 		
-		if(homeActionForm.getContent()!=null){
+		if(homeActionForm.getContent()!=null && homeActionForm.getContent()!=""){
 			
 			postDTO = postBL.getinsertTag(postDTO);
 			
@@ -99,7 +99,9 @@ public class HomeAction extends Action{
 			//}
 		}
 		//nextPage= "HOMETAGS";
-		
+		homeActionForm.setContent(null);
+		homeActionForm.setShareTwitter(false);
+		homeActionForm.setShareFacebook(false);
 		homeActionForm.setShareTwitter(false);
 		return mapping.findForward(nextPage);
 	}
