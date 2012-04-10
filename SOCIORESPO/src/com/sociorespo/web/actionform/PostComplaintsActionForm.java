@@ -11,6 +11,10 @@ public class PostComplaintsActionForm extends ActionForm{
 	private String complaintTitleText = null;
 	private String complaintTitleSelect = null;
 	
+	private boolean shareFacebook;
+	private boolean shareTwitter;
+	private boolean shareLinkedIn;
+	
 	private List complaintsList;
 	
 	private List userComplaintsList;
@@ -54,6 +58,24 @@ public class PostComplaintsActionForm extends ActionForm{
 	}
 	public void setComplaintTitleText(String complaintTitleText) {
 		this.complaintTitleText = complaintTitleText;
+	}
+	public boolean isShareFacebook() {
+		return shareFacebook;
+	}
+	public void setShareFacebook(boolean shareFacebook) {
+		this.shareFacebook = shareFacebook;
+	}
+	public boolean isShareTwitter() {
+		return shareTwitter;
+	}
+	public void setShareTwitter(boolean shareTwitter) {
+		this.shareTwitter = shareTwitter;
+	}
+	public boolean isShareLinkedIn() {
+		return shareLinkedIn;
+	}
+	public void setShareLinkedIn(boolean shareLinkedIn) {
+		this.shareLinkedIn = shareLinkedIn;
 	}
 	
 	
