@@ -52,7 +52,7 @@ Debate here:
 
 <tr>
 <td height="60">
-	&nbsp;&nbsp;&nbsp;&nbsp;<textarea rows="2" name="content"></textarea>
+	&nbsp;&nbsp;&nbsp;&nbsp;<textarea rows="2" name="debateComment" ></textarea>
 </td>
 </tr>
 <tr>
@@ -116,7 +116,7 @@ Stream of Debate:
 
 
 </td>
-<td width="304" valign="top">
+<td width="304" valign="top" bgcolor="#F0F8FF">
 <table border="0" width="300" align="center">
 <tr>
 <td height="150" valign="top" >

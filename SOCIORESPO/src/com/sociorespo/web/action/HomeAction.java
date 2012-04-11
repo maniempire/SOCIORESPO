@@ -88,7 +88,7 @@ public class HomeAction extends Action{
 				
 					LinkedInAccessToken accessToken = null;
 				
-				accessToken = (LinkedInAccessToken)session.getAttribute("LINKEDINREQUESTTOKEN");
+				accessToken = (LinkedInAccessToken)session.getAttribute("LINKEDINACCESSTOKEN");
 				
 				shareSts = linkedInBL.shareMsgInLinkedIn(postDTO, accessToken);	
 			}

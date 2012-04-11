@@ -9,7 +9,11 @@ public class DebateActionForm extends ActionForm{
 	private List debateListView;
 	private List userListView;
 	
-	/*private String debateComment=null;
+	private boolean shareFacebook;
+	private boolean shareTwitter;
+	private boolean shareLinkedIn;
+	
+	private String debateComment=null;
 	private String debateTitle=null;
 	
 	
@@ -29,7 +33,7 @@ public class DebateActionForm extends ActionForm{
 
 	public void setDebateTitle(String debateTitle) {
 		this.debateTitle = debateTitle;
-	}*/
+	}
 
 	public List getDebateListView() {
 		return debateListView;
@@ -45,6 +49,30 @@ public class DebateActionForm extends ActionForm{
 
 	public void setUserListView(List userListView) {
 		this.userListView = userListView;
+	}
+
+	public boolean isShareFacebook() {
+		return shareFacebook;
+	}
+
+	public void setShareFacebook(boolean shareFacebook) {
+		this.shareFacebook = shareFacebook;
+	}
+
+	public boolean isShareTwitter() {
+		return shareTwitter;
+	}
+
+	public void setShareTwitter(boolean shareTwitter) {
+		this.shareTwitter = shareTwitter;
+	}
+
+	public boolean isShareLinkedIn() {
+		return shareLinkedIn;
+	}
+
+	public void setShareLinkedIn(boolean shareLinkedIn) {
+		this.shareLinkedIn = shareLinkedIn;
 	}
 
 	
