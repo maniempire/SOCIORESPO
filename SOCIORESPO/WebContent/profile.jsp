@@ -13,6 +13,12 @@
 <title>Profile</title>
 <link href="styles/styles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
+function connectLinkedIn(url){
+	window.location.href = url;
+}
+
+
+
 function popup()
 {
 
@@ -40,8 +46,8 @@ function popup()
 	}*/
 
 function update(){
-	alert("hai");
-	location.href="/profileAction.do?link_url='update'";
+	
+	window.location.href="./profileAction.do?link_url=edit";
 	
 }
 
@@ -50,7 +56,7 @@ function update(){
 
 </head>
 <body onload="initScript();">
-<html:form action="/profileAction" method="post">
+
 <table width="1010" border="0" cellpadding="0" cellspacing="0">
  <tr>
 <td>
@@ -154,9 +160,8 @@ function update(){
   </tr> 
   <tr>
   <td width="20%">
-  <input type="hidden" value="update" name="update"/>
-  
-  	<input name="submit" type="submit" class="login-but" value="Update" onclick=update(); style=" width : 59px;"/>
+   
+  	<input name="submit" type="submit" class="login-but" value="Edit Profile" onclick=update(); style=" width : 69px;"/>
   	
   	
   </td>
@@ -192,7 +197,7 @@ function update(){
 <logic:notPresent property="linkedInProfileDTO"  name="profileActionForm">
  <tr>
     <td>
-    <a href="<bean:write property="linkedInAuthURL" name="profileActionForm" />">Connect LinkedIn</a>
+    <a href="#" onclick="connectLinkedIn('<bean:write property="linkedInAuthURL" name="profileActionForm" />')">Connect LinkedIn</a>
      
     &nbsp;</td>
   </tr>
@@ -239,7 +244,7 @@ function update(){
   </tr>
   <tr>
     <td>
-    <html:link href="editprofile.jsp" styleClass="link">Editprofile</html:link></td>
+    <html:link href="edit_profile.jsp" styleClass="link">Editprofile</html:link></td>
   </tr>
 
 	<tr>
@@ -247,6 +252,6 @@ function update(){
   	</tr>
 </table>
 
-</html:form>
+
 </body>
 </html:html>

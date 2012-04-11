@@ -13,7 +13,13 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import twitter4j.http.AccessToken;
+
+import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
+import com.sociorespo.bl.FaceBookBL;
+import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.PostBL;
+import com.sociorespo.bl.TwitterBL;
 import com.sociorespo.dto.PostDTO;
 import com.sociorespo.web.actionform.DebateActionForm;
 
@@ -61,8 +67,42 @@ public class DebateAction extends Action{
 			postDTO.setUserId(userId);
 			
 			//postDTO.setComplaintTitle(debateActionForm.getDebateTitle());
-			//postDTO.setPostComplaint(debateActionForm.getDebateComment());
-			postDTO = postBL.insertDebate(postDTO);
+			
+			if(debateActionForm.getDebateComment()!=null && debateActionForm.getDebateComment()!=""){
+				postDTO.setContent(debateActionForm.getDebateComment());
+				FaceBookBL faceBookBL = new FaceBookBL();
+				TwitterBL twitterBL = new TwitterBL();
+				LinkedInBL linkedInBL = new LinkedInBL();
+				
+				boolean shareSts = false;
+				
+				if(debateActionForm.isShareFacebook()){
+					shareSts = faceBookBL.shareMsgInFaceBook(postDTO);	
+				}
+				
+				if(debateActionForm.isShareTwitter()){
+					
+					AccessToken accessToken = null;
+					
+					accessToken = (AccessToken)session.getAttribute("TWITTERACCESSTOKEN");
+					
+					shareSts = twitterBL.shareMsgInTwitter(postDTO, accessToken);	
+				}
+				
+					if(debateActionForm.isShareLinkedIn()){
+					
+						LinkedInAccessToken accessToken = null;
+					
+					accessToken = (LinkedInAccessToken)session.getAttribute("LINKEDINACCESSTOKEN");
+					
+					shareSts = linkedInBL.shareMsgInLinkedIn(postDTO, accessToken);	
+				}
+					
+					
+					postDTO = postBL.insertDebate(postDTO);
+				
+			}
+			
 		if(postDTO != null){
 			//if(postDTO.isTagInsert()==true ){
 				List debateList=new ArrayList();

@@ -68,7 +68,7 @@ public class ProfileAction extends Action{
 		
 		profileDTO.setUserId(Integer.parseInt(userSessionId));
 		
-		
+		linkUrl = request.getParameter("link_url");
 		
 		
 		
@@ -90,6 +90,8 @@ public class ProfileAction extends Action{
 				profileDTO = profileBL.updateProfile(profileDTO);
 				nextPage = "SUCCESS";
 				//session.invalidate();
+			}else if(linkUrl.equals("edit")){
+				nextPage = "EDITPROFILE";
 			}
 			
 		else{
