@@ -203,7 +203,7 @@ public class PostDAO extends DataAccessObject{
 			
 		sqlStmt =sqlCon.createStatement();
 			
-		String sqlQuery =("insert into debate (debate_id,debate_user_id,debate_content,debate_start_date) values (default,'"+postDTO.getUserId()+"','"+postDTO.getPostComplaint()+"','"+dateFormat.format(date)+"')");
+		String sqlQuery =("insert into debate (debate_id,debate_user_id,debate_content,debate_start_date) values (default,'"+postDTO.getUserId()+"','"+postDTO.getDebateContent()+"','"+dateFormat.format(date)+"')");
 
 		preparedStatement=sqlCon.prepareStatement(sqlQuery);
 		//preparedStatement=sqlCon.prepareStatement("insert into social_media_key(smk_id,smk_user_id,smk_key) values(1,"+userId+",'"+accessToken+"')");

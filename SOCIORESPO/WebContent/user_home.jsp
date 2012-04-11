@@ -13,7 +13,7 @@
 <link href="styles/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body onload="initScript();">
-<html:form action="/homeAction" method="post">
+
 <table width="1004" border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td>
@@ -41,7 +41,7 @@
 <tr>
 <td valign="top">
 
-
+<html:form action="/homeAction" method="post">
 <table border="0" cellpadding="0" height="200"  cellspacing="0" width="300" align="center" >
 <tr>
 <td height="35" class="text-headline">
@@ -71,7 +71,7 @@ Post your Thoughts here:
 </tr>
 
 </table>
-
+</html:form>
 </td>
 <td valign="top">
 
@@ -113,8 +113,8 @@ Stream of Thoughts:
 
 
 </td>
-<td width="304" valign="top">
-<table border="1" width="300" align="center" cellpadding="2" bordercolor="#5eb8ff" cellspacing="2" height="400">
+<td width="304" valign="top" bgcolor="#F0F8FF">
+<table border="0" width="300" align="center" cellpadding="2" bordercolor="#5eb8ff" cellspacing="2" height="400">
 <tr>
 <td height="150" valign="top" >
 <table border="0" bgcolor="" width="200" align="center">
@@ -212,6 +212,6 @@ Hot Links
 
 
 
-</html:form>
+
 </body>
 </html:html>

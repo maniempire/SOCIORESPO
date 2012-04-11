@@ -16,7 +16,13 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import twitter4j.http.AccessToken;
+
+import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
+import com.sociorespo.bl.FaceBookBL;
+import com.sociorespo.bl.LinkedInBL;
 import com.sociorespo.bl.PostBL;
+import com.sociorespo.bl.TwitterBL;
 import com.sociorespo.dto.PostDTO;
 import com.sociorespo.web.actionform.HomeActionForm;
 import com.sociorespo.web.actionform.PostComplaintsActionForm;
@@ -79,7 +85,46 @@ public class PostComplaintsAction extends  Action{
 			
 		}else{
 			postDTO.setUserId(userId);
-			postDTO.setPostComplaint(postComplaintsActionForm.getPostComplaint());
+			postDTO.setContent(postComplaintsActionForm.getPostComplaint());
+			postDTO.setShareFacebook(postComplaintsActionForm.isShareFacebook());
+			postDTO.setShareTwitter(postComplaintsActionForm.isShareTwitter());
+			postDTO.setShareLinkedIn(postComplaintsActionForm.isShareLinkedIn());
+			
+			if(postComplaintsActionForm.getPostComplaint()!=null && postComplaintsActionForm.getPostComplaint()!=""){
+			
+				FaceBookBL faceBookBL = new FaceBookBL();
+				TwitterBL twitterBL = new TwitterBL();
+				LinkedInBL linkedInBL = new LinkedInBL();
+				
+				boolean shareSts = false;
+				
+				if(postComplaintsActionForm.isShareFacebook()){
+					shareSts = faceBookBL.shareMsgInFaceBook(postDTO);	
+				}
+				
+				if(postComplaintsActionForm.isShareTwitter()){
+					
+					AccessToken accessToken = null;
+					
+					accessToken = (AccessToken)session.getAttribute("TWITTERACCESSTOKEN");
+					
+					shareSts = twitterBL.shareMsgInTwitter(postDTO, accessToken);	
+				}
+				
+					if(postComplaintsActionForm.isShareLinkedIn()){
+					
+						LinkedInAccessToken accessToken = null;
+					
+					accessToken = (LinkedInAccessToken)session.getAttribute("LINKEDINACCESSTOKEN");
+					
+					shareSts = linkedInBL.shareMsgInLinkedIn(postDTO, accessToken);	
+				}
+					
+					postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleText());
+				    postDTO = postBL.getinsertComplaint(postDTO);
+				
+			}
+		
 			
 			postDTO.setTagDate(dateFormat.format(date));
 			
@@ -92,8 +137,7 @@ public class PostComplaintsAction extends  Action{
 //		}	
 		
 			
-	     postDTO.setComplaintTitle(postComplaintsActionForm.getComplaintTitleText());
-	     postDTO = postBL.getinsertComplaint(postDTO);
+	     
 	     
 	     
 	     postDTO.setComplaintUser("ALL");
