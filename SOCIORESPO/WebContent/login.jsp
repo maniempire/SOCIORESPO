@@ -206,7 +206,7 @@ function checkLogin(){
         		
         		
   
-        		<iframe width="360" height="215" src="http://www.youtube.com/embed/bveXo-BZrJQ" frameborder="0" allowfullscreen></iframe>
+        		<iframe width="360" height="215" src="http://www.youtube.com/embed/bveXo-BZrJQ" frameborder="0" ></iframe>
         		</td>
         		</tr>
         		</table>

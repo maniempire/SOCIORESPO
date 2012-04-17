@@ -5,16 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import com.sociorespo.dto.PostDTO;
-import com.sociorespo.dto.LoginDTO;
+
 
 public class PostDAO extends DataAccessObject{
 
@@ -306,6 +306,49 @@ public class PostDAO extends DataAccessObject{
 	
 		
 		return userList;
+	}
+
+	public List getTitleList() {
+		
+		String sqlQuery = null;
+
+		String loginStatus = null;
+		
+		PostDTO postDTO = null;
+		
+		List titleList = new ArrayList();
+		
+		try	{
+				
+		sqlQuery = "select distinct complaints_title from complaints";
+				
+			sqlCon = getSQLConnection(); 
+			
+			sqlStmt =sqlCon.createStatement();
+			
+			resultSet = sqlStmt.executeQuery(sqlQuery);
+			
+			
+				while(resultSet.next()){
+					postDTO = new PostDTO();
+					
+					//postDTO.setDebateTitle(resultSet.getString("complaints_title"));
+					
+					
+					titleList.add(resultSet.getString("complaints_title"));	
+				
+			}
+		
+				
+		}catch (Exception e){
+			System.out.println(e);
+		}finally{
+			
+			closeSQLConnection(sqlCon, sqlStmt, preparedStatement, resultSet);
+		}
+	
+		
+		return titleList;
 	}
 
 

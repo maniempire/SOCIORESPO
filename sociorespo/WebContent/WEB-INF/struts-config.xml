@@ -89,7 +89,7 @@
 		 	type="com.sociorespo.web.action.ProfileAction">			
 			
 			<forward name="FAILURE" path="/login.jsp"></forward>
-			<forward name="SUCCESS" path="/profile.jsp"></forward>
+			<forward name="SUCCESS" path="/my_profile.jsp"></forward>
 			<forward name="EDITPROFILE" path="/edit_profile.jsp"></forward>		
 		</action>
 		

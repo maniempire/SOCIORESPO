@@ -16,7 +16,8 @@ public class ProfileActionForm extends ActionForm{
 	private String mailId=null;
 	private String dob=null;
 	private String voterId = null;
-	private String changePassword = null;
+	private String newPassword = null;
+	private String confirmPassword = null;
 	
 	private String update=null;
 	
@@ -128,12 +129,20 @@ public class ProfileActionForm extends ActionForm{
 	public void setProfileDTO(ProfileDTO profileDTO) {
 		this.profileDTO = profileDTO;
 	}
-	public String getChangePassword() {
-		return changePassword;
+	
+	public String getNewPassword() {
+		return newPassword;
 	}
-	public void setChangePassword(String changePassword) {
-		this.changePassword = changePassword;
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+	
 	public String getUpdate() {
 		return update;
 	}

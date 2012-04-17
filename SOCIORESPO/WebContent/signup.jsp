@@ -16,8 +16,6 @@
 <link href="styles/styles.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
-
-
 function save() {
 
 	document.forms[0].action = "signupAction.do?link_url=save";
@@ -45,33 +43,36 @@ document.write(curr_year + "-" + curr_month + "-" + curr_date);*/
 
 <link href="<%=currentURL%>/styles/jquery.datepick.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
 <html:form action="/signupAction" method="post">
-<table width="1010" border="0" cellpadding="0" cellspacing="0">
+
+<table width="1010" border="0" height="100%">
+
 <tr>
-    <td width="1010"><img src="images/socio-respo-header.jpg" width="1010" height="123" /></td>
+    <td valign="top" ><img src="images/socio-respo-header.jpg" width="1010" height="123" /></td>
   </tr>
-  <tr>
-    <td height="2"></td>
-  </tr>
-  <tr>
-    <!-- <td class="hd-br">&nbsp;<html:link href="loginAction.do?link_url=logout" styleClass="link">Logout</html:link></td>-->
+  
+<tr>
+    
     <td class="hd-br">&nbsp;</td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><table width="100%" border="0">
-      <tr>
+  
         <td height="50">&nbsp;</td>
         <td height="50">&nbsp;</td>
         <td height="50">&nbsp;</td>
       </tr>
-  
-  
-  
-   <tr>
+      
+<tr align="center">
+
+	<td valign="middle">
+	
+    <table border="0" width="400" height="50%">
+    <caption class="login-top-bg" >Sign Up</caption>
+    <tr></tr>
+    <tr>
+   
   		<td class="login-cont">First Name</td>
   		<td>
             
@@ -81,7 +82,7 @@ document.write(curr_year + "-" + curr_month + "-" + curr_date);*/
   
   
   </tr>
-   <tr>
+  <tr>
   		<td class="login-cont">Last Name</td>
   		<td>
             
@@ -158,25 +159,21 @@ document.write(curr_year + "-" + curr_month + "-" + curr_date);*/
         </td>
   
   </tr>
-  <tr>
-  	<td></td>
-  </tr>
+  <tr></tr>
   <tr>
   <td height="7" align="center"><input name="Submit" type="submit" class="login-but" value="Submit" onclick="save()"/></td>
-  <td height="7" align="left"><input name="Cancel" type="submit" class="login-but" value="Cancel" onclick="cancel()"/></td>
+  <td height="7" align="left">
+  <input name="Cancel" type="submit" class="login-but" value="Cancel" onclick="cancel()" />
+  </td>
   </tr>
   
+    </table>
+    </td>
+
   
- </table>
-
-
-
-
-
-	
-   </table>
-   <table>
-    <tr>
+  
+</tr>
+<tr>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -185,7 +182,8 @@ document.write(curr_year + "-" + curr_month + "-" + curr_date);*/
    
    	<tr>
     	<td class="hd-br"><jsp:include page="/common/footer.jsp" /></td>
-  	</tr></table>
+  	</tr>
+</table>
 </html:form>
 </body>
 </html:html>

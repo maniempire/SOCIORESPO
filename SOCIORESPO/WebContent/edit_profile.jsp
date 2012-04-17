@@ -11,10 +11,52 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit Profile</title>
 <link href="styles/styles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+function connectLinkedIn(url){
+	window.location.href = url;
+}
+
+
+
+function popup()
+{
+
+	url = "http://www.facebook.com/login.php?api_key=35da82b9e7418dc5c3a10267b1c0812f&v=1.0&req_perms=read_stream,publish_stream,offline_access,sms,email,user_location";
+ var width  = 600;
+ var height = 400;
+ var left   = (screen.width  - width)/2;
+ var top    = (screen.height - height)/2;
+ var params = 'width='+width+', height='+height;
+ params += ', top='+top+', left='+left;
+ params += ', directories=no';
+ params += ', location=no';
+ params += ', menubar=no';
+ params += ', resizable=no';
+ params += ', scrollbars=yes';
+ params += ', status=no';
+ params += ', toolbar=no';
+ newwin=window.open(url,'windowname5', params);
+ if (window.focus) {newwin.focus();}
+ return false;
+}
+
+/*function reload(){
+	  location.href="/profileAction.do";
+	}*/
+
+function update(){
+	
+	window.location.href="./profileAction.do?link_url=update";
+	
+	
+}
+
+
+</script>
 </head>
 <body onload="initScript();">
+<html:form action="/profileAction" method="post">
 
-<html:form action="/profileAction" method="post" >
 <table width="1004" border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td>
@@ -45,56 +87,58 @@
 
 <table border="0" cellpadding="0" height="200"  cellspacing="0" width="261" align="center" >
 <tr>
-<td width="261" height="35" class="text-headline">
+<td width="261" height="35" class="login-cont">
 First Name:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 Last Name:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 Email:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 Password:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 New Password:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 Confirm Password:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 Gender:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">Phone No.:
+<td height="35" class="login-cont">Phone No.:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 Date of Birth:
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">Voter Id:
+<td height="35" class="login-cont">Voter Id:
 </td>
 </tr>
 <tr>
-<td height="60" class="body-text"><br/>
-		 
+      
+<td height="60" class="body-text" align="right"><br/>
+<input type="hidden" name="link_url" value="update"/>
+		 <input type="submit" value="Update"  class="login-but" />
 	&nbsp;&nbsp;&nbsp;&nbsp; </td>
 </tr>
 <tr>
@@ -113,37 +157,37 @@ Date of Birth:
 
 <table border="0" cellpadding="0" height="200"  cellspacing="0" width="300" align="center" >
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 <html:text property="firstName" name="profileActionForm" styleClass="login-txt-bx"></html:text>
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 <html:text property="lastName" name="profileActionForm" styleClass="login-txt-bx"></html:text>
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
-<html:text property="mailId" name="profileActionForm" styleClass="login-txt-bx" disabled="true"></html:text>
+<td height="35" class="login-cont">
+<html:text property="mailId" name="profileActionForm" styleClass="login-txt-bx" ></html:text>
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 <html:password property="password" name="profileActionForm" styleClass="login-txt-bx" disabled="true"></html:password>
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
-<html:password property="changePassword" name="profileActionForm" styleClass="login-txt-bx" ></html:password>
+<td height="35" class="login-cont">
+<html:password property="newPassword" name="profileActionForm" styleClass="login-txt-bx" ></html:password>
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
-<html:password property="changePassword" name="profileActionForm" styleClass="login-txt-bx" ></html:password>
+<td height="35" class="login-cont">
+<html:password property="confirmPassword" name="profileActionForm" styleClass="login-txt-bx" ></html:password>
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 <html:select property="gender" name="profileActionForm">
   			<html:option value="selectGender">Select Gender</html:option>
   			<html:option value="male">Male</html:option>
@@ -155,17 +199,17 @@ Date of Birth:
 </tr>
 
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 <html:text property="phoneNum" name="profileActionForm" styleClass="login-txt-bx"></html:text>
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 <html:text property="dob" name="profileActionForm" styleClass="login-txt-bx"></html:text>
 </td>
 </tr>
 <tr>
-<td height="35" class="text-headline">
+<td height="35" class="login-cont">
 <html:text property="voterId" name="profileActionForm" styleClass="login-txt-bx"></html:text>
 </td>
 </tr>
@@ -291,10 +335,6 @@ Hot Links
     	<td class="hd-br"><jsp:include page="/common/footer.jsp" /></td>
   	</tr>
 </table>
-
-
-
-
 
 </html:form>
 </body>

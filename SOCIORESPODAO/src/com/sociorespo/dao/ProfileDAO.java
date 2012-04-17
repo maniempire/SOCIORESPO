@@ -140,9 +140,9 @@ public ProfileDTO getuserProfile(ProfileDTO profileDTO){
 	
 	
 	
-	sqlQuery = "select * from profile where profile_user_id = '"+profileDTO.getUserId()+"'";
+	//sqlQuery = "select * from profile where profile_user_id = '"+profileDTO.getUserId()+"'";
 
-	
+	sqlQuery = "select u.user_password,p.profile_id,p.profile_user_id,p.first_name,p.last_name,p.gender,p.phone_no,p.email_id,p.date_of_birth,p.voter_id from user u,profile p where u.user_id=p.profile_user_id and user_id='"+profileDTO.getUserId()+"'";
 	
 		sqlCon = getSQLConnection(); 
 		
@@ -152,15 +152,15 @@ public ProfileDTO getuserProfile(ProfileDTO profileDTO){
 		
 		if(resultSet.next()){
 						
-			
-			profileDTO.setUserId(resultSet.getInt(2));
-			profileDTO.setFirstName(resultSet.getString(3));
-			profileDTO.setLastName(resultSet.getString(4));
-			profileDTO.setGender(resultSet.getString(5));
-			profileDTO.setPhoneNum(resultSet.getString(6));
-			profileDTO.setMailId(resultSet.getString(7));
-			profileDTO.setDob(resultSet.getString(8));
-			profileDTO.setVoterId(resultSet.getString(9));
+			profileDTO.setPassword(resultSet.getString("user_password"));
+			profileDTO.setUserId(resultSet.getInt(3));
+			profileDTO.setFirstName(resultSet.getString(4));
+			profileDTO.setLastName(resultSet.getString(5));
+			profileDTO.setGender(resultSet.getString(6));
+			profileDTO.setPhoneNum(resultSet.getString(7));
+			profileDTO.setMailId(resultSet.getString(8));
+			profileDTO.setDob(resultSet.getString(9));
+			profileDTO.setVoterId(resultSet.getString(10));
 				
 		}
 			
@@ -193,11 +193,11 @@ public ProfileDTO updateProfile(ProfileDTO profileDTO) {
 		
 	sqlStmt =sqlCon.createStatement();
 	
-	preparedStatement=sqlCon.prepareStatement("UPDATE profile SET (first_name='"+profileDTO.getFirstName()+"',last_name='"+profileDTO.getLastName()+"',gender='"+profileDTO.getGender()+"',phone_no='"+profileDTO.getPhoneNum()+"',email_id='"+profileDTO.geteMail()+"',date_of_birth='"+profileDTO.getDob()+"',voter_id='"+profileDTO.getVoterId()+"') WHERE profile_user_id="+userId+"");
+	preparedStatement=sqlCon.prepareStatement("UPDATE profile SET first_name='"+profileDTO.getFirstName()+"',last_name='"+profileDTO.getLastName()+"',gender='"+profileDTO.getGender()+"',phone_no='"+profileDTO.getPhoneNum()+"',email_id='"+profileDTO.getMailId()+"',date_of_birth='"+profileDTO.getDob()+"',voter_id='"+profileDTO.getVoterId()+"' WHERE profile_user_id="+profileDTO.getUserId()+"");
 	
 	preparedStatement.executeUpdate();
 	
-	preparedStatement=sqlCon.prepareStatement("UPDATE user SET (user_password='"+profileDTO.getPassword()+"'user_email_id='"+profileDTO.geteMail()+"') WHERE user_id="+userId+"");
+	preparedStatement=sqlCon.prepareStatement("UPDATE user SET user_password='"+profileDTO.getPassword()+"',user_email_id='"+profileDTO.getMailId()+"' WHERE user_id="+profileDTO.getUserId()+"");
 	preparedStatement.executeUpdate();
 	}catch (SQLException e) {
 		

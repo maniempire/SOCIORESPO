@@ -51,13 +51,15 @@ public class DebateAction extends Action{
 			if (linkUrl.equals("debate")) {
 				List debateList=new ArrayList();
 				List userList=new ArrayList();
+				List titleList = new ArrayList();
 				
 				debateList = postBL.getDebateList(postDTO);
 				debateActionForm.setDebateListView(debateList);
 				userList = postBL.getUserList(postDTO);
 				//if(!debateList.isEmpty()){
 				debateActionForm.setUserListView(userList);
-				
+				titleList = postBL.getTitleList();
+				debateActionForm.setTitleListView(titleList);
 				
 				//}
 			
