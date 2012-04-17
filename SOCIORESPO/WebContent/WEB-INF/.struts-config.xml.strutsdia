@@ -37,8 +37,8 @@
   TYPE="page" model-entity="StrutsProcessItem"/>
  <PROCESS-ITEM ID="#profileAction" NAME="action3" PATH="/profileAction"
   SHAPE="32,433,0,0" TITLE="profileActionForm" TYPE="action" model-entity="StrutsProcessItem">
-  <PROCESS-ITEM-OUTPUT ID="SUCCESS" NAME="forward0" PATH="/profile.jsp"
-   TARGET="page7" TITLE="SUCCESS" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="SUCCESS" NAME="forward0"
+   PATH="/my_profile.jsp" TARGET="page6" TITLE="SUCCESS" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
   <PROCESS-ITEM-OUTPUT ID="FAILURE" NAME="forward1" PATH="/login.jsp"
    TARGET="page4" TITLE="FAILURE" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
   <PROCESS-ITEM-OUTPUT ID="EDITPROFILE" NAME="forward2"
@@ -103,5 +103,11 @@
    TYPE="link" model-entity="StrutsProcessItemOutput"/>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="page5" PATH="/edit_profile.jsp" SHAPE="240,657,0,0"
-  SUBTYPE="jsp" TITLE="edit_profile.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+  SUBTYPE="jsp" TITLE="edit_profile.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/profileAction.do"
+   SUBTYPE="confirmed" TARGET="action3" TITLE="/profileAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page6" PATH="/my_profile.jsp" SHAPE="448,545,0,0"
+  SUBTYPE="jsp" TITLE="my_profile.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
 </PROCESS>

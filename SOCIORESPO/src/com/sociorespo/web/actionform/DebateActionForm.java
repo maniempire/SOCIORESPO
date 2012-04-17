@@ -4,18 +4,22 @@ import java.util.List;
 
 import org.apache.struts.action.ActionForm;
 
+import com.sociorespo.dto.PostDTO;
+
 public class DebateActionForm extends ActionForm{
 	
 	private List debateListView;
 	private List userListView;
+	private List titleListView;
 	
 	private boolean shareFacebook;
 	private boolean shareTwitter;
 	private boolean shareLinkedIn;
 	
-	private String debateComment=null;
-	private String debateTitle=null;
+	private String debateComment = null;
+	private String debateTitle = null;
 	
+	private PostDTO postDTO = null;
 	
 
 	public String getDebateComment() {
@@ -75,7 +79,22 @@ public class DebateActionForm extends ActionForm{
 		this.shareLinkedIn = shareLinkedIn;
 	}
 
-	
-	
+	public PostDTO getPostDTO() {
+		return postDTO;
+	}
+
+	public void setPostDTO(PostDTO postDTO) {
+		this.postDTO = postDTO;
+	}
+
+	public List getTitleListView() {
+		return titleListView;
+	}
+
+	public void setTitleListView(List titleListView) {
+		this.titleListView = titleListView;
+	}
+
+		
 
 }

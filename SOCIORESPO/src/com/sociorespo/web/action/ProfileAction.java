@@ -73,12 +73,13 @@ public class ProfileAction extends Action{
 		
 		
 		if (linkUrl != null) {
-			//if (linkUrl.equals("update")) {
-			if(profileActionForm.getUpdate()=="update"){
+			if (linkUrl.equals("update")) {
+			//if(profileActionForm.getUpdate()=="update"){
 				profileDTO.setFirstName(profileActionForm.getFirstName());
 				profileDTO.setLastName(profileActionForm.getLastName());
-				if(profileActionForm.getChangePassword()!=null){
-					profileDTO.setPassword(profileActionForm.getChangePassword());
+				profileDTO.setMailId(profileActionForm.getMailId());
+				if(profileActionForm.getConfirmPassword()!=null){
+					profileDTO.setPassword(profileActionForm.getConfirmPassword());
 				}else{
 					profileDTO.setPassword(profileActionForm.getPassword());
 				}
@@ -91,24 +92,16 @@ public class ProfileAction extends Action{
 				nextPage = "SUCCESS";
 				//session.invalidate();
 			}else if(linkUrl.equals("edit")){
+				profileDTO=profileBL.getUserProfile(profileDTO);
+				profileActionForm.setConfirmPassword(null);
+				profileActionForm.setNewPassword(null);
 				nextPage = "EDITPROFILE";
 			}
 			
-		else{
-		profileDTO=profileBL.getUserProfile(profileDTO);
+		//else{
+		//profileDTO=profileBL.getUserProfile(profileDTO);
 		
 		//profileActionForm.setProfileDTO(profileDTO);
-		
-		profileActionForm.setFirstName(profileDTO.getFirstName());
-		profileActionForm.setLastName(profileDTO.getLastName());
-		profileActionForm.setMailId(profileDTO.getMailId());
-		profileActionForm.setPassword(profileDTO.getPassword());
-		profileActionForm.setGender(profileDTO.getGender());
-		profileActionForm.setPhoneNum(profileDTO.getPhoneNum());
-		profileActionForm.setDob(profileDTO.getDob());
-		profileActionForm.setVoterId(profileDTO.getVoterId());
-		
-		FaceBookBL faceBookBL = new FaceBookBL();
 		
 		//profileDTO = faceBookBL.getFaceBookProfile(profileDTO);
 		
@@ -136,8 +129,19 @@ public class ProfileAction extends Action{
 		
 		errors.add("PIMERROR", new ActionError("errors.pim.profileupdated.success"));
 		
+		//}
+		}else{
+			profileDTO=profileBL.getUserProfile(profileDTO);
+			nextPage="SUCCESS";
 		}
-		}
+		profileActionForm.setFirstName(profileDTO.getFirstName());
+		profileActionForm.setLastName(profileDTO.getLastName());
+		profileActionForm.setMailId(profileDTO.getMailId());
+		profileActionForm.setPassword(profileDTO.getPassword());
+		profileActionForm.setGender(profileDTO.getGender());
+		profileActionForm.setPhoneNum(profileDTO.getPhoneNum());
+		profileActionForm.setDob(profileDTO.getDob());
+		profileActionForm.setVoterId(profileDTO.getVoterId());
 		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -152,7 +156,7 @@ public class ProfileAction extends Action{
 		} 
 		
 		
-		nextPage="SUCCESS";
+		
 		
 		return mapping.findForward(nextPage);
 		

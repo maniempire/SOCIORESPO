@@ -1,17 +1,19 @@
 package com.sociorespo.dto;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class PostDTO {
 	
-	
-	private String postTags = null;
 	private boolean shareFacebook ;
 	private boolean shareTwitter;
 	private boolean shareLinkedIn;
 	private boolean tagInsert;
-	private String tagDate;
+	
 	private int userId = 0;
+	
+	private String postTags = null;
+	private String tagDate;
 	private String firstName=null;
 	private String lastName = null;
 	
@@ -21,8 +23,9 @@ public class PostDTO {
 	private String debateContent = null;
 	private String debateDate= null;
 	private String debateTitle = null;
-	
 	private String complaintUser = null;
+	
+	private ArrayList titleList = null;
 	
 
 	public String getComplaintUser() {
@@ -153,9 +156,14 @@ public class PostDTO {
 		this.debateTitle = debateTitle;
 	}
 
-	
+	public ArrayList getTitleList() {
+		return titleList;
+	}
 
-	
-	
+	public void setTitleList(ArrayList titleList) {
+		this.titleList = titleList;
+	}
+
+		
 
 }

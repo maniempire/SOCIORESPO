@@ -285,6 +285,17 @@ public List getUserList(PostDTO postDTO) {
 	
 }
 
+public List getTitleList() {
+	
+PostDAO postDAO = new PostDAO();
+	
+	List titleList;
+		
+	titleList = postDAO.getTitleList();
+	
+	return titleList;
+}
+
 
 
 }
