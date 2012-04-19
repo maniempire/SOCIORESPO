@@ -78,7 +78,7 @@ public class ProfileAction extends Action{
 				profileDTO.setFirstName(profileActionForm.getFirstName());
 				profileDTO.setLastName(profileActionForm.getLastName());
 				profileDTO.setMailId(profileActionForm.getMailId());
-				if(profileActionForm.getConfirmPassword()!=null){
+				if(profileActionForm.getConfirmPassword()!=null && profileActionForm.getConfirmPassword()!=""){
 					profileDTO.setPassword(profileActionForm.getConfirmPassword());
 				}else{
 					profileDTO.setPassword(profileActionForm.getPassword());
@@ -89,6 +89,7 @@ public class ProfileAction extends Action{
 				profileDTO.setDob(profileActionForm.getDob());
 				
 				profileDTO = profileBL.updateProfile(profileDTO);
+				session.setAttribute("FIRSTNAME", profileDTO.getFirstName());
 				nextPage = "SUCCESS";
 				//session.invalidate();
 			}else if(linkUrl.equals("edit")){
